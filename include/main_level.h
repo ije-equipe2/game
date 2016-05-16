@@ -16,7 +16,7 @@ using ijengine::Canvas;
 using ijengine::Texture;
 
 #define MAX_W 10
-#define MAX_H 7
+#define MAX_H 8
 
 class MainLevel : public Level {
 public:

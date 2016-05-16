@@ -7,9 +7,6 @@
 
 #include "test_level_factory.h"
 
-#define GAME_EVENT_MOVE_DOWN    4
-#define GAME_EVENT_MOVE_UP      8
-
 using namespace ijengine;
 
 class Ije02Game {

@@ -20,7 +20,8 @@ MainLevel::MainLevel(int r, int g, int b, const string& next_level)
         for (int j = 0; j < MAX_H; ++j)
             m_map[i][j] = rand() % m_textures.size();
 
-    add_children(new Character());
+    add_children(new Character("sprite.png", 0, 0.0, 0.0));
+    add_children(new Character("sprite.png", 1, 576.0, 0.0));
 }
 
 bool
@@ -41,7 +42,7 @@ MainLevel::update_self(unsigned now, unsigned)
     if (m_start == -1)
         m_start = now;
 
-    if (now - m_start > 3000)
+    if (now - m_start > 1000000)
         m_done = true;
 }
 
@@ -54,6 +55,6 @@ MainLevel::draw_self(Canvas *canvas, unsigned, unsigned)
         for (int j = 0; j < MAX_H; ++j)
         {
             auto texture = m_textures[m_map[i][j]].get(); 
-            canvas->draw(texture, i*texture->w(), j*texture->h());
+            canvas->draw(texture, i * texture->w(), j * texture->h());
         }
 }
