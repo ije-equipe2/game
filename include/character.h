@@ -1,9 +1,12 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
 
-#include <ijengine/gameobject.h>
+#include <ijengine/game_object.h>
 #include <ijengine/game_events_listener.h>
 #include <ijengine/texture.h>
+#include <ijengine/collidable.h>
+#include <ijengine/rectangle.h>
+#include <ijengine/event.h>
 
 #include <memory>
 #include <vector>
@@ -17,9 +20,9 @@ using std::string;
 using namespace ijengine;
 
 
-class Character : public GameObject, public GameEventsListener {
+class Character : public GameObject, public GameEventsListener, public Collidable {
 public:
-	Character(string sprite_path, unsigned id, double x, double y);
+	Character(const string sprite_path, unsigned id, double x, double y, const vector<Event *> &controls);
 	~Character();
     
     enum {
@@ -31,8 +34,21 @@ public:
         STOP_MOVING_LEFT,
         STOP_MOVING_RIGHT,
         STOP_MOVING_UP,
+        LIGHT_ATTACK,
+        HEAVY_ATTACK,
+        BLOCK,
+        SPECIAL,
         NUMBER_OF_CHARACTER_EVENTS
     };
+
+    bool active() const;
+    const Rectangle& bounding_box() const;
+    const list<Rectangle>& hit_boxes() const;
+
+    void on_collision(const Collidable *who, const Rectangle& where);
+    pair<double, double> direction() const;
+
+    const vector<Event *>& controls() const;
 
 protected:
     void update_self(unsigned now, unsigned last);
@@ -53,6 +69,8 @@ private:
     double m_y_speed;
     shared_ptr<Texture> m_texture;
     vector< pair<double, double> > m_speed_vector;
+    vector<Event *> m_controls;
+    Rectangle m_bounding_box;
 };
 
 #endif
