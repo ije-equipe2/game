@@ -36,6 +36,8 @@ Ije02Game::Ije02Game(const string& title, int w, int h)
 
     level::register_factory(&m_level_factory);
     resources::set_textures_dir("res/images");
+
+    physics::set_collision_mode(physics::Mode::ALL_TO_ALL, nullptr);
 }
 
 Ije02Game::~Ije02Game()

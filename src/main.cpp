@@ -11,7 +11,7 @@ int main()
 
     try
     {
-        Ije02Game game("Teste", 640, 512);
+        Ije02Game game("Teste", 21 * 64, 11 * 64);
         rc = game.run("red");
     } catch (Exception& ex)
     {
