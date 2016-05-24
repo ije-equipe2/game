@@ -83,6 +83,11 @@ MainLevel::next() const
     return m_next;
 }
 
+string
+MainLevel::audio() const {
+    return ".";
+}
+
 void
 MainLevel::update_self(unsigned now, unsigned)
 {

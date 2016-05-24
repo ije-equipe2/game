@@ -28,10 +28,11 @@ public:
     
 	bool done() const;
 	string next() const;
+    string audio() const;
 
 protected:
-	void update_self(unsigned now, unsigned last);
-	void draw_self(Canvas *canvas, unsigned now, unsigned last);
+    void update_self(unsigned now, unsigned last);
+    void draw_self(Canvas *canvas, unsigned now, unsigned last);
 
 private:
 	int m_r, m_g, m_b;

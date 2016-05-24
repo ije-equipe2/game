@@ -13,24 +13,24 @@ using std::endl;
 Ije02Game::Ije02Game(const string& title, int w, int h)
     : m_game(title, w, h), m_engine(), m_level_factory()
 {
-    m_translator.add_translation(SystemEvent(0, SystemEvent::QUIT),
-        GameEvent(GAME_EVENT_QUIT));
+    // m_translator.add_translation(SystemEvent(0, SystemEvent::QUIT),
+    //     GameEvent(GAME_EVENT_QUIT));
 
     vector<KeyboardEvent::Key> keys {KeyboardEvent::DOWN, KeyboardEvent::LEFT, KeyboardEvent::RIGHT, KeyboardEvent::UP,
                                      KeyboardEvent::S, KeyboardEvent::A, KeyboardEvent::D, KeyboardEvent::W};
 
-    for(int id = 0; id <= 1; id++) {
-        for(int i = Character::START_MOVING_DOWN; i <= Character::START_MOVING_UP; i++) {
-            m_translator.add_translation(KeyboardEvent(0, KeyboardEvent::PRESSED,
-                keys[i + id * 4], KeyboardEvent::NONE),
-                GameEvent(Character::NUMBER_OF_CHARACTER_EVENTS * id + i));
-        }
-        for(int i = Character::STOP_MOVING_DOWN; i <= Character::STOP_MOVING_UP; i++) {
-            m_translator.add_translation(KeyboardEvent(0, KeyboardEvent::RELEASED,
-                keys[(i % 4) + id * 4], KeyboardEvent::NONE),
-                GameEvent(Character::NUMBER_OF_CHARACTER_EVENTS * id + i));   
-        }
-    }
+    // for(int id = 0; id <= 1; id++) {
+    //     for(int i = Character::START_MOVING_DOWN; i <= Character::START_MOVING_UP; i++) {
+    //         m_translator.add_translation(KeyboardEvent(0, KeyboardEvent::PRESSED,
+    //             keys[i + id * 4], KeyboardEvent::NONE),
+    //             GameEvent(Character::NUMBER_OF_CHARACTER_EVENTS * id + i));
+    //     }
+    //     for(int i = Character::STOP_MOVING_DOWN; i <= Character::STOP_MOVING_UP; i++) {
+    //         m_translator.add_translation(KeyboardEvent(0, KeyboardEvent::RELEASED,
+    //             keys[(i % 4) + id * 4], KeyboardEvent::NONE),
+    //             GameEvent(Character::NUMBER_OF_CHARACTER_EVENTS * id + i));   
+    //     }
+    // }
 
     event::register_translator(&m_translator);
 

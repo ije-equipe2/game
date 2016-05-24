@@ -108,7 +108,7 @@ bool
 Character::on_event(const GameEvent& event)
 {
     for(int i = START_MOVING_DOWN; i <= STOP_MOVING_UP; i++) {
-        if(event.type() == (m_id * NUMBER_OF_CHARACTER_EVENTS + i)) {
+        if(event.id() == (m_id * NUMBER_OF_CHARACTER_EVENTS + i)) {
             m_frame = 0;
             m_x_speed += m_speed_vector[i].first;
             m_y_speed += m_speed_vector[i].second;
