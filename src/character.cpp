@@ -29,7 +29,7 @@ Character::Character(const string sprite_path, unsigned id, double x, double y, 
     m_w = 64;
     m_h = 64;
     
-    m_bounding_box = Rectangle(m_x, m_y, m_w, m_h);
+    m_bounding_box = Rectangle(m_x, m_y, 32, 32);
 
     m_speed_vector["down"] = make_pair(0.00, SPEED);
     m_speed_vector["left"] = make_pair(-SPEED, 0.00);
@@ -61,17 +61,8 @@ Character::update_self(unsigned now, unsigned last)
     if(m_y_speed == 0.0 && m_x_speed == 0.0) {
         return;
     }
-    
-    double new_y = y() + m_y_speed * (now - last) / 1000.0;
-    new_y = min(new_y, (MAX_H - 1) * 64.0);
-    new_y = max(new_y, 0.0);
 
-    double new_x = x() + m_x_speed * (now - last) / 1000.0;
-    new_x = min(new_x, (MAX_W - 1) * 64.0);
-    new_x = max(new_x, 0.0);
-
-    set_y(new_y);
-    set_x(new_x);
+    update_position(now, last);
 
     m_bounding_box.set_position(x(), y());
 
@@ -84,6 +75,22 @@ Character::update_self(unsigned now, unsigned last)
             break;
         }
     }
+}
+
+inline void
+Character::update_position(const unsigned &now, const unsigned &last, bool backwards) {
+    int multiplier = (backwards) ? -1 : 1;
+
+    double new_y = y() + multiplier * m_y_speed * (now - last) / 1000.0;
+    new_y = min(new_y, (MAX_H - 1) * 64.0);
+    new_y = max(new_y, 0.0);
+
+    double new_x = x() + multiplier * m_x_speed * (now - last) / 1000.0;
+    new_x = min(new_x, (MAX_W - 1) * 64.0);
+    new_x = max(new_x, 0.0);
+
+    set_y(new_y);
+    set_x(new_x);
 }
 
 void
@@ -137,6 +144,6 @@ Character::hit_boxes() const {
 }
 
 void
-Character::on_collision(const Collidable *who, const Rectangle& where) {
-    printf("%p hit on %p\n", this, who);
+Character::on_collision(const Collidable *who, const Rectangle& where, unsigned now, unsigned last) {
+    update_position(now, last, true);
 }  

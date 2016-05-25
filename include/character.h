@@ -47,7 +47,7 @@ public:
     const Rectangle& bounding_box() const;
     const list<Rectangle>& hit_boxes() const;
 
-    void on_collision(const Collidable *who, const Rectangle& where);
+    void on_collision(const Collidable *who, const Rectangle& where, unsigned now, unsigned last);
     pair<double, double> direction() const;
 
     const vector<Event *>& controls() const;
@@ -74,6 +74,8 @@ private:
     unordered_map<string, pair<double, double> > m_speed_vector;
     vector<Event *> m_controls;
     Rectangle m_bounding_box;
+
+    inline void update_position(const unsigned &now, const unsigned &last, bool backwards = false);
 };
 
 #endif
