@@ -12,11 +12,13 @@
 #include <vector>
 #include <utility>
 #include <string>
+#include <unordered_map>
 
 using std::shared_ptr;
 using std::vector;
 using std::pair;
 using std::string;
+using std::unordered_map;
 using namespace ijengine;
 
 
@@ -67,8 +69,9 @@ private:
     int m_h;
     double m_x_speed;
     double m_y_speed;
+    double m_speed;
     shared_ptr<Texture> m_texture;
-    vector< pair<double, double> > m_speed_vector;
+    unordered_map<string, pair<double, double> > m_speed_vector;
     vector<Event *> m_controls;
     Rectangle m_bounding_box;
 };

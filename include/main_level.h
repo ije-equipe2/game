@@ -18,8 +18,8 @@ using ijengine::Canvas;
 using ijengine::Texture;
 using ijengine::Event;
 
-#define MAX_W 21
-#define MAX_H 11
+#define MAX_W 16
+#define MAX_H 12
 
 class MainLevel : public Level {
 public:

@@ -1,5 +1,6 @@
 #include "character.h"
 #include "ije02_game.h"
+#include "main_level.h"
 
 #include <ijengine/engine.h>
 #include <ijengine/canvas.h>
@@ -30,23 +31,11 @@ Character::Character(const string sprite_path, unsigned id, double x, double y, 
     
     m_bounding_box = Rectangle(m_x, m_y, m_w, m_h);
 
-    // starts going down
-    m_speed_vector.emplace_back(0.00, SPEED);
-    // starts going left
-    m_speed_vector.emplace_back(-SPEED, 0.00);
-    // starts going right
-    m_speed_vector.emplace_back(SPEED, 0.00);
-    // starts going up
-    m_speed_vector.emplace_back(0.00, -SPEED);
-    // stops going down
-    m_speed_vector.emplace_back(0.00, -SPEED);
-    // stops going left
-    m_speed_vector.emplace_back(SPEED, 0.00);
-    // stops going right
-    m_speed_vector.emplace_back(-SPEED, 0.00);
-    // stops going up
-    m_speed_vector.emplace_back(0.00, SPEED);
-
+    m_speed_vector["down"] = make_pair(0.00, SPEED);
+    m_speed_vector["left"] = make_pair(-SPEED, 0.00);
+    m_speed_vector["right"] = make_pair(SPEED, 0.00);
+    m_speed_vector["up"] = make_pair(0.00, -SPEED);
+    
     event::register_listener(this);
     physics::register_object(this);
 }
@@ -74,11 +63,11 @@ Character::update_self(unsigned now, unsigned last)
     }
     
     double new_y = y() + m_y_speed * (now - last) / 1000.0;
-    new_y = min(new_y, 10 * 64.0);
+    new_y = min(new_y, (MAX_H - 1) * 64.0);
     new_y = max(new_y, 0.0);
 
     double new_x = x() + m_x_speed * (now - last) / 1000.0;
-    new_x = min(new_x, 20 * 64.0);
+    new_x = min(new_x, (MAX_W - 1) * 64.0);
     new_x = max(new_x, 0.0);
 
     set_y(new_y);
@@ -107,14 +96,20 @@ Character::draw_self(Canvas *canvas, unsigned, unsigned)
 bool
 Character::on_event(const GameEvent& event)
 {
-    for(int i = START_MOVING_DOWN; i <= STOP_MOVING_UP; i++) {
-        if(event.id() == (m_id * NUMBER_OF_CHARACTER_EVENTS + i)) {
-            m_frame = 0;
-            m_x_speed += m_speed_vector[i].first;
-            m_y_speed += m_speed_vector[i].second;
-            m_start = event.timestamp();
-            return true;
+    if(event.id() == game_event::MOVEMENT) {
+        string action = event.get_property<string>("action");
+        string direction = event.get_property<string>("direction");
+        pair<double, double> speed_pair = m_speed_vector[direction];
+        if(action == "start") {
+            m_x_speed += speed_pair.first;
+            m_y_speed += speed_pair.second;
         }
+        else {
+            m_y_speed += -speed_pair.second;
+            m_x_speed += -speed_pair.first;
+        }
+
+        return true;
     }
 
     return false;

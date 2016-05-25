@@ -10,6 +10,17 @@
 using std::cout;
 using std::endl;
 
+namespace ijengine
+{
+    namespace game_event
+    {
+        unsigned MOVEMENT = GameEvent::assign_id();
+        unsigned MOTION = GameEvent::assign_id();
+        unsigned CLICK = GameEvent::assign_id();
+    }
+}
+
+
 Ije02Game::Ije02Game(const string& title, int w, int h)
     : m_game(title, w, h), m_engine(), m_level_factory()
 {

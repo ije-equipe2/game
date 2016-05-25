@@ -12,6 +12,7 @@ using namespace ijengine;
 MainLevel::MainLevel(int r, int g, int b, const string& next_level)
     : m_r(r), m_g(g), m_b(b), m_done(false), m_next(next_level), m_start(-1)
 {
+    // m_textures.push_back(resources::get_texture("Map002.jpg"));
     m_textures.push_back(resources::get_texture("graminha01.jpg"));
     m_textures.push_back(resources::get_texture("chaozinho01.png"));
     m_textures.push_back(resources::get_texture("graminha02.png"));
@@ -33,7 +34,7 @@ MainLevel::MainLevel(int r, int g, int b, const string& next_level)
     }
 
     add_child(new Character("sprite.png", 0, 0.0, 0.0, controls[0]));
-    add_child(new Character("sprite.png", 1, 20 * 64.00, 0.0, controls[1]));
+    add_child(new Character("sprite.png", 1, (MAX_W - 1) * 64.00, 0.0, controls[1]));
 }
 
 MainLevel::~MainLevel() {
@@ -103,6 +104,7 @@ MainLevel::draw_self(Canvas *canvas, unsigned, unsigned)
 {
     canvas->clear();
     
+    //canvas->draw(m_textures[0].get(), 0, 0);
     for (int i = 0; i < MAX_W; ++i)
     {
         for (int j = 0; j < MAX_H; ++j)

@@ -1,6 +1,8 @@
 #ifndef IJE02_GAME_H
 #define IJE02_GAME_H
 
+#include "translator.h"
+
 #include <ijengine/game.h>
 #include <ijengine/engine.h>
 #include <ijengine/mouse_event.h>
@@ -9,91 +11,29 @@
 #include <ijengine/events_translator.h>
 
 #include "test_level_factory.h"
+#include <iostream>
 
 using namespace ijengine;
+using namespace std;
 
 namespace ijengine
 {
     namespace game_event
     {
-        const unsigned MOVEMENT = GameEvent::assign_id();
-        const unsigned MOTION = GameEvent::assign_id();
-        const unsigned CLICK = GameEvent::assign_id();
+        extern unsigned MOVEMENT;
+        extern unsigned MOTION;
+        extern unsigned CLICK;
     }
 }
 
 class Ije02Game {
 public:
-	Ije02Game(const string& title, int w, int h);
-	~Ije02Game();
+    Ije02Game(const string& title, int w, int h);
+    ~Ije02Game();
 
-	int run(const string& level_id);
+    int run(const string& level_id);
 
 private:
-    class Translator : public EventsTranslator
-    {
-        bool
-        translate(GameEvent& to, const MouseEvent& from)
-        {
-            to.set_timestamp(from.timestamp());
-            to.set_property<double>("x", from.x());
-            to.set_property<double>("y", from.y());
-
-            if (from.state() == MouseEvent::MOTION)
-                to.set_id(game_event::MOTION);
-            else
-                to.set_id(game_event::CLICK);
-
-            return true;
-        }
-
-        bool
-        translate(GameEvent& to, const SystemEvent& from)
-        {
-            if (from.action() == SystemEvent::QUIT)
-            {
-                to.set_timestamp(from.timestamp());
-                to.set_id(game_event::QUIT);
-
-                return true;
-            }
-
-            return false;
-        }
-
-        virtual bool
-        translate(GameEvent& to, const KeyboardEvent& from)
-        {
-            to.set_timestamp(from.timestamp());
-
-            bool done = true;
-            int id = 0;
-
-            switch (from.key()) {
-            case KeyboardEvent::ESCAPE:
-                id = game_event::QUIT;
-                break;
-    
-            case KeyboardEvent::UP:
-                id = game_event::MOVEMENT;
-                to.set_property<string>("direction", "up");
-                break;
-
-            case KeyboardEvent::DOWN:
-                id = game_event::MOVEMENT;
-                to.set_property<string>("direction", "down");
-                break;
-
-            default:
-                done = false;
-            }
-
-            to.set_id(id);
-
-            return done;
-        }
-    };
-
 	Game m_game;
 	Engine m_engine;
 	Translator m_translator;
