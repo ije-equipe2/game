@@ -42,8 +42,6 @@ private:
 
     vector< shared_ptr<Texture> > m_textures;
     int m_map[MAX_W][MAX_H];
-
-    inline vector< vector<Event *> > define_controls();
 };
 
 #endif

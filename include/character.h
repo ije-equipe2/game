@@ -24,7 +24,7 @@ using namespace ijengine;
 
 class Character : public GameObject, public GameEventsListener, public Collidable {
 public:
-	Character(const string sprite_path, unsigned id, double x, double y, const vector<Event *> &controls);
+	Character(const string sprite_path, unsigned id, double x, double y);
 	~Character();
     
     enum {
@@ -50,13 +50,11 @@ public:
     void on_collision(const Collidable *who, const Rectangle& where, unsigned now, unsigned last);
     pair<double, double> direction() const;
 
-    const vector<Event *>& controls() const;
-
 protected:
     void update_self(unsigned now, unsigned last);
     void draw_self(Canvas *canvas, unsigned now, unsigned last);
 
-    typedef enum {MOVING_DOWN, MOVING_LEFT, MOVING_RIGHT, MOVING_UP, MOVING_DOWN_RIGHT, MOVING_DOWN_LEFT, MOVING_UP_LEFT, MOVING_UP_RIGHT} State;
+    typedef enum {MOVING_RIGHT, MOVING_LEFT} State;
 
     bool on_event(const GameEvent& event);
 
@@ -72,7 +70,6 @@ private:
     double m_speed;
     shared_ptr<Texture> m_texture;
     unordered_map<string, pair<double, double> > m_speed_vector;
-    vector<Event *> m_controls;
     Rectangle m_bounding_box;
 
     inline void update_position(const unsigned &now, const unsigned &last, bool backwards = false);

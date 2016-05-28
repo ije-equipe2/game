@@ -20,11 +20,18 @@ namespace ijengine
 {
     namespace game_event
     {
-        extern unsigned MOVEMENT;
+        extern unsigned MOVEMENT_P1;
+        extern unsigned MOVEMENT_P2;
         extern unsigned MOTION;
         extern unsigned CLICK;
     }
 }
+
+const int SCREEN_WIDTH_PROPORTION = 4;
+const int SCREEN_HEIGHT_PROPORTION = 3;
+const int SCREEN_BASE_SIZE = 80;
+const int SCREEN_WIDTH = SCREEN_WIDTH_PROPORTION * SCREEN_BASE_SIZE;
+const int SCREEN_HEIGHT = SCREEN_HEIGHT_PROPORTION * SCREEN_BASE_SIZE;
 
 class Ije02Game {
 public:

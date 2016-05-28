@@ -6,6 +6,8 @@
 #include <ijengine/keyboard_event.h>
 #include <ijengine/events_translator.h>
 
+#include <vector>
+
 using namespace ijengine;
 using namespace std;
 
@@ -15,6 +17,9 @@ public:
     bool translate(GameEvent& to, const MouseEvent& from);
     bool translate(GameEvent& to, const SystemEvent& from);
     virtual bool translate(GameEvent& to, const KeyboardEvent& from);
+
+private:
+    inline void set_movement_properties(GameEvent& to, const KeyboardEvent& from, const vector<unsigned> &moves);
 };
 
 #endif
