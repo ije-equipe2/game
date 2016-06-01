@@ -46,11 +46,11 @@ Translator::translate(GameEvent& to, const KeyboardEvent& from)
     if(from.key() == KeyboardEvent::ESCAPE) {
         id = game_event::QUIT;
     }
-    else if(find(p1_moves.begin(), p1_moves.end(), from.key()) != p1_moves.end()) {
+    else if(find(p1_moves.begin(), p1_moves.end(), from.key()) != p1_moves.end() && from.repeated() == false) {
         id = game_event::MOVEMENT_P1;
         set_movement_properties(to, from, p1_moves);
     }
-    else if(find(p2_moves.begin(), p2_moves.end(), from.key()) != p2_moves.end()) {
+    else if(find(p2_moves.begin(), p2_moves.end(), from.key()) != p2_moves.end() && from.repeated() == false) {
         id = game_event::MOVEMENT_P2;
         set_movement_properties(to, from, p2_moves);
     }
