@@ -63,6 +63,12 @@ Translator::translate(GameEvent& to, const KeyboardEvent& from)
     return done;
 }
 
+bool
+Translator::translate(GameEvent& to, const JoystickEvent& from)
+{
+    return false;
+}
+
 inline void
 Translator::set_movement_properties(GameEvent& to, const KeyboardEvent& from, const vector<unsigned> &moves) {
     if(from.state() == KeyboardEvent::PRESSED) {
