@@ -57,5 +57,7 @@ bool
 MenuLevel::on_event(const GameEvent& event) {
     if(event.id() == game_event::ENTER_GAME) {
         m_done = true;
+        return true;
     }
+    return false;
 }
