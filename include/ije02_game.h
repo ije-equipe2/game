@@ -30,13 +30,14 @@ namespace ijengine
 
 const int SCREEN_WIDTH_PROPORTION = 4;
 const int SCREEN_HEIGHT_PROPORTION = 3;
-const int SCREEN_BASE_SIZE = 80;
+const int GAME_SCALE = 3;
+const int SCREEN_BASE_SIZE = 80 * GAME_SCALE;
 const int SCREEN_WIDTH = SCREEN_WIDTH_PROPORTION * SCREEN_BASE_SIZE;
 const int SCREEN_HEIGHT = SCREEN_HEIGHT_PROPORTION * SCREEN_BASE_SIZE;
 
 class Ije02Game {
 public:
-    Ije02Game(const string& title, int w, int h);
+    Ije02Game(const string& title, int w, int h, double scale);
     ~Ije02Game();
 
     int run(const string& level_id);

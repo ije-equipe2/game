@@ -23,8 +23,8 @@ namespace ijengine
 }
 
 
-Ije02Game::Ije02Game(const string& title, int w, int h)
-    : m_game(title, w, h), m_engine(), m_level_factory()
+Ije02Game::Ije02Game(const string& title, int w, int h, double scale)
+    : m_game(title, w, h, scale), m_engine(), m_level_factory()
 {
     event::register_translator(&m_translator);
 
