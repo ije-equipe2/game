@@ -18,6 +18,7 @@ namespace ijengine
         unsigned MOVEMENT_P2 = GameEvent::assign_id();
         unsigned MOTION = GameEvent::assign_id();
         unsigned CLICK = GameEvent::assign_id();
+        unsigned ENTER_GAME = GameEvent::assign_id();
     }
 }
 

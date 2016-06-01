@@ -54,6 +54,9 @@ Translator::translate(GameEvent& to, const KeyboardEvent& from)
         id = game_event::MOVEMENT_P2;
         set_movement_properties(to, from, p2_moves);
     }
+    else if(from.key() == KeyboardEvent::RETURN) {
+        id = game_event::ENTER_GAME;
+    }
     else {
         done = false;
     }

@@ -10,8 +10,8 @@
 using namespace std;
 using namespace ijengine;
 
-MainLevel::MainLevel(int r, int g, int b, const string& next_level)
-    : m_r(r), m_g(g), m_b(b), m_done(false), m_next(next_level), m_start(-1)
+MainLevel::MainLevel(const string& next_level)
+    : m_done(false), m_next(next_level), m_start(-1)
 {
     m_textures.push_back(resources::get_texture("map/Map002.jpg"));
     // m_textures.push_back(resources::get_texture("graminha01.jpg"));

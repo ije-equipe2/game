@@ -1,9 +1,10 @@
-#ifndef MAIN_LEVEL_H
-#define MAIN_LEVEL_H
+#ifndef MENU_LEVEL_H
+#define MENU_LEVEL_H
 
 #include <ijengine/level.h>
 #include <ijengine/texture.h>
 #include <ijengine/event.h>
+#include <ijengine/game_events_listener.h>
 
 #include <string>
 #include <memory>
@@ -18,21 +19,24 @@ using ijengine::Canvas;
 using ijengine::Texture;
 using ijengine::Event;
 
+using namespace ijengine;
+
 #define MAX_W 16
 #define MAX_H 12
 
-class MainLevel : public Level {
+class MenuLevel : public Level, public GameEventsListener {
 public:
-	MainLevel(const string& next = "");
-    ~MainLevel();
+    MenuLevel(const string& next = "");
+    ~MenuLevel();
     
-	bool done() const;
-	string next() const;
+    bool done() const;
+    string next() const;
     string audio() const;
 
 protected:
     void update_self(unsigned now, unsigned last);
     void draw_self(Canvas *canvas, unsigned now, unsigned last);
+    bool on_event(const GameEvent& event);
 
 private:
     bool m_done;
@@ -40,7 +44,6 @@ private:
     int m_start;
 
     vector< shared_ptr<Texture> > m_textures;
-    int m_map[MAX_W][MAX_H];
 };
 
 #endif

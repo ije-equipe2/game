@@ -24,6 +24,7 @@ namespace ijengine
         extern unsigned MOVEMENT_P2;
         extern unsigned MOTION;
         extern unsigned CLICK;
+        extern unsigned ENTER_GAME;
     }
 }
 
