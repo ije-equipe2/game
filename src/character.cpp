@@ -28,7 +28,7 @@ Character::Character(const string sprite_path, unsigned id, double x, double y)
     m_w = 32;
     m_h = 32;
 
-    m_bounding_box = Rectangle(m_x, m_y, 32, 32);
+    m_bounding_box = Rectangle(m_x, m_y, 24, 24);
 
     m_speed_vector["down"] = make_pair(0.00, SPEED);
     m_speed_vector["left"] = make_pair(-SPEED, 0.00);
@@ -54,8 +54,6 @@ Character::update_self(unsigned now, unsigned last)
     if (now - m_start > 100)
     {
         m_start += 100;
-        cout << "texture: " << m_texture->w() << endl;
-        cout << "texutre divided: " << m_texture->w() / 32 << endl;
         m_frame = (m_frame + 1) % (m_texture->w() / 32);
     }
 

@@ -11,8 +11,7 @@ int main()
 
     try
     {
-        Ije02Game game("Teste", SCREEN_BASE_SIZE * SCREEN_WIDTH_PROPORTION, 
-                       SCREEN_BASE_SIZE * SCREEN_HEIGHT_PROPORTION, GAME_SCALE);
+        Ije02Game game("Teste", SCREEN_SCALED_WIDTH, SCREEN_SCALED_HEIGHT, GAME_SCALE);
         rc = game.run("red");
     } catch (Exception& ex)
     {

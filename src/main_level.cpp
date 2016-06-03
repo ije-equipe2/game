@@ -14,10 +14,6 @@ MainLevel::MainLevel(const string& next_level)
     : m_done(false), m_next(next_level), m_start(-1)
 {
     m_textures.push_back(resources::get_texture("map/Map002.jpg"));
-    // m_textures.push_back(resources::get_texture("graminha01.jpg"));
-    // m_textures.push_back(resources::get_texture("chaozinho01.png"));
-    // m_textures.push_back(resources::get_texture("graminha02.png"));
-    // m_textures.push_back(resources::get_texture("chaozinho02.png"));
 
     for (int i = 0; i < MAX_W; ++i)
         for (int j = 0; j < MAX_H; ++j)
@@ -69,12 +65,4 @@ MainLevel::draw_self(Canvas *canvas, unsigned, unsigned)
     canvas->clear();
     
     canvas->draw(m_textures[0].get(), 0, 0);
-    // for (int i = 0; i < MAX_W; ++i)
-    // {
-    //     for (int j = 0; j < MAX_H; ++j)
-    //     {
-    //         auto texture = m_textures[m_map[i][j]].get(); 
-    //         canvas->draw(texture, i * texture->w(), j * texture->h());
-    //     }
-    // }
 }
