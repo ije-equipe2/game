@@ -57,6 +57,12 @@ Translator::translate(GameEvent& to, const KeyboardEvent& from)
     else if(from.key() == KeyboardEvent::RETURN) {
         id = game_event::ENTER_GAME;
     }
+    else if (from.key() == KeyboardEvent::SPACE and from.state() == KeyboardEvent::PRESSED) {
+        id = game_event::HEAVY_ATTACK_P1;
+    }
+    else if (from.key() == KeyboardEvent::Q and from.state() == KeyboardEvent::PRESSED) {
+        id = game_event::HEAVY_ATTACK_P2;
+    }
     else {
         done = false;
     }

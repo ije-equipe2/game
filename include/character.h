@@ -50,6 +50,8 @@ public:
     void on_collision(const Collidable *who, const Rectangle& where, unsigned now, unsigned last);
     pair<double, double> direction() const;
 
+    unsigned id() const { return m_id; }
+
 protected:
     void update_self(unsigned now, unsigned last);
     void draw_self(Canvas *canvas, unsigned now, unsigned last);
@@ -58,7 +60,7 @@ protected:
 
     bool on_event(const GameEvent& event);
 
-private:
+protected:
     unsigned m_id;
     State m_state;
     int m_frame;

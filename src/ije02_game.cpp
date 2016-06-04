@@ -14,6 +14,8 @@ namespace ijengine
 {
     namespace game_event
     {
+        unsigned HEAVY_ATTACK_P1 = GameEvent::assign_id();
+        unsigned HEAVY_ATTACK_P2 = GameEvent::assign_id();
         unsigned MOVEMENT_P1 = GameEvent::assign_id();
         unsigned MOVEMENT_P2 = GameEvent::assign_id();
         unsigned MOTION = GameEvent::assign_id();

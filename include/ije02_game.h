@@ -20,6 +20,8 @@ namespace ijengine
 {
     namespace game_event
     {
+        extern unsigned HEAVY_ATTACK_P1;
+        extern unsigned HEAVY_ATTACK_P2;
         extern unsigned MOVEMENT_P1;
         extern unsigned MOVEMENT_P2;
         extern unsigned MOTION;

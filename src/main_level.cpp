@@ -2,6 +2,7 @@
 #include "engine.h"
 #include "character.h"
 #include "ije02_game.h"
+#include "mage.h"
 
 #include <ijengine/canvas.h>
 #include <ijengine/keyboard_event.h>
@@ -25,7 +26,7 @@ MainLevel::MainLevel(const string& next_level)
     m_map[MAX_W - 1][MAX_H - 1] = 0;    
 
     add_child(new Character("spritesheets/SpritesheetRedSoldierWAlk.png", 0, 0.0, 0.0));
-    add_child(new Character("spritesheets/SpritesheetRedMagerWalk.png", 1, (double) SCREEN_WIDTH - 32.0, 0.0));
+    add_child(new Mage(1, (double) SCREEN_WIDTH - 32.0, 0.0));
 }
 
 MainLevel::~MainLevel() {
