@@ -3,6 +3,23 @@
 
 #include <ijengine/engine.h>
 #include <ijengine/rectangle.h>
+#include <ijengine/game_object.h>
+
+
+using namespace std;
+using namespace ijengine;
+
+
+Fireball::Fireball(GameObject *parent, unsigned mage_id, double xp, double yp, double dx, double dy, int damage)
+    : Skill(parent, xp, yp), m_character_id(mage_id), m_dx(dx/hypot(dx, dy)), m_dy(dy/hypot(dx, dy)), m_damage(damage), m_speed(100.0) 
+{
+
+}
+
+Fireball::~Fireball()
+{
+
+}
 
 void
 Fireball::draw_self(Canvas *canvas, unsigned, unsigned)
@@ -24,7 +41,7 @@ Fireball::on_collision(const Collidable *who, const Rectangle& where, unsigned n
 {
     const Character *c = dynamic_cast<const Character *>(who);
 
-    if (c and c->id() != m_mage_id)
+    if (c and c->id() != m_character_id)
     {
         invalidate();
     }
