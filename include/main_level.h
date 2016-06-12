@@ -8,7 +8,9 @@
 #include <string>
 #include <memory>
 #include <vector>
+#include <utility>
 
+using std::pair;
 using std::string;
 using std::vector;
 using std::shared_ptr;
@@ -23,7 +25,7 @@ using ijengine::Event;
 
 class MainLevel : public Level {
 public:
-	MainLevel(const string& next = "");
+	MainLevel(const string& next = "", vector < pair<int, int> > players_characters = {});
     ~MainLevel();
     
 	bool done() const;
@@ -39,6 +41,7 @@ private:
     string m_next;
     int m_start;
 
+    vector < pair<int, int> > m_players_characters;
     vector< shared_ptr<Texture> > m_textures;
     int m_map[MAX_W][MAX_H];
 };

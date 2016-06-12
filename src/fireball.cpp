@@ -13,7 +13,9 @@ using namespace ijengine;
 Fireball::Fireball(GameObject *parent, unsigned mage_id, double xp, double yp, double dx, double dy, int damage)
     : Skill(parent, xp, yp), m_character_id(mage_id), m_dx(dx/hypot(dx, dy)), m_dy(dy/hypot(dx, dy)), m_damage(damage), m_speed(100.0) 
 {
-
+    m_frame = 0;
+    m_start = -1;
+    m_texture = ijengine::resources::get_texture("fireball.png");
 }
 
 Fireball::~Fireball()
@@ -24,8 +26,8 @@ Fireball::~Fireball()
 void
 Fireball::draw_self(Canvas *canvas, unsigned, unsigned)
 {
-    auto texture = ijengine::resources::get_texture("fireball.png");
-    canvas->draw(texture.get(), x(), y()); 
+    Rectangle rect {(double) 32 * m_frame, 32.00, 32.00, 32.00};
+    canvas->draw(m_texture.get(),rect, x(), y()); 
 }
 
 void
@@ -34,6 +36,12 @@ Fireball::update_self(unsigned now, unsigned last)
     double new_y = y() + m_dy *  m_speed * (now - last) / 1000.0;
     double new_x = x() + m_dx *  m_speed * (now - last) / 1000.0;
     set_position(new_x, new_y);
+
+    if (now - m_start > 50)
+    {
+        m_start += 50;
+        m_frame = (m_frame + 1) % (m_texture->w() / 32);
+    }
 }
 
 void
@@ -75,5 +83,3 @@ Fireball::direction() const
 {
     return pair<double, double>(m_dx, m_dy);
 }
-
-

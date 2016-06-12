@@ -11,7 +11,7 @@
 using namespace std;
 using namespace ijengine;
 
-MainLevel::MainLevel(const string& next_level)
+MainLevel::MainLevel(const string& next_level, vector < pair<int, int> > players_characters)
     : m_done(false), m_next(next_level), m_start(-1)
 {
     m_textures.push_back(resources::get_texture("map/Map002.jpg"));
@@ -27,6 +27,11 @@ MainLevel::MainLevel(const string& next_level)
 
     add_child(new Character("spritesheets/SpritesheetRedSoldierWAlk.png", 0, 0.0, 0.0));
     add_child(new Mage(1, (double) SCREEN_WIDTH - 32.0, 0.0));
+
+    m_players_characters = players_characters;
+
+    printf("Primeiro jogador: %d %d\n", m_players_characters[0].first, m_players_characters[0].second);
+    printf("Segundo jogador: %d %d\n", m_players_characters[1].first, m_players_characters[1].second);
 }
 
 MainLevel::~MainLevel() {

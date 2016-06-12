@@ -11,6 +11,12 @@
 #include <ijengine/collidable.h>
 #include <ijengine/engine.h>
 
+#include <memory>
+#include <vector>
+
+using std::shared_ptr;
+using std::vector;
+
 using namespace std;
 using namespace ijengine;
 
@@ -33,6 +39,9 @@ protected:
     double m_dx, m_dy;
     int m_damage;
     double m_speed;
+    int m_frame;
+    int m_start;
+    shared_ptr<Texture> m_texture;
 
 //    bool on_event(const GameEvent& event);
 };

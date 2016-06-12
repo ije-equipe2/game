@@ -63,6 +63,22 @@ Translator::translate(GameEvent& to, const KeyboardEvent& from)
     else if (from.key() == KeyboardEvent::Q and from.state() == KeyboardEvent::PRESSED) {
         id = game_event::HEAVY_ATTACK_P2;
     }
+    else if (from.key() == KeyboardEvent::Z and from.state() == KeyboardEvent::PRESSED) {
+        id = game_event::CHOOSE_CHARACTER;
+    }
+    // Não está conseguindo repetir as teclas e mandá-las para eventos diferentes.
+    // else if (from.key() == KeyboardEvent::UP and from.state() == KeyboardEvent::PRESSED) {
+    //     id = game_event::UP;
+    // }
+    // else if (from.key() == KeyboardEvent::DOWN and from.state() == KeyboardEvent::PRESSED) {
+    //     id = game_event::DOWN;
+    // }
+    // else if (from.key() == KeyboardEvent::LEFT and from.state() == KeyboardEvent::PRESSED) {
+    //     id = game_event::LEFT;
+    // }
+    // else if (from.key() == KeyboardEvent::RIGHT and from.state() == KeyboardEvent::PRESSED) {
+    //     id = game_event::RIGHT;
+    // }
     else {
         done = false;
     }

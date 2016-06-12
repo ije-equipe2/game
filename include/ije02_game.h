@@ -27,6 +27,11 @@ namespace ijengine
         extern unsigned MOTION;
         extern unsigned CLICK;
         extern unsigned ENTER_GAME;
+        extern unsigned CHOOSE_CHARACTER;
+        extern unsigned UP;
+        extern unsigned DOWN;
+        extern unsigned LEFT;
+        extern unsigned RIGHT;
     }
 }
 
