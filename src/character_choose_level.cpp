@@ -65,9 +65,11 @@ CharacterChooseLevel::update_self(unsigned now, unsigned)
 
 
     if(m_current_player > m_number_of_players) {
-        printf("Primeiro jogador: %d %d\n", m_players_characters[0].first, m_players_characters[0].second);
-        printf("Segundo jogador: %d %d\n", m_players_characters[1].first, m_players_characters[1].second);
+        printf("Primeiro jogador: %d\n", m_players_characters[0]);
+        printf("Segundo jogador: %d\n", m_players_characters[1]);
+        //Ije02Game::m_players_characters = m_players_characters;
         m_done = true;
+
     }
 
     m_selected_character = m_current_character_selection->current_selection();
@@ -90,8 +92,7 @@ CharacterChooseLevel::draw_self(Canvas *canvas, unsigned, unsigned)
 bool
 CharacterChooseLevel::on_event(const GameEvent& event) {
     if(event.id() == game_event::CHOOSE_CHARACTER) {
-        m_current_player_character.first = m_current_player;
-        m_current_player_character.second = m_selected_character;
+        m_current_player_character = m_selected_character;
 
         m_players_characters.push_back(m_current_player_character);
 

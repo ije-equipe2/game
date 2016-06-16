@@ -7,7 +7,7 @@ using namespace ijengine;
 
 class Mage : public Character {
 public:
-	Mage(unsigned id, double x = 0.0, double y = 0.0)
+	Mage(unsigned id, double x, double y)
         : Character("spritesheets/SpritesheetRedMagerWalk.png", id, x, y)
     {
     }

@@ -12,6 +12,7 @@
 
 #include "test_level_factory.h"
 #include <iostream>
+#include <vector>
 
 using namespace ijengine;
 using namespace std;
@@ -58,6 +59,7 @@ private:
 	Engine m_engine;
 	Translator m_translator;
 	TestLevelFactory m_level_factory;
+    
 };
 
 #endif

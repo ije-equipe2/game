@@ -2,7 +2,10 @@
 #define TEST_LEVEL_FACTORY_H
 
 #include <ijengine/level_factory.h>
-#include "character_choose_level.h"
+
+#include <vector>
+
+using std::vector;
 
 using namespace ijengine;
 
@@ -12,7 +15,7 @@ public:
     void release(Level *level);
 
 private:
-    CharacterChooseLevel* m_character_choose_level;
+    vector < int > m_players_characters;
 };
 
 #endif

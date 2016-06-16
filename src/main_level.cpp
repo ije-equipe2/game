@@ -11,7 +11,7 @@
 using namespace std;
 using namespace ijengine;
 
-MainLevel::MainLevel(const string& next_level, vector < pair<int, int> > players_characters)
+MainLevel::MainLevel(const string& next_level, vector < int > players_characters)
     : m_done(false), m_next(next_level), m_start(-1)
 {
     m_textures.push_back(resources::get_texture("map/Map002.jpg"));
@@ -25,13 +25,24 @@ MainLevel::MainLevel(const string& next_level, vector < pair<int, int> > players
     m_map[MAX_W - 1][0] = 0;
     m_map[MAX_W - 1][MAX_H - 1] = 0;    
 
-    add_child(new Character("spritesheets/SpritesheetRedSoldierWAlk.png", 0, 0.0, 0.0));
-    add_child(new Mage(1, (double) SCREEN_WIDTH - 32.0, 0.0));
+    // add_child(new Character("spritesheets/SpritesheetRedSoldierWAlk.png", 0, 0.0, 0.0));
+    // add_child(new Mage(1, (double) SCREEN_WIDTH - 32.0, 0.0));
 
     m_players_characters = players_characters;
+    double x =0.0;
+    double y = 0.0;
+    unsigned player_id = 0;
 
-    printf("Primeiro jogador: %d %d\n", m_players_characters[0].first, m_players_characters[0].second);
-    printf("Segundo jogador: %d %d\n", m_players_characters[1].first, m_players_characters[1].second);
+    for(const int &current_player_character : m_players_characters) {
+        set_players_characters_position(player_id, x, y);
+        printf("x_pos: %.2f\n y_pos: %.2f\n");
+        printf("current_player_character: %d, %d\n", current_player_character, player_id);
+        add_child(m_character_factory.make_character(current_player_character, player_id, x, y));
+        player_id++;
+    }
+
+    printf("Primeiro jogador: %d \n", m_players_characters[0]);
+    printf("Segundo jogador: %d \n", m_players_characters[1]);
 }
 
 MainLevel::~MainLevel() {
@@ -71,4 +82,35 @@ MainLevel::draw_self(Canvas *canvas, unsigned, unsigned)
     canvas->clear();
     
     canvas->draw(m_textures[0].get(), 0, 0);
+}
+
+void
+MainLevel::set_players_characters_position(unsigned player_id, double& x_pos, double& y_pos)
+{
+    switch(player_id) {
+        case PLAYER_1:
+            x_pos = 0.0;
+            y_pos = 0.0;
+            break;
+
+        case PLAYER_2:
+            x_pos = (double) SCREEN_WIDTH - 32.0;
+            y_pos = 0.0;
+            break;
+
+        case PLAYER_3:
+            x_pos = 0.0;
+            y_pos = (double) SCREEN_HEIGHT - 32.0;
+            break;
+
+        case PLAYER_4:
+            x_pos = (double) SCREEN_WIDTH - 32.0;
+            y_pos = (double) SCREEN_HEIGHT - 32.0;
+            break;
+
+        default:
+            printf("Valor errado no set_players_characters_position!\n");
+            printf("player_id: %d", player_id);
+            break;
+    }
 }

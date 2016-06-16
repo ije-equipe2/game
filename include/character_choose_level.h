@@ -10,7 +10,6 @@
 #include <string>
 #include <memory>
 #include <vector>
-#include <utility>
 
 using std::pair;
 using std::string;
@@ -36,7 +35,7 @@ public:
     bool done() const;
     string next() const;
     string audio() const;
-    vector < pair<int, int> > players_characters() const { return m_players_characters; }
+    const vector < int > players_characters() const { return m_players_characters; }
 
 protected:
     void update_self(unsigned now, unsigned last);
@@ -53,8 +52,8 @@ private:
     int m_current_player;
     int m_number_of_players;
     CharacterSelection *m_current_character_selection;
-    vector < pair<int, int> > m_players_characters = {};
-    pair <int, int> m_current_player_character;
+    vector < int > m_players_characters = {};
+    int m_current_player_character;
 
     vector< shared_ptr<Texture> > m_textures;
 

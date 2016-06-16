@@ -1,7 +1,6 @@
 #include "mage.h"
 #include "fireball.h"
 #include "ije02_game.h"
-#include "skill_pool.h"
 
 bool
 Mage::on_event(const GameEvent& event)

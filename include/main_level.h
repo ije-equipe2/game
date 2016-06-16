@@ -1,6 +1,7 @@
 #ifndef MAIN_LEVEL_H
 #define MAIN_LEVEL_H
 
+#include "character_factory.h"
 #include <ijengine/level.h>
 #include <ijengine/texture.h>
 #include <ijengine/event.h>
@@ -25,8 +26,22 @@ using ijengine::Event;
 
 class MainLevel : public Level {
 public:
-	MainLevel(const string& next = "", vector < pair<int, int> > players_characters = {});
+	MainLevel(const string& next = "", vector < int > players_characters = {});
     ~MainLevel();
+
+    enum {
+        INFILTRATOR,
+        MAGE,
+        SOLDIER,
+        KNIGHT
+    };
+
+    enum {
+        PLAYER_1,
+        PLAYER_2,
+        PLAYER_3,
+        PLAYER_4
+    };
     
 	bool done() const;
 	string next() const;
@@ -35,15 +50,17 @@ public:
 protected:
     void update_self(unsigned now, unsigned last);
     void draw_self(Canvas *canvas, unsigned now, unsigned last);
+    void set_players_characters_position(unsigned player_id, double& x_pos, double& y_pos);
 
 private:
     bool m_done;
     string m_next;
     int m_start;
 
-    vector < pair<int, int> > m_players_characters;
+    vector < int > m_players_characters;
     vector< shared_ptr<Texture> > m_textures;
     int m_map[MAX_W][MAX_H];
+    CharacterFactory m_character_factory;
 };
 
 #endif
