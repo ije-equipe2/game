@@ -12,10 +12,10 @@ public:
     ~CharacterFactory();
 
     enum {
-        INFILTRATOR,
-        MAGE,
+        KNIGHT,
         SOLDIER,
-        KNIGHT
+        MAGE,
+        INFILTRATOR
     };
 
     Character* make_character(int character_code, unsigned player_id, double x_pos, double y_pos);

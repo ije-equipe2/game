@@ -10,13 +10,15 @@
 using namespace std;
 
 CharacterSelection::CharacterSelection(const string sprite_path)
-    : m_frame(0), m_start(-1), m_current_selection(INFILTRATOR)
+    : m_frame(0), m_start(-1), m_current_selection(KNIGHT)
 {
     m_texture = resources::get_texture(sprite_path);
-    m_w = 35;
-    m_h = 35;
+    m_w = 8;
+    m_h = 9;
+
 
     event::register_listener(this);
+    update_position();
 }
 
 CharacterSelection::~CharacterSelection() {
@@ -32,7 +34,6 @@ CharacterSelection::update_self(unsigned now, unsigned last)
     if (now - m_start > 100)
     {
         m_start += 100;
-        m_frame = (m_frame + 1) % (m_texture->w() / 35);
     }
 }
 
@@ -40,24 +41,24 @@ void
 CharacterSelection::update_position()
 {
     switch(m_current_selection) {
-        case INFILTRATOR:
-            set_x(0);
-            set_y(0);
-            break;
-
-        case MAGE:
-            set_x(SCREEN_WIDTH - 35);
-            set_y(0);
+        case KNIGHT:
+            set_x(135);
+            set_y(73);
             break;
 
         case SOLDIER:
-            set_x(0);
-            set_y(SCREEN_HEIGHT -35);
+            set_x(178);
+            set_y(73);
             break;
 
-        case KNIGHT:
-            set_x(SCREEN_WIDTH -35);
-            set_y(SCREEN_HEIGHT - 35);
+        case MAGE:
+            set_x(135);
+            set_y(115);
+            break;
+
+        case INFILTRATOR:
+            set_x(178);
+            set_y(115);
             break;
 
         default:
@@ -69,14 +70,14 @@ CharacterSelection::update_position()
 void
 CharacterSelection::draw_self(Canvas *canvas, unsigned, unsigned)
 {
-    Rectangle rect {(double) m_w * m_frame, 0.0, (double) m_w, (double) m_h};
+    Rectangle rect {0.0, 0.0, (double) m_w, (double) m_h};
     canvas->draw(m_texture.get(), rect, x(), y());
 }
 
 bool
 CharacterSelection::on_event(const GameEvent &event)
 {
-    if(event.id() == game_event::MOVEMENT_P1) {
+    if(event.id() == game_event::MOVEMENT_P1)  {
         string key_pressed = event.get_property<string>("direction");
 
         if(event.get_property<string>("action") == "start") {

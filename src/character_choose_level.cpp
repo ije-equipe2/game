@@ -7,25 +7,29 @@
 #include <ijengine/keyboard_event.h>
 #include <ijengine/rectangle.h>
 #include <cstdlib>
+#include <vector>
+
 using namespace std;
 using namespace ijengine;
+using std::vector;
 
 CharacterChooseLevel::CharacterChooseLevel(const string& next_level)
     : m_done(false), m_next(next_level), m_start(-1)
 {
-    m_textures.push_back(resources::get_texture("background_choose_character.jpg"));
-    m_textures.push_back(resources::get_texture("selection.png"));
-    m_textures.push_back(resources::get_texture("spritesheets/SpritesheetRedInfiltratorWAlk.png"));
-    m_textures.push_back(resources::get_texture("spritesheets/SpritesheetRedMagerWalk.png"));
-    m_textures.push_back(resources::get_texture("spritesheets/SpritesheetRedSoldierWAlk.png"));
+    m_textures.push_back(resources::get_texture("character_selection/character_selection_background.png"));
+    m_textures.push_back(resources::get_texture("character_selection/CharacterPortraits.png"));
+    m_textures.push_back(resources::get_texture("character_selection/Icons.png"));
 
     m_selected_character = INFILTRATOR;
     m_number_of_players = 2;
     m_current_player = 1;
     m_frame = 0;
-    m_current_character_selection = new CharacterSelection("selection.png");
+    m_current_character_selection = new CharacterSelection("character_selection/Pointers.png");
 
+    printf("antes de add o filho\n");
     add_child(m_current_character_selection);
+    printf("depois de add o filho\n");
+    fflush(stdout);
 
     event::register_listener(this);
 }
@@ -79,14 +83,18 @@ void
 CharacterChooseLevel::draw_self(Canvas *canvas, unsigned, unsigned)
 {
     canvas->clear();
-    Rectangle rect_left {(double) 32 * m_frame, 0.0, 32.00, 32.00};
-    Rectangle rect_right {(double) 32 * m_frame, 32.00, 32.00, 32.00};
-    canvas->draw(m_textures[BACKGROUND].get(), 0, 0);
-    canvas->draw(m_textures[INFILTRATOR].get(), rect_left, 0, 0);
-    canvas->draw(m_textures[MAGE].get(), rect_right,  SCREEN_WIDTH - 35, 0);
-    canvas->draw(m_textures[SOLDIER].get(), rect_left, 0, SCREEN_HEIGHT - 35);
-    //canvas->draw(m_textures[KNIGHT].get(), rect, SCREEN_WIDTH - 35, SCREEN_HEIGHT - 35);
-   // printf("%d, %d\n", SCREEN_SCALED_HEIGHT, SCREEN_SCALED_WIDTH);
+    // background
+    canvas->draw(m_textures[0].get(), 0, 0);
+
+    Rectangle p1_portrait_rect {(double) m_current_character_selection->current_selection() * 100, 0.0, 100, 100};
+    canvas->draw(m_textures[1].get(), p1_portrait_rect, 12, 12);
+    
+    vector< pair<double, double> > icons_start_coordinates {{122.4, 83.33}, {122.4, 126.66}, {165.6, 83.83},
+        {165.6, 126.66}};
+    for(int i = 0; i < 4; i++) {
+        Rectangle rect {(double) 32 * i, 0.0, 32, 32};
+        canvas->draw(m_textures[2].get(), rect, icons_start_coordinates[i].first, icons_start_coordinates[i].second);
+    }
 }
 
 bool

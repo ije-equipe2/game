@@ -20,10 +20,10 @@ public:
     ~CharacterSelection();
 
     enum {
-        INFILTRATOR,
-        MAGE,
+        KNIGHT,
         SOLDIER,
-        KNIGHT
+        MAGE,
+        INFILTRATOR
     };
 
     int current_selection() const { return m_current_selection; }
@@ -32,7 +32,7 @@ protected:
     void update_self(unsigned now, unsigned last);
     void draw_self(Canvas *canvas, unsigned now, unsigned last);
     bool on_event(const GameEvent& event);
-    void update_position();
+    void update_position(); 
 
 private:
     int m_frame;
