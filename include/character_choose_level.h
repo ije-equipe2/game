@@ -36,6 +36,7 @@ public:
     string next() const;
     string audio() const;
     const vector < int > players_characters() const { return m_players_characters; }
+    /*static*/ vector < int > m_players_characters;
 
 protected:
     void update_self(unsigned now, unsigned last);
@@ -52,7 +53,6 @@ private:
     int m_current_player;
     int m_number_of_players;
     CharacterSelection *m_current_character_selection;
-    vector < int > m_players_characters = {};
     int m_current_player_character;
 
     vector< shared_ptr<Texture> > m_textures;

@@ -22,7 +22,8 @@ using namespace ijengine;
 
 class Fireball : public Skill {
 public:
-	Fireball(GameObject *parent, unsigned mage_id, double xp, double yp, double dx, double dy, int damage);
+	Fireball(GameObject *parent, unsigned mage_id, double xp, double yp,
+        double dx, double dy, int damage);
 
     ~Fireball();
     bool active() const;
@@ -36,12 +37,16 @@ protected:
     void update_self(unsigned now, unsigned last);
     void draw_self(Canvas *canvas, unsigned, unsigned);
     unsigned m_character_id;
+    typedef enum { MOVING_LEFT, MOVING_RIGHT} State;
+    State m_state;
     double m_dx, m_dy;
     int m_damage;
     double m_speed;
     int m_frame;
     int m_start;
     shared_ptr<Texture> m_texture;
+    Rectangle m_bounding_box;
+
 
 //    bool on_event(const GameEvent& event);
 };

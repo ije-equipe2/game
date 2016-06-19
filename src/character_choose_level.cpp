@@ -69,9 +69,6 @@ CharacterChooseLevel::update_self(unsigned now, unsigned)
 
 
     if(m_current_player > m_number_of_players) {
-        printf("Primeiro jogador: %d\n", m_players_characters[0]);
-        printf("Segundo jogador: %d\n", m_players_characters[1]);
-        //Ije02Game::m_players_characters = m_players_characters;
         m_done = true;
 
     }

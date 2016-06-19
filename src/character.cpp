@@ -64,6 +64,8 @@ Character::update_self(unsigned now, unsigned last)
     update_position(now, last);
 
     m_bounding_box.set_position(x(), y());
+
+
 }
 
 inline void
@@ -143,5 +145,6 @@ Character::hit_boxes() const {
 
 void
 Character::on_collision(const Collidable *who, const Rectangle& where, unsigned now, unsigned last) {
-    update_position(now, last, true);
+   update_position(now, last, true);
+
 }  

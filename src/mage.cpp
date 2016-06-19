@@ -8,11 +8,19 @@ Mage::on_event(const GameEvent& event)
     if (event.id() == game_event::HEAVY_ATTACK_P2 && id() == 1)
     {
         auto p = parent();
-printf("p = %p\n", (void *) p);
-  //  SkillPool* skill_pool = SkillPool::get_instance();
-        p->add_child(new Fireball(p, id(), x() - 50, y(), -1.0, 0.0, 100));
-        //skill_pool->get_skill(p, id(), x() - 50, y(), -1.0, 0.0, 100));
-        //
+        printf("p = %p\n", (void *) p);
+
+        double fireball_dx = 0.0;
+        double fireball_x_pos = 0.0;
+        if(m_state == MOVING_RIGHT) {
+            fireball_dx = 1.0;
+            fireball_x_pos = x() + 20;
+        }
+        else{
+            fireball_dx = -1.0;
+            fireball_x_pos = x() - 20;
+        }
+        p->add_child(new Fireball(p, id(), fireball_x_pos, y(), fireball_dx, 0.0, 100));
         return true;
     }
 

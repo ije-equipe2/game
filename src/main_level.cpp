@@ -25,9 +25,6 @@ MainLevel::MainLevel(const string& next_level, vector < int > players_characters
     m_map[MAX_W - 1][0] = 0;
     m_map[MAX_W - 1][MAX_H - 1] = 0;    
 
-    // add_child(new Character("spritesheets/SpritesheetRedSoldierWAlk.png", 0, 0.0, 0.0));
-    // add_child(new Mage(1, (double) SCREEN_WIDTH - 32.0, 0.0));
-
     m_players_characters = players_characters;
     double x =0.0;
     double y = 0.0;
@@ -35,14 +32,9 @@ MainLevel::MainLevel(const string& next_level, vector < int > players_characters
 
     for(const int &current_player_character : m_players_characters) {
         set_players_characters_position(player_id, x, y);
-        printf("x_pos: %.2f\n y_pos: %.2f\n");
-        printf("current_player_character: %d, %d\n", current_player_character, player_id);
         add_child(m_character_factory.make_character(current_player_character, player_id, x, y));
         player_id++;
     }
-
-    printf("Primeiro jogador: %d \n", m_players_characters[0]);
-    printf("Segundo jogador: %d \n", m_players_characters[1]);
 }
 
 MainLevel::~MainLevel() {
