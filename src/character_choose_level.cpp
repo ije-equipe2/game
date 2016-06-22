@@ -7,7 +7,6 @@
 #include <ijengine/keyboard_event.h>
 #include <ijengine/rectangle.h>
 #include <cstdlib>
-#include <vector>
 
 using namespace std;
 using namespace ijengine;

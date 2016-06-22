@@ -13,11 +13,6 @@ public:
     }
 
 protected:
-//    void update_self(unsigned now, unsigned last);
- //   void draw_self(Canvas *canvas, unsigned now, unsigned last);
-
-  //  typedef enum {MOVING_RIGHT, MOVING_LEFT} State;
-
     bool on_event(const GameEvent& event);
 };
 

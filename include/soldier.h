@@ -11,6 +11,9 @@ public:
         : Character("spritesheets/SpritesheetRedSoldierWAlk.png", id, x, y)
     {
     }
+
+protected:
+    bool on_event(const GameEvent& event);
 };
 
 #endif
