@@ -8,12 +8,14 @@
 Skill::Skill(GameObject *parent, double xp, double yp)
     : GameObject(parent, xp, yp)
 {
+    printf("registrando skill nas fisica\n");
     physics::register_object(this);
 }
 
 Skill::~Skill()
 {
-   physics::unregister_object(this);
+    printf("desregistrando skill nas fisica\n");
+    physics::unregister_object(this);
 }
 
 int

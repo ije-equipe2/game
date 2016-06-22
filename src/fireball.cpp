@@ -18,6 +18,11 @@ Fireball::Fireball(GameObject *parent, unsigned mage_id, double xp, double yp, d
     m_frame = 0;
     m_start = -1;
     m_texture = ijengine::resources::get_texture("spritesheets/fireball_red.png");
+    m_x = xp;
+    m_y = yp;
+    //m_bounding_box = Rectangle(m_x, m_y, 20, 20);
+
+    printf("bounding_box original fireball: %.2f %.2f\n", m_bounding_box.x(), m_bounding_box.y());
 
     if(m_dx > 0) {
         m_state = MOVING_LEFT;
@@ -47,6 +52,8 @@ Fireball::update_self(unsigned now, unsigned last)
     set_position(new_x, new_y);
 
     m_bounding_box.set_position(x(), y());
+    //printf("Fireball position: %.2f %.2f\n", x(), y());
+    //printf("Fireball Bounding box position: %.2f %.2f\n", m_bounding_box.x(), m_bounding_box.y());
 
     if (now - m_start > 50)
     {
@@ -65,12 +72,15 @@ Fireball::on_collision(const Collidable *who, const Rectangle& where, unsigned n
 {
     const Character *c = dynamic_cast<const Character *>(who);
 
+    printf("entrou no on_collision\n");
+
     if (c and c->id() != m_character_id)
     {
+        printf("fireball invalidada!\n");
         invalidate();
     }
 
-    printf("COLIDIU! É NOIS BRASIL!\n\n");
+    //printf("colidiu com: %d\n", c->id());
 }
 
 bool
