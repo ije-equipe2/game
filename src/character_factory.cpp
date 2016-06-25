@@ -1,5 +1,11 @@
 #include "character_factory.h"
 
+#include <vector>
+#include <string>
+
+using std::vector;
+using std::string;
+
 CharacterFactory::CharacterFactory()
 {
 
@@ -13,21 +19,23 @@ CharacterFactory::~CharacterFactory()
 Character*
 CharacterFactory::make_character(int character_code, unsigned player_id, double x_pos, double y_pos)
 {
+    m_sprites_paths = choose_sprite_path(character_code, player_id);
+
     switch(character_code) {
         case INFILTRATOR:
-            return new Infiltrator(player_id, x_pos, y_pos);
+            return new Infiltrator(m_sprites_paths, player_id, x_pos, y_pos);
             break;
 
         case MAGE:
-            return new Mage(player_id, x_pos, y_pos);
+            return new Mage(m_sprites_paths, player_id, x_pos, y_pos);
             break;
 
         case SOLDIER:
-            return new Soldier(player_id, x_pos, y_pos);
+            return new Soldier(m_sprites_paths, player_id, x_pos, y_pos);
             break;
 
         case KNIGHT:
-            return new Knight(player_id, x_pos, y_pos);
+            return new Knight(m_sprites_paths, player_id, x_pos, y_pos);
             break;
 
         default:
@@ -35,4 +43,65 @@ CharacterFactory::make_character(int character_code, unsigned player_id, double 
             return nullptr;
             break;
     }
+}
+
+vector<string>
+CharacterFactory::choose_sprite_path(int character_code, unsigned player_id)
+{
+    string directory = "Green";
+    string choosen_class = "Mage";
+    vector<string> sprite_vector;
+
+    switch(character_code) {
+        case INFILTRATOR:
+            choosen_class = "Infiltrator";
+            break;
+
+        case MAGE:
+            choosen_class = "Mage";
+            break;
+
+        case SOLDIER:
+            choosen_class = "Soldier";
+            break;
+
+        case KNIGHT:
+            choosen_class = "Knight";
+            break;
+
+        default:
+            printf("Valor inválido na CharacterFactory\n");
+            break;
+    }
+
+    switch(player_id) {
+        case PLAYER_1:
+            directory = "Green";
+            break;
+
+        case PLAYER_2:
+            directory = "Blue";
+            break;
+
+        case PLAYER_3:
+            directory = "Yellow";
+            break;
+
+        case PLAYER_4:
+            directory = "Red";
+            break;
+
+        default:
+            printf("Valor inválido na CharacterFactory\n");
+            break;
+    }
+
+    sprite_vector.push_back("Spritesheets/"+ directory + "/Spritesheet" + directory + choosen_class + "Idle.png");
+    sprite_vector.push_back("Spritesheets/"+ directory + "/Spritesheet" + directory + choosen_class + "Walk.png");
+    sprite_vector.push_back("Spritesheets/"+ directory + "/Spritesheet" + directory + choosen_class + "Attack.png");
+    sprite_vector.push_back("Spritesheets/"+ directory + "/Spritesheet" + directory + choosen_class + "Special.png");
+    sprite_vector.push_back("Spritesheets/"+ directory + "/Spritesheet" + directory + choosen_class + "Ultimate.png");
+    sprite_vector.push_back("Spritesheets/"+ directory + "/Spritesheet" + directory + choosen_class + "Defense.png");
+
+    return sprite_vector;
 }

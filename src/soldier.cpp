@@ -2,6 +2,11 @@
 #include "spear.h"
 #include "ije02_game.h"
 
+Soldier::Soldier(vector<string> sprite_paths, unsigned id, double x, double y)
+    : Character(sprite_paths, id, x, y)
+{
+}
+
 bool
 Soldier::on_event(const GameEvent& event)
 {

@@ -2,6 +2,17 @@
 #include "fireball.h"
 #include "ije02_game.h"
 
+#include <vector>
+#include <string>
+
+using std::vector;
+using std::string;
+
+Mage::Mage(vector<string> sprite_paths, unsigned id, double x, double y)
+    : Character(sprite_paths, id, x, y)
+{
+}
+
 bool
 Mage::on_event(const GameEvent& event)
 {

@@ -24,7 +24,7 @@ using namespace ijengine;
 
 class Character : public GameObject, public GameEventsListener, public Collidable {
 public:
-	Character(const string sprite_path, unsigned id, double x, double y);
+	Character(const vector<string> sprite_paths, unsigned id, double x, double y);
 	~Character();
     
     enum {
@@ -43,6 +43,7 @@ public:
         NUMBER_OF_CHARACTER_EVENTS
     };
 
+
     bool active() const;
     const Rectangle& bounding_box() const;
     const list<Rectangle>& hit_boxes() const;
@@ -55,14 +56,17 @@ public:
 protected:
     void update_self(unsigned now, unsigned last);
     void draw_self(Canvas *canvas, unsigned now, unsigned last);
+    string choose_sprite_path(unsigned player_id);
 
     typedef enum {MOVING_RIGHT, MOVING_LEFT} State;
-
+    typedef enum {IDLE_SPRITE, MOVING_SPRITE, LIGHT_ATTACK_SPRITE, HEAVY_ATTACK_SPRITE, SPECIAL_SPRITE,
+        DEFENSE_SPRITE, NUMBER_OF_SPRITES} CharacterSprite;
     bool on_event(const GameEvent& event);
 
 protected:
     unsigned m_id;
     State m_state;
+    CharacterSprite m_current_sprite;
     int m_frame;
     int m_start;
     int m_w;
@@ -70,9 +74,10 @@ protected:
     double m_x_speed;
     double m_y_speed;
     double m_speed;
-    shared_ptr<Texture> m_texture;
+    vector< shared_ptr<Texture> > m_textures;
     unordered_map<string, pair<double, double> > m_speed_vector;
     Rectangle m_bounding_box;
+    vector<string> m_sprite_paths;
 
     inline void update_position(const unsigned &now, const unsigned &last, bool backwards = false);
 };

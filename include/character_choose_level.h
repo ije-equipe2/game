@@ -25,11 +25,8 @@ public:
 
     enum {
         BACKGROUND,
-        SELECTION,
-        KNIGHT,
-        SOLDIER,
-        MAGE,
-        INFILTRATOR
+        PORTRAITS,
+        ICONS
     };
 
     bool done() const;

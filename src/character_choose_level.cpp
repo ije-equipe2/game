@@ -19,7 +19,6 @@ CharacterChooseLevel::CharacterChooseLevel(const string& next_level)
     m_textures.push_back(resources::get_texture("character_selection/CharacterPortraits.png"));
     m_textures.push_back(resources::get_texture("character_selection/Icons.png"));
 
-    m_selected_character = INFILTRATOR;
     m_number_of_players = 2;
     m_current_player = 1;
     m_frame = 0;
@@ -80,16 +79,16 @@ CharacterChooseLevel::draw_self(Canvas *canvas, unsigned, unsigned)
 {
     canvas->clear();
     // background
-    canvas->draw(m_textures[0].get(), 0, 0);
+    canvas->draw(m_textures[BACKGROUND].get(), 0, 0);
 
     Rectangle p1_portrait_rect {(double) m_current_character_selection->current_selection() * 100, 0.0, 100, 100};
-    canvas->draw(m_textures[1].get(), p1_portrait_rect, 12, 12);
+    canvas->draw(m_textures[PORTRAITS].get(), p1_portrait_rect, 12, 12);
     
     vector< pair<double, double> > icons_start_coordinates {{122.4, 83.33}, {122.4, 126.66}, {165.6, 83.83},
         {165.6, 126.66}};
     for(int i = 0; i < 4; i++) {
         Rectangle rect {(double) 32 * i, 0.0, 32, 32};
-        canvas->draw(m_textures[2].get(), rect, icons_start_coordinates[i].first, icons_start_coordinates[i].second);
+        canvas->draw(m_textures[ICONS].get(), rect, icons_start_coordinates[i].first, icons_start_coordinates[i].second);
     }
 }
 

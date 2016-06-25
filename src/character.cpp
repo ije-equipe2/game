@@ -17,10 +17,14 @@ using std::max;
 
 const double SPEED = 80.00;
 
-Character::Character(const string sprite_path, unsigned id, double x, double y)
+Character::Character(const vector<string> sprite_paths, unsigned id, double x, double y)
     : m_state(MOVING_RIGHT), m_frame(0), m_start(-1), m_x_speed(0.00), m_y_speed(0.00)
 {
-    m_texture = resources::get_texture(sprite_path);
+    for(int i = 0; i < NUMBER_OF_SPRITES; i++) {
+        m_textures.push_back(resources::get_texture(sprite_paths[i]));
+    }
+
+    m_current_sprite = IDLE_SPRITE;
     m_id = id;
     m_x = x;
     m_y = y;
@@ -54,7 +58,7 @@ Character::update_self(unsigned now, unsigned last)
     if (now - m_start > 100)
     {
         m_start += 100;
-        m_frame = (m_frame + 1) % (m_texture->w() / 32);
+        m_frame = (m_frame + 1) % (m_textures[m_current_sprite]->w() / 32);
     }
 
     if(m_y_speed == 0.0 && m_x_speed == 0.0) {
@@ -88,7 +92,7 @@ void
 Character::draw_self(Canvas *canvas, unsigned, unsigned)
 {
     Rectangle rect {(double) m_w * m_frame, (double) m_h * m_state, (double) m_w, (double) m_h};
-    canvas->draw(m_texture.get(), rect, x(), y());
+    canvas->draw(m_textures[m_current_sprite].get(), rect, x(), y());
 }
 
 bool

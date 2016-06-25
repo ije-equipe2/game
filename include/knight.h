@@ -7,10 +7,7 @@ using namespace ijengine;
 
 class Knight : public Character {
 public:
-    Knight(unsigned id, double x, double y)
-        : Character("spritesheets/SpritesheetRedInfiltratorWAlk.png", id, x, y)
-    {
-    }
+    Knight(vector<string> sprite_paths, unsigned id, double x, double y);
 };
 
 #endif

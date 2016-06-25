@@ -17,7 +17,8 @@ Spear::Spear(GameObject *parent, unsigned soldier_id, double xp, double yp, doub
 {
     m_frame = 0;
     m_start = 0;
-    m_texture = ijengine::resources::get_texture("spritesheets/spear_red.png");
+    m_sprite_path = choose_sprite_path(soldier_id);
+    m_texture = ijengine::resources::get_texture(m_sprite_path);
     m_x = xp;
     m_y = yp;
     m_bounding_box = Rectangle(m_x, m_y, 20, 20);
@@ -126,4 +127,37 @@ Spear::update_time(unsigned now)
         invalidate();
     }
 
+}
+
+string
+Spear::choose_sprite_path(unsigned player_id)
+{
+    string directory = "Green";
+    string sprite_path;
+
+    switch(player_id) {
+        case PLAYER_1:
+            directory = "Green";
+            break;
+
+        case PLAYER_2:
+            directory = "Blue";
+            break;
+
+        case PLAYER_3:
+            directory = "Yellow";
+            break;
+
+        case PLAYER_4:
+            directory = "Red";
+            break;
+
+        default:
+            printf("Valor inválido na Spear\n");
+            break;
+    }
+
+    sprite_path = "Spritesheets/" + directory + "/Spear" + directory + ".png";
+
+    return sprite_path;
 }

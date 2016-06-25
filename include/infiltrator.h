@@ -7,10 +7,7 @@ using namespace ijengine;
 
 class Infiltrator : public Character {
 public:
-    Infiltrator(unsigned id, double x, double y)
-        : Character("spritesheets/SpritesheetRedInfiltratorWAlk.png", id, x, y)
-    {
-    }
+    Infiltrator(vector<string> sprite_paths, unsigned id, double x, double y);
 };
 
 #endif

@@ -12,7 +12,7 @@ TestLevelFactory::make_level(const string& level_id)
     else if (level_id == "green")
         return new CharacterChooseLevel("blue");
     else if (level_id == "blue"){
-        m_players_characters = {2, 1, 3, 0};
+        m_players_characters = {1, 2, 3, 2};
         return new MainLevel("", m_players_characters);
     }
     else

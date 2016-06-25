@@ -7,10 +7,7 @@ using namespace ijengine;
 
 class Mage : public Character {
 public:
-	Mage(unsigned id, double x, double y)
-        : Character("spritesheets/SpritesheetRedMagerWalk.png", id, x, y)
-    {
-    }
+	Mage(vector<string> sprite_paths, unsigned id, double x, double y);
 
 protected:
     bool on_event(const GameEvent& event);
