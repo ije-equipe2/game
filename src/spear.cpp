@@ -16,11 +16,11 @@ Spear::Spear(GameObject *parent, unsigned soldier_id, double xp, double yp, doub
         m_dy(dy/hypot(dx, dy)), m_damage(damage), m_speed(100.0) 
 {
     m_frame = 0;
-    m_start = -1;
+    m_start = 0;
     m_texture = ijengine::resources::get_texture("spritesheets/spear_red.png");
     m_x = xp;
     m_y = yp;
-    //m_bounding_box = Rectangle(m_x, m_y, 20, 20);
+    m_bounding_box = Rectangle(m_x, m_y, 20, 20);
 
     printf("bounding_box original spear: %.2f %.2f\n", m_bounding_box.x(), m_bounding_box.y());
 
@@ -47,23 +47,13 @@ Spear::draw_self(Canvas *canvas, unsigned, unsigned)
 void
 Spear::update_self(unsigned now, unsigned last)
 {
-    double new_y = y() + m_dy *  m_speed * (now - last) / 1000.0;
-    double new_x = x() + m_dx *  m_speed * (now - last) / 1000.0;
-    set_position(new_x, new_y);
+    update_time(now);
+    if(m_current_time - m_start > 300){
+        double new_y = y() + m_dy *  m_speed * (now - last) / 1000.0;
+        double new_x = x() + m_dx *  m_speed * (now - last) / 1000.0;
+        set_position(new_x, new_y);
 
-    m_bounding_box.set_position(x(), y());
-    //printf("Spear position: %.2f %.2f\n", x(), y());
-    //printf("Spear Bounding box position: %.2f %.2f\n", m_bounding_box.x(), m_bounding_box.y());
-
-    if (now - m_start > 50)
-    {
-        m_start += 50;
-        m_frame = (m_frame + 1) % (m_texture->w() / 32);
-    }
-
-    if(x() < -10.0 || x() > 330.0 || y() < -10.0 || y() > 240) {
-        invalidate();
-        printf("Saiu dos limites!\n");
+        m_bounding_box.set_position(x(), y());
     }
 }
 
@@ -75,11 +65,10 @@ Spear::on_collision(const Collidable *who, const Rectangle& where, unsigned now,
 
     if (c and c->id() != m_character_id)
     {
+        printf("colidiu com: %d\nQuem invocou: %d\n", c->id(), m_character_id);
         printf("Spear invalidada!\n");
         invalidate();
     }
-
-    //printf("colidiu com: %d\n", c->id());
 }
 
 bool
@@ -104,4 +93,37 @@ pair<double, double>
 Spear::direction() const
 {
     return pair<double, double>(m_dx, m_dy);
+}
+
+void
+Spear::update_sprite_state()
+{
+    if(m_current_time - m_start < 300) {
+        m_frame = (m_frame + 1) % (m_texture->w() / 32);
+    }
+
+    else if(m_current_time - m_start > 300 ) {
+        m_frame = 3;
+    }
+}
+
+void
+Spear::update_time(unsigned now) 
+{
+    if(m_start == 0) {
+        m_start = now;
+        m_current_time = now;
+    }
+
+    if (now - m_current_time > 150)
+    {
+        m_current_time += 150;
+        update_sprite_state();
+    }
+
+    if((m_current_time - m_start) > 5000) {
+        printf("Acabou o tempo da spear");
+        invalidate();
+    }
+
 }

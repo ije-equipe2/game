@@ -36,14 +36,19 @@ public:
 protected:
     void update_self(unsigned now, unsigned last);
     void draw_self(Canvas *canvas, unsigned, unsigned);
+    void update_sprite_state();
+    void update_time(unsigned now);
     unsigned m_character_id;
     typedef enum { MOVING_LEFT, MOVING_RIGHT} State;
+    typedef enum { THROW, MOVING, FALLING, HITTING } SpriteState;
     State m_state;
+    SpriteState m_sprite_state;
     double m_dx, m_dy;
     int m_damage;
     double m_speed;
     int m_frame;
-    int m_start;
+    unsigned m_start;
+    unsigned m_current_time;
     shared_ptr<Texture> m_texture;
     Rectangle m_bounding_box;
 
