@@ -57,11 +57,14 @@ protected:
     void update_self(unsigned now, unsigned last);
     void draw_self(Canvas *canvas, unsigned now, unsigned last);
     string choose_sprite_path(unsigned player_id);
-
-    typedef enum {MOVING_RIGHT, MOVING_LEFT} State;
+    bool on_event(const GameEvent& event);
     typedef enum {IDLE_SPRITE, MOVING_SPRITE, LIGHT_ATTACK_SPRITE, HEAVY_ATTACK_SPRITE, SPECIAL_SPRITE,
         DEFENSE_SPRITE, NUMBER_OF_SPRITES} CharacterSprite;
-    bool on_event(const GameEvent& event);
+    void change_character_sprite(CharacterSprite character_new_sprite);
+
+    typedef enum {MOVING_RIGHT, MOVING_LEFT} State;
+    
+
 
 protected:
     unsigned m_id;

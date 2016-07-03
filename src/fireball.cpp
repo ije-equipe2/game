@@ -63,16 +63,11 @@ Fireball::on_collision(const Collidable *who, const Rectangle& where, unsigned n
 {
     const Character *c = dynamic_cast<const Character *>(who);
 
-    printf("entrou no on_collision\n");
-
     if (c and c->id() != m_character_id)
     {
-        printf("fireball invalidada!\n");
        // update_sprite_state();
         invalidate();
     }
-
-    //printf("colidiu com: %d\n", c->id());
 }
 
 bool
@@ -135,7 +130,6 @@ Fireball::update_time(unsigned now)
     }
 
     if((m_current_time - m_start) > 5000) {
-        printf("Acabou o tempo da fireball");
         invalidate();
     }
 

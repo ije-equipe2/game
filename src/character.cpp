@@ -152,3 +152,9 @@ Character::on_collision(const Collidable *who, const Rectangle& where, unsigned 
    update_position(now, last, true);
 
 }  
+
+void
+Character::change_character_sprite(CharacterSprite character_new_sprite)
+{
+    m_current_sprite = character_new_sprite;
+}

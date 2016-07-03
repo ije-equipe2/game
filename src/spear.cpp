@@ -23,7 +23,6 @@ Spear::Spear(GameObject *parent, unsigned soldier_id, double xp, double yp, doub
     m_y = yp;
     m_bounding_box = Rectangle(m_x, m_y, 20, 20);
 
-    printf("bounding_box original spear: %.2f %.2f\n", m_bounding_box.x(), m_bounding_box.y());
 
     if(m_dx > 0) {
         m_state = MOVING_LEFT;
@@ -49,7 +48,7 @@ void
 Spear::update_self(unsigned now, unsigned last)
 {
     update_time(now);
-    if(m_current_time - m_start > 300){
+    if(m_current_time - m_start > 70){
         double new_y = y() + m_dy *  m_speed * (now - last) / 1000.0;
         double new_x = x() + m_dx *  m_speed * (now - last) / 1000.0;
         set_position(new_x, new_y);
@@ -62,12 +61,9 @@ void
 Spear::on_collision(const Collidable *who, const Rectangle& where, unsigned now, unsigned last) 
 {
     const Character *c = dynamic_cast<const Character *>(who);
-    printf("entrou no on colision\n");
 
     if (c and c->id() != m_character_id)
     {
-        printf("colidiu com: %d\nQuem invocou: %d\n", c->id(), m_character_id);
-        printf("Spear invalidada!\n");
         invalidate();
     }
 }
@@ -99,11 +95,11 @@ Spear::direction() const
 void
 Spear::update_sprite_state()
 {
-    if(m_current_time - m_start < 300) {
+    if(m_current_time - m_start < 70) {
         m_frame = (m_frame + 1) % (m_texture->w() / 32);
     }
 
-    else if(m_current_time - m_start > 300 ) {
+    else if(m_current_time - m_start > 70 ) {
         m_frame = 3;
     }
 }
@@ -116,14 +112,13 @@ Spear::update_time(unsigned now)
         m_current_time = now;
     }
 
-    if (now - m_current_time > 150)
+    if (now - m_current_time > 35)
     {
-        m_current_time += 150;
+        m_current_time += 35;
         update_sprite_state();
     }
 
     if((m_current_time - m_start) > 5000) {
-        printf("Acabou o tempo da spear");
         invalidate();
     }
 
