@@ -8,6 +8,9 @@
 #include <ijengine/rectangle.h>
 #include <ijengine/event.h>
 
+#include "character_state.h"
+#include "character_state_factory.h"
+
 #include <memory>
 #include <vector>
 #include <utility>
@@ -43,6 +46,8 @@ public:
         NUMBER_OF_CHARACTER_EVENTS
     };
 
+    typedef enum {IDLE_STATE, MOVING_STATE, LIGHT_ATTACK_STATE, HEAVY_ATTACK_STATE, SPECIAL_STATE,
+        DEFENSE_STATE, NUMBER_OF_STATES} State;
 
     bool active() const;
     const Rectangle& bounding_box() const;
@@ -56,20 +61,19 @@ public:
 protected:
     void update_self(unsigned now, unsigned last);
     void draw_self(Canvas *canvas, unsigned now, unsigned last);
+    void change_character_state(State next_state);
     string choose_sprite_path(unsigned player_id);
     bool on_event(const GameEvent& event);
-    typedef enum {IDLE_SPRITE, MOVING_SPRITE, LIGHT_ATTACK_SPRITE, HEAVY_ATTACK_SPRITE, SPECIAL_SPRITE,
-        DEFENSE_SPRITE, NUMBER_OF_SPRITES} CharacterSprite;
-    void change_character_sprite(CharacterSprite character_new_sprite);
 
-    typedef enum {MOVING_RIGHT, MOVING_LEFT} State;
+    typedef enum {MOVING_RIGHT, MOVING_LEFT} MovingState;
     
 
 
 protected:
     unsigned m_id;
-    State m_state;
-    CharacterSprite m_current_sprite;
+    MovingState m_moving_state;
+    CharacterState* m_state;
+    CharacterStateFactory m_character_state_factory;
     int m_frame;
     int m_start;
     int m_w;

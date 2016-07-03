@@ -18,13 +18,14 @@ using std::max;
 const double SPEED = 80.00;
 
 Character::Character(const vector<string> sprite_paths, unsigned id, double x, double y)
-    : m_state(MOVING_RIGHT), m_frame(0), m_start(-1), m_x_speed(0.00), m_y_speed(0.00)
+    : m_moving_state(MOVING_RIGHT), m_frame(0), m_start(-1), m_x_speed(0.00), m_y_speed(0.00)
 {
-    for(int i = 0; i < NUMBER_OF_SPRITES; i++) {
+    for(int i = 0; i < NUMBER_OF_STATES; i++) {
         m_textures.push_back(resources::get_texture(sprite_paths[i]));
     }
 
-    m_current_sprite = IDLE_SPRITE;
+    change_character_state(IDLE_STATE);
+
     m_id = id;
     m_x = x;
     m_y = y;
@@ -55,10 +56,10 @@ Character::update_self(unsigned now, unsigned last)
     if (m_start == -1)
         m_start = now;
 
-    if (now - m_start > 100)
+    if (now - m_start > m_state->m_refresh_rate)
     {
-        m_start += 100;
-        m_frame = (m_frame + 1) % (m_textures[m_current_sprite]->w() / 32);
+        m_start += m_state->m_refresh_rate;
+        m_frame = (m_frame + 1) % (m_textures[m_state->m_current_sprite]->w() / 32);
     }
 
     if(m_y_speed == 0.0 && m_x_speed == 0.0) {
@@ -91,8 +92,8 @@ Character::update_position(const unsigned &now, const unsigned &last, bool backw
 void
 Character::draw_self(Canvas *canvas, unsigned, unsigned)
 {
-    Rectangle rect {(double) m_w * m_frame, (double) m_h * m_state, (double) m_w, (double) m_h};
-    canvas->draw(m_textures[m_current_sprite].get(), rect, x(), y());
+    Rectangle rect {(double) m_w * m_frame, (double) m_h * m_moving_state, (double) m_w, (double) m_h};
+    canvas->draw(m_textures[m_state->m_current_sprite].get(), rect, x(), y());
 }
 
 bool
@@ -108,14 +109,20 @@ Character::on_event(const GameEvent& event)
         if(action == "start") {
             m_x_speed += speed_pair.first;
             m_y_speed += speed_pair.second;
+
+            change_character_state(MOVING_STATE);
+            m_frame = 0;
+
             if(direction == "right") {
-                m_state = MOVING_RIGHT;
+                m_moving_state = MOVING_RIGHT;
             }
             else if(direction == "left") {
-                m_state = MOVING_LEFT;
+                m_moving_state = MOVING_LEFT;
             }
         }
         else {
+            change_character_state(IDLE_STATE);
+            m_frame = 0;
             m_y_speed += -speed_pair.second;
             m_x_speed += -speed_pair.first;
         }
@@ -127,34 +134,39 @@ Character::on_event(const GameEvent& event)
 }
 
 pair<double, double>
-Character::direction() const {
+Character::direction() const
+{
     return pair<double, double>(m_x_speed, m_y_speed);
 }
 
 bool
-Character::active() const {
+Character::active() const 
+{
     return true;
 }
 
 const Rectangle&
-Character::bounding_box() const {
+Character::bounding_box() const 
+{
     return m_bounding_box;
 }
 
 const list<Rectangle>&
-Character::hit_boxes() const {
+Character::hit_boxes() const 
+{
     static list<Rectangle> boxes {m_bounding_box};
     return boxes;
 }
 
 void
-Character::on_collision(const Collidable *who, const Rectangle& where, unsigned now, unsigned last) {
+Character::on_collision(const Collidable *who, const Rectangle& where, unsigned now, unsigned last) 
+{
    update_position(now, last, true);
 
-}  
+}
 
 void
-Character::change_character_sprite(CharacterSprite character_new_sprite)
+Character::change_character_state(State next_state) 
 {
-    m_current_sprite = character_new_sprite;
+    m_state = m_character_state_factory.change_character_state(next_state);
 }

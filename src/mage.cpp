@@ -27,7 +27,7 @@ Mage::on_event(const GameEvent& event)
         double fireball_dx = 0.0;
         double fireball_x_pos = 0.0;
         
-        if(m_state == MOVING_RIGHT) {
+        if(m_moving_state == MOVING_RIGHT) {
             fireball_dx = 1.0;
             fireball_x_pos = x() + 20;
         }
