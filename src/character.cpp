@@ -101,30 +101,25 @@ Character::on_event(const GameEvent& event)
 {
     if((event.id() == game_event::MOVEMENT_P1 && m_id == 0) ||
        (event.id() == game_event::MOVEMENT_P2 && m_id == 1)) {
-        string action = event.get_property<string>("action");
-        string direction = event.get_property<string>("direction");
-        
-        pair<double, double> speed_pair = m_speed_vector[direction];
-        
-        if(action == "start") {
-            m_x_speed += speed_pair.first;
-            m_y_speed += speed_pair.second;
+        string axis = event.get_property<string>("axis");
+        int value = event.get_property<int>("value");
 
-            change_character_state(MOVING_STATE);
-            m_frame = 0;
-
-            if(direction == "right") {
-                m_moving_state = MOVING_RIGHT;
+        if(axis == "X") {
+            m_x_speed = SPEED * ((double) value / 32768);
+            if(value > 0) {
+                m_state = MOVING_RIGHT;
             }
-            else if(direction == "left") {
-                m_moving_state = MOVING_LEFT;
+            else if(value < 0) {
+                m_state = MOVING_LEFT;
             }
+        } 
+        else if(axis == "Y") {
+            m_y_speed = SPEED * ((double) value / 32768);
         }
-        else {
+
+        if(m_x_speed == 0.0 && m_y_speed == 0.0) {
             change_character_state(IDLE_STATE);
             m_frame = 0;
-            m_y_speed += -speed_pair.second;
-            m_x_speed += -speed_pair.first;
         }
 
         return true;

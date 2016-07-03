@@ -9,6 +9,7 @@
 #include <ijengine/system_event.h>
 #include <ijengine/keyboard_event.h>
 #include <ijengine/events_translator.h>
+#include <ijengine/joystick_event.h>
 
 #include "test_level_factory.h"
 #include <iostream>

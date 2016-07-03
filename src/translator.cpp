@@ -66,19 +66,6 @@ Translator::translate(GameEvent& to, const KeyboardEvent& from)
     else if (from.key() == KeyboardEvent::Z and from.state() == KeyboardEvent::PRESSED) {
         id = game_event::CHOOSE_CHARACTER;
     }
-    // Não está conseguindo repetir as teclas e mandá-las para eventos diferentes.
-    // else if (from.key() == KeyboardEvent::UP and from.state() == KeyboardEvent::PRESSED) {
-    //     id = game_event::UP;
-    // }
-    // else if (from.key() == KeyboardEvent::DOWN and from.state() == KeyboardEvent::PRESSED) {
-    //     id = game_event::DOWN;
-    // }
-    // else if (from.key() == KeyboardEvent::LEFT and from.state() == KeyboardEvent::PRESSED) {
-    //     id = game_event::LEFT;
-    // }
-    // else if (from.key() == KeyboardEvent::RIGHT and from.state() == KeyboardEvent::PRESSED) {
-    //     id = game_event::RIGHT;
-    // }
     else {
         done = false;
     }
@@ -91,7 +78,49 @@ Translator::translate(GameEvent& to, const KeyboardEvent& from)
 bool
 Translator::translate(GameEvent& to, const JoystickEvent& from)
 {
-    return false;
+    to.set_timestamp(from.timestamp());
+
+    bool done = true;
+    int id = 0;
+
+    // vector<unsigned> p1_moves {KeyboardEvent::LEFT, KeyboardEvent::RIGHT, KeyboardEvent::UP, KeyboardEvent::DOWN};
+    // vector<unsigned> p2_moves {KeyboardEvent::A, KeyboardEvent::D, KeyboardEvent::W, KeyboardEvent::S};
+
+    if(from.state() == JoystickEvent::BUTTON_PRESSED) {
+        printf("BUTTON: %d\n", from.button());
+        printf("L1: %d\n", JoystickEvent::L1);
+        if(from.button() == JoystickEvent::SQUARE || from.button() == JoystickEvent::L1) {
+            vector<int> heavy_attack_ids {game_event::HEAVY_ATTACK_P1, game_event::HEAVY_ATTACK_P2};
+            id = heavy_attack_ids[from.which()];
+        }
+    }
+    else if(from.state() == JoystickEvent::BUTTON_RELEASED) {
+
+    }
+    else if(from.state() == JoystickEvent::AXIS_MOTION && (from.axis() == JoystickEvent::LEFTY || from.axis() == JoystickEvent::LEFTX)) {
+        if(from.axis() == JoystickEvent::LEFTX) {
+            to.set_property<string>("axis", "X");
+        }
+        else if(from.axis() == JoystickEvent::LEFTY) {
+            to.set_property<string>("axis", "Y");
+        }
+
+        to.set_property<int>("value", from.value());
+
+        if(from.which() == 0) {
+            id = game_event::MOVEMENT_P1;
+        }
+        else if(from.which() == 1) {
+            id = game_event::MOVEMENT_P2;
+        }
+    }
+    else {
+        done = false;
+    }
+
+    to.set_id(id);
+
+    return done;
 }
 
 inline void
