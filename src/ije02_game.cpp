@@ -16,8 +16,24 @@ namespace ijengine
     {
         unsigned HEAVY_ATTACK_P1 = GameEvent::assign_id();
         unsigned HEAVY_ATTACK_P2 = GameEvent::assign_id();
+        unsigned HEAVY_ATTACK_P3 = GameEvent::assign_id();
+        unsigned HEAVY_ATTACK_P4 = GameEvent::assign_id();
+        unsigned LIGHT_ATTACK_P1 = GameEvent::assign_id();
+        unsigned LIGHT_ATTACK_P2 = GameEvent::assign_id();
+        unsigned LIGHT_ATTACK_P3 = GameEvent::assign_id();
+        unsigned LIGHT_ATTACK_P4 = GameEvent::assign_id();
+        unsigned BLOCK_P1 = GameEvent::assign_id();
+        unsigned BLOCK_P2 = GameEvent::assign_id();
+        unsigned BLOCK_P3 = GameEvent::assign_id();
+        unsigned BLOCK_P4 = GameEvent::assign_id();
+        unsigned SPECIAL_P1 = GameEvent::assign_id();
+        unsigned SPECIAL_P2 = GameEvent::assign_id();
+        unsigned SPECIAL_P3 = GameEvent::assign_id();
+        unsigned SPECIAL_P4 = GameEvent::assign_id();
         unsigned MOVEMENT_P1 = GameEvent::assign_id();
         unsigned MOVEMENT_P2 = GameEvent::assign_id();
+        unsigned MOVEMENT_P3 = GameEvent::assign_id();
+        unsigned MOVEMENT_P4 = GameEvent::assign_id();
         unsigned MOTION = GameEvent::assign_id();
         unsigned CLICK = GameEvent::assign_id();
         unsigned ENTER_GAME = GameEvent::assign_id();

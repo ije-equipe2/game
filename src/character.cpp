@@ -107,10 +107,10 @@ Character::on_event(const GameEvent& event)
         if(axis == "X") {
             m_x_speed = SPEED * ((double) value / 32768);
             if(value > 0) {
-                m_state = MOVING_RIGHT;
+                m_moving_state = MOVING_RIGHT;
             }
             else if(value < 0) {
-                m_state = MOVING_LEFT;
+                m_moving_state = MOVING_LEFT;
             }
         } 
         else if(axis == "Y") {

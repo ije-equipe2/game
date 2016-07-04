@@ -9,13 +9,14 @@
 
 using namespace std;
 
-CharacterSelection::CharacterSelection(const string sprite_path)
-    : m_frame(0), m_start(-1), m_current_selection(KNIGHT)
+CharacterSelection::CharacterSelection(const string sprite_path, int base_x, int base_y, int player_id)
+    : m_base_x(base_x), m_base_y(base_y), m_player_id(player_id), m_frame(player_id), m_start(-1), m_current_selection(KNIGHT)
 {
     m_texture = resources::get_texture(sprite_path);
     m_w = 8;
     m_h = 9;
 
+    m_chosen = false;
 
     event::register_listener(this);
     update_position();
@@ -37,28 +38,33 @@ CharacterSelection::update_self(unsigned now, unsigned last)
     }
 }
 
+const int DIFF_X = 43;
+const int DIFF_Y = 42;
+
+// BASE X = 135
+// BASE Y = 73
 void
 CharacterSelection::update_position()
 {
     switch(m_current_selection) {
         case KNIGHT:
-            set_x(135);
-            set_y(73);
+            set_x(m_base_x);
+            set_y(m_base_y);
             break;
 
         case SOLDIER:
-            set_x(178);
-            set_y(73);
+            set_x(m_base_x + DIFF_X);
+            set_y(m_base_y);
             break;
 
         case MAGE:
-            set_x(135);
-            set_y(115);
+            set_x(m_base_x);
+            set_y(m_base_y + DIFF_Y);
             break;
 
         case INFILTRATOR:
-            set_x(178);
-            set_y(115);
+            set_x(m_base_x + DIFF_X);
+            set_y(m_base_y + DIFF_Y);
             break;
 
         default:
@@ -70,32 +76,34 @@ CharacterSelection::update_position()
 void
 CharacterSelection::draw_self(Canvas *canvas, unsigned, unsigned)
 {
-    Rectangle rect {0.0, 0.0, (double) m_w, (double) m_h};
+    Rectangle rect {0.0, (m_texture->h() / (double) 4) * m_frame, (double) m_w, (double) m_h};
     canvas->draw(m_texture.get(), rect, x(), y());
 }
 
 bool
 CharacterSelection::on_event(const GameEvent &event)
 {
-    if(event.id() == game_event::MOVEMENT_P1)  {
-        string key_pressed = event.get_property<string>("direction");
+    if((event.id() == game_event::MOVEMENT_P1 && m_player_id == 0) ||
+       (event.id() == game_event::MOVEMENT_P2 && m_player_id == 1) ||
+       (event.id() == game_event::MOVEMENT_P3 && m_player_id == 2) ||
+       (event.id() == game_event::MOVEMENT_P4 && m_player_id == 3)) {
+        string axis = event.get_property<string>("axis");
+        int value = event.get_property<int>("value");
 
-        if(event.get_property<string>("action") == "start") {
-            if(key_pressed == "up") {
-                m_current_selection = (m_current_selection - 2) % 4;
-                return true;
-            }
-            else if(key_pressed == "down") {
-                m_current_selection = (m_current_selection + 2) % 4;
-                return true;
-            }
-            else if(key_pressed == "left") {
-                m_current_selection = (m_current_selection -1) % 4;
-                return true;
-            }
-            else if(key_pressed == "right") {
+        if(axis == "X") {
+            if(value > 0) {
                 m_current_selection = (m_current_selection + 1) % 4;
-                return true;
+            }
+            else if(value < 0) {
+                m_current_selection = (m_current_selection - 1) % 4;
+            }
+        }
+        else if(axis == "Y") {
+            if(value > 0) {
+                m_current_selection = (m_current_selection - 2) % 4;
+            }
+            else if(value < 0) {
+                m_current_selection = (m_current_selection + 2) % 4;
             }
         }
         
@@ -103,7 +111,19 @@ CharacterSelection::on_event(const GameEvent &event)
             m_current_selection += 4;
         }
         update_position();
+        return true;
     }
-
+    else if((event.id() == game_event::LIGHT_ATTACK_P1 && m_player_id == 0) ||
+            (event.id() == game_event::LIGHT_ATTACK_P2 && m_player_id == 1) ||
+            (event.id() == game_event::LIGHT_ATTACK_P3 && m_player_id == 2) ||
+            (event.id() == game_event::LIGHT_ATTACK_P4 && m_player_id == 3)) {
+        m_chosen = true;
+    }
+    else if((event.id() == game_event::BLOCK_P1 && m_player_id == 0) ||
+            (event.id() == game_event::BLOCK_P2 && m_player_id == 1) ||
+            (event.id() == game_event::BLOCK_P3 && m_player_id == 2) ||
+            (event.id() == game_event::BLOCK_P4 && m_player_id == 3)) {
+        m_chosen = false;
+   }
     return false;
 }

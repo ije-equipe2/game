@@ -24,8 +24,24 @@ namespace ijengine
     {
         extern unsigned HEAVY_ATTACK_P1;
         extern unsigned HEAVY_ATTACK_P2;
+        extern unsigned HEAVY_ATTACK_P3;
+        extern unsigned HEAVY_ATTACK_P4;
+        extern unsigned LIGHT_ATTACK_P1;
+        extern unsigned LIGHT_ATTACK_P2;
+        extern unsigned LIGHT_ATTACK_P3;
+        extern unsigned LIGHT_ATTACK_P4;
+        extern unsigned BLOCK_P1;
+        extern unsigned BLOCK_P2;
+        extern unsigned BLOCK_P3;
+        extern unsigned BLOCK_P4;
+        extern unsigned SPECIAL_P1;
+        extern unsigned SPECIAL_P2;
+        extern unsigned SPECIAL_P3;
+        extern unsigned SPECIAL_P4;
         extern unsigned MOVEMENT_P1;
         extern unsigned MOVEMENT_P2;
+        extern unsigned MOVEMENT_P3;
+        extern unsigned MOVEMENT_P4;
         extern unsigned MOTION;
         extern unsigned CLICK;
         extern unsigned ENTER_GAME;

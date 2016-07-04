@@ -46,10 +46,10 @@ private:
     string m_next;
     int m_start;
     int m_frame;
-    int m_selected_character;
+    vector<int> m_selected_characters;
     int m_current_player;
     int m_number_of_players;
-    CharacterSelection *m_current_character_selection;
+    vector<CharacterSelection *> m_character_selections;
     int m_current_player_character;
 
     vector< shared_ptr<Texture> > m_textures;

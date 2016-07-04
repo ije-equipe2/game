@@ -16,7 +16,7 @@ using namespace ijengine;
 
 class CharacterSelection : public GameObject, GameEventsListener {
 public:
-    CharacterSelection(const string sprite_path);
+    CharacterSelection(const string sprite_path, int base_x, int base_y, int player_id);
     ~CharacterSelection();
 
     enum {
@@ -27,6 +27,8 @@ public:
     };
 
     int current_selection() const { return m_current_selection; }
+    int player_id() const { return m_player_id;}
+    bool chosen() const {return m_chosen;}
 
 protected:
     void update_self(unsigned now, unsigned last);
@@ -35,11 +37,15 @@ protected:
     void update_position(); 
 
 private:
+    int m_player_id;
     int m_frame;
     int m_start;
     int m_current_selection;
     int m_w;
     int m_h;
+    int m_base_x;
+    int m_base_y;
+    bool m_chosen;
     shared_ptr<Texture> m_texture;
 };
 

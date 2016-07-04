@@ -4,6 +4,19 @@
 #include "character_choose_level.h"
 #include "ije02_game.h"
 
+#include <iostream>
+
+using std::cout;
+
+namespace ijengine
+{
+    namespace character_selection
+    {
+        vector<int> players_characters = vector<int>();
+    }
+}
+
+
 Level *
 TestLevelFactory::make_level(const string& level_id)
 {
@@ -11,9 +24,8 @@ TestLevelFactory::make_level(const string& level_id)
         return new MenuLevel("green");
     else if (level_id == "green")
         return new CharacterChooseLevel("blue");
-    else if (level_id == "blue"){
-        m_players_characters = {2, 1, 3, 2};
-        return new MainLevel("", m_players_characters);
+    else if (level_id == "blue") {
+        return new MainLevel("", character_selection::players_characters);
     }
     else
         return nullptr;
