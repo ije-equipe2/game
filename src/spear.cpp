@@ -152,7 +152,7 @@ Spear::choose_sprite_path(unsigned player_id)
             break;
     }
 
-    sprite_path = "Spritesheets/" + directory + "/Spear" + directory + ".png";
+    sprite_path = "Spritesheets/" + directory + "/ObjectSpear" + directory + ".png";
 
     return sprite_path;
 }

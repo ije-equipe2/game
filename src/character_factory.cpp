@@ -69,7 +69,7 @@ CharacterFactory::choose_sprite_path(int character_code, unsigned player_id)
             break;
 
         case KNIGHT:
-            choosen_class = "Knight";
+            choosen_class = "Pesado";
             break;
 
         default:
