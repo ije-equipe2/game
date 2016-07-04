@@ -2,9 +2,12 @@
 
 #include <vector>
 #include <string>
+#include <iostream>
 
 using std::vector;
 using std::string;
+using std::cout;
+using std::endl;
 
 CharacterFactory::CharacterFactory()
 {
@@ -99,9 +102,9 @@ CharacterFactory::choose_sprite_path(int character_code, unsigned player_id)
     sprite_vector.push_back("Spritesheets/"+ directory + "/Spritesheet" + directory + choosen_class + "Idle.png");
     sprite_vector.push_back("Spritesheets/"+ directory + "/Spritesheet" + directory + choosen_class + "Walk.png");
     sprite_vector.push_back("Spritesheets/"+ directory + "/Spritesheet" + directory + choosen_class + "Attack.png");
-    sprite_vector.push_back("Spritesheets/"+ directory + "/Spritesheet" + directory + choosen_class + "Special.png");
-    sprite_vector.push_back("Spritesheets/"+ directory + "/Spritesheet" + directory + choosen_class + "Ultimate.png");
-    sprite_vector.push_back("Spritesheets/"+ directory + "/Spritesheet" + directory + choosen_class + "Defense.png");
+    //sprite_vector.push_back("Spritesheets/"+ directory + "/Spritesheet" + directory + choosen_class + "Special.png");
+    //sprite_vector.push_back("Spritesheets/"+ directory + "/Spritesheet" + directory + choosen_class + "Ultimate.png");
+    //sprite_vector.push_back("Spritesheets/"+ directory + "/Spritesheet" + directory + choosen_class + "Defense.png");
 
     return sprite_vector;
 }

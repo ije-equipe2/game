@@ -7,9 +7,13 @@
 #include <ijengine/canvas.h>
 #include <ijengine/keyboard_event.h>
 #include <cstdlib>
+#include <iostream>
 
 using namespace std;
 using namespace ijengine;
+
+using std::cout;
+using std::endl;
 
 MainLevel::MainLevel(const string& next_level, vector < int > players_characters)
     : m_done(false), m_next(next_level), m_start(-1)
@@ -33,6 +37,7 @@ MainLevel::MainLevel(const string& next_level, vector < int > players_characters
     for(const int &current_player_character : m_players_characters) {
         set_players_characters_position(player_id, x, y);
         add_child(m_character_factory.make_character(current_player_character, player_id, x, y));
+        cout << "OI BRASIL" << endl;
         player_id++;
     }
 }

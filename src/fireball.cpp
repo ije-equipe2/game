@@ -163,7 +163,7 @@ Fireball::choose_sprite_path(unsigned player_id)
             break;
     }
 
-    sprite_path = "Spritesheets/" + directory + "/Fireball" + directory + ".png";
+    sprite_path = "Spritesheets/" + directory + "/ObjectHadouken" + directory + ".png";
 
     return sprite_path;
 }

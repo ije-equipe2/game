@@ -88,19 +88,19 @@ Translator::translate(GameEvent& to, const JoystickEvent& from)
 
     if(from.state() == JoystickEvent::BUTTON_PRESSED) {
         if(from.button() == JoystickEvent::SQUARE || from.button() == JoystickEvent::L1) {
-            vector<int> heavy_attack_ids {game_event::HEAVY_ATTACK_P1, game_event::HEAVY_ATTACK_P2, game_event::HEAVY_ATTACK_P3, game_event::HEAVY_ATTACK_P4};
+            vector<unsigned> heavy_attack_ids {game_event::HEAVY_ATTACK_P1, game_event::HEAVY_ATTACK_P2, game_event::HEAVY_ATTACK_P3, game_event::HEAVY_ATTACK_P4};
             id = heavy_attack_ids[from.which()];
         }
         else if(from.button() == JoystickEvent::X || from.button() == JoystickEvent::R1) {
-            vector<int> light_attack_ids {game_event::LIGHT_ATTACK_P1, game_event::LIGHT_ATTACK_P2, game_event::LIGHT_ATTACK_P3, game_event::LIGHT_ATTACK_P4};
+            vector<unsigned> light_attack_ids {game_event::LIGHT_ATTACK_P1, game_event::LIGHT_ATTACK_P2, game_event::LIGHT_ATTACK_P3, game_event::LIGHT_ATTACK_P4};
             id = light_attack_ids[from.which()];
         }
         else if(from.button() == JoystickEvent::CIRCLE || from.button() == JoystickEvent::R2) {
-            vector<int> block_ids {game_event::BLOCK_P1, game_event::BLOCK_P2, game_event::BLOCK_P3, game_event::BLOCK_P4};
+            vector<unsigned> block_ids {game_event::BLOCK_P1, game_event::BLOCK_P2, game_event::BLOCK_P3, game_event::BLOCK_P4};
             id = block_ids[from.which()];
         }
         else if(from.button() == JoystickEvent::TRIANGLE || from.button() == JoystickEvent::L2) {
-            vector<int> special_ids {game_event::SPECIAL_P1, game_event::SPECIAL_P2, game_event::SPECIAL_P3, game_event::SPECIAL_P4};
+            vector<unsigned> special_ids {game_event::SPECIAL_P1, game_event::SPECIAL_P2, game_event::SPECIAL_P3, game_event::SPECIAL_P4};
             id = special_ids[from.which()];
         }
     }

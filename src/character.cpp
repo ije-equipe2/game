@@ -20,7 +20,7 @@ const double SPEED = 80.00;
 Character::Character(const vector<string> sprite_paths, unsigned id, double x, double y)
     : m_moving_state(MOVING_RIGHT), m_frame(0), m_start(-1), m_x_speed(0.00), m_y_speed(0.00)
 {
-    for(int i = 0; i < NUMBER_OF_STATES; i++) {
+    for(int i = 0; i < min((int) sprite_paths.size(), (int) NUMBER_OF_STATES); i++) {
         m_textures.push_back(resources::get_texture(sprite_paths[i]));
     }
 
@@ -105,6 +105,7 @@ Character::on_event(const GameEvent& event)
         int value = event.get_property<int>("value");
 
         if(axis == "X") {
+            change_character_state(MOVING_STATE);
             m_x_speed = SPEED * ((double) value / 32768);
             if(value > 0) {
                 m_moving_state = MOVING_RIGHT;
@@ -114,6 +115,7 @@ Character::on_event(const GameEvent& event)
             }
         } 
         else if(axis == "Y") {
+            change_character_state(MOVING_STATE);
             m_y_speed = SPEED * ((double) value / 32768);
         }
 
