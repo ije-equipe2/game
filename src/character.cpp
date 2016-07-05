@@ -27,6 +27,7 @@ Character::Character(const vector<string> sprite_paths, unsigned id, double x, d
     }
     m_state = nullptr;
     change_character_state(IDLE_STATE);
+    m_freeze = false;
 
     m_id = id;
     m_x = x;
@@ -55,15 +56,8 @@ Character::~Character()
 void
 Character::update_self(unsigned now, unsigned last)
 {
-    if(m_life <= 0) {
-        change_character_state(DEATH_STATE);
-    }
+    handle_state();
 
-    if(m_state->current_state() == DEATH_STATE and 
-        (m_frame + 1) % (m_textures[m_state->current_state()]->w() / 32) == 0) {
-        invalidate();
-    }
-    
     if (m_start == -1)
         m_start = now;
 
@@ -77,8 +71,6 @@ Character::update_self(unsigned now, unsigned last)
         return;
     }
 
-
-
     update_position(now, last);
 
     m_bounding_box.set_position(x(), y());
@@ -89,17 +81,18 @@ Character::update_self(unsigned now, unsigned last)
 inline void
 Character::update_position(const unsigned &now, const unsigned &last, bool backwards) {
     int multiplier = (backwards) ? -1 : 1;
+    if(not m_freeze) {
+        double new_y = y() + multiplier * m_y_speed * (now - last) / 1000.0;
+        new_y = min(new_y, SCREEN_HEIGHT - 32.00);
+        new_y = max(new_y, 0.0);
 
-    double new_y = y() + multiplier * m_y_speed * (now - last) / 1000.0;
-    new_y = min(new_y, SCREEN_HEIGHT - 32.00);
-    new_y = max(new_y, 0.0);
+        double new_x = x() + multiplier * m_x_speed * (now - last) / 1000.0;
+        new_x = min(new_x, SCREEN_WIDTH - 32.00);
+        new_x = max(new_x, 0.0);
 
-    double new_x = x() + multiplier * m_x_speed * (now - last) / 1000.0;
-    new_x = min(new_x, SCREEN_WIDTH - 32.00);
-    new_x = max(new_x, 0.0);
-
-    set_y(new_y);
-    set_x(new_x);
+        set_y(new_y);
+        set_x(new_x);
+    }
 }
 
 void
@@ -112,6 +105,9 @@ Character::draw_self(Canvas *canvas, unsigned, unsigned)
 bool
 Character::on_event(const GameEvent& event)
 {
+    bool p1_heavy_attack_validation = event.id() == game_event::HEAVY_ATTACK_P1 && id() == 0;
+    bool p2_heavy_attack_validation = event.id() == game_event::HEAVY_ATTACK_P2 && id() == 1;
+
     if((event.id() == game_event::MOVEMENT_P1 && m_id == 0) ||
        (event.id() == game_event::MOVEMENT_P2 && m_id == 1)) {
         string axis = event.get_property<string>("axis");
@@ -138,7 +134,13 @@ Character::on_event(const GameEvent& event)
 
         return true;
     }
-
+    else if ((p1_heavy_attack_validation || p2_heavy_attack_validation) &&
+        (m_start - m_last_used_heavy_attack > m_heavy_attack_cooldown))
+    {
+        m_last_used_heavy_attack = m_start;
+        heavy_attack();
+        return true;
+    }
     return false;
 }
 
@@ -200,6 +202,33 @@ Character::change_character_state(State next_state)
     if(m_state != nullptr and m_state->current_state() == DEATH_STATE) {
         return;
     }
-    m_state = m_character_state_factory.change_character_state(next_state);
-    m_frame = 0;
+    if(not m_freeze){
+        m_state = m_character_state_factory.change_character_state(next_state);
+        m_frame = 0;
+    }
+}
+
+void Character::handle_state()
+{
+    if(m_life <= 0) {
+        change_character_state(DEATH_STATE);
+    }
+
+    if(m_state->current_state() == HEAVY_ATTACK_STATE) {
+        m_freeze = true;
+    }
+    else {
+        m_freeze = false;
+    }
+
+    if(m_state->current_state() == DEATH_STATE and 
+        (m_frame + 1) % (m_textures[m_state->current_state()]->w() / 32) == 0) {
+        invalidate();
+    }
+
+    if(m_state->current_state() == HEAVY_ATTACK_STATE and
+        (m_frame + 1) % (m_textures[m_state->current_state()]->w() / 32) == 0) {
+        m_freeze = false;
+        change_character_state(IDLE_STATE);
+    }
 }

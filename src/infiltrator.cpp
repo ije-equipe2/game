@@ -6,3 +6,9 @@ Infiltrator::Infiltrator(vector<string> sprite_paths, unsigned id, double x, dou
     : Character(sprite_paths, id, x, y, MAX_LIFE)
 {
 }
+
+void
+Infiltrator::heavy_attack()
+{
+    
+}

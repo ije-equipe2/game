@@ -15,34 +15,29 @@ Mage::Mage(vector<string> sprite_paths, unsigned id, double x, double y)
     : Character(sprite_paths, id, x, y, MAX_LIFE)
 {
     m_life = MAX_LIFE;
+    m_heavy_attack_cooldown = 5000;
+    m_last_used_heavy_attack = -m_heavy_attack_cooldown;
 }
 
-bool
-Mage::on_event(const GameEvent& event)
+void
+Mage::heavy_attack()
 {
-    bool p1_heavy_attack_validation = event.id() == game_event::HEAVY_ATTACK_P1 && id() == 0;
-    bool p2_heavy_attack_validation = event.id() == game_event::HEAVY_ATTACK_P2 && id() == 1;
+    auto p = parent();
+    printf("p = %p\n", (void *) p);
 
-    if (p1_heavy_attack_validation || p2_heavy_attack_validation)
-    {
-
-        auto p = parent();
-        printf("p = %p\n", (void *) p);
-
-        double fireball_dx = 0.0;
-        double fireball_x_pos = 0.0;
-        
-        if(m_moving_state == MOVING_RIGHT) {
-            fireball_dx = 1.0;
-            fireball_x_pos = x() + 20;
-        }
-        else{
-            fireball_dx = -1.0;
-            fireball_x_pos = x() - 20;
-        }
-        p->add_child(new Fireball(p, id(), fireball_x_pos, y(), fireball_dx, 0.0));
-        return true;
+    double fireball_dx = 0.0;
+    double fireball_x_pos = 0.0;
+    
+    if(m_moving_state == MOVING_RIGHT) {
+        fireball_dx = 1.0;
+        fireball_x_pos = x() + 20;
+    }
+    else{
+        fireball_dx = -1.0;
+        fireball_x_pos = x() - 20;
     }
 
-    return Character::on_event(event);
+    p->add_child(new Fireball(p, id(), fireball_x_pos, y(), fireball_dx, 0.0));
+
+    change_character_state(HEAVY_ATTACK_STATE);
 }

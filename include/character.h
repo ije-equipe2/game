@@ -62,8 +62,10 @@ protected:
     void update_self(unsigned now, unsigned last);
     void draw_self(Canvas *canvas, unsigned now, unsigned last);
     void change_character_state(State next_state);
+    void handle_state();
     string choose_sprite_path(unsigned player_id);
     bool on_event(const GameEvent& event);
+    virtual void heavy_attack() = 0;
 
     typedef enum {MOVING_RIGHT, MOVING_LEFT} MovingState;
     
@@ -79,6 +81,9 @@ protected:
     int m_w;
     int m_h;
     int m_life;
+    int m_heavy_attack_cooldown;
+    int m_last_used_heavy_attack;
+    bool m_freeze;
     double m_x_speed;
     double m_y_speed;
     double m_speed;

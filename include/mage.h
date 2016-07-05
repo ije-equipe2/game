@@ -10,7 +10,7 @@ public:
 	Mage(vector<string> sprite_paths, unsigned id, double x, double y);
 
 protected:
-    bool on_event(const GameEvent& event);
+    void heavy_attack();
 };
 
 #endif
