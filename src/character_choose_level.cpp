@@ -58,7 +58,7 @@ CharacterChooseLevel::next() const
 
 string
 CharacterChooseLevel::audio() const {
-    return ".";
+    return "music/menu_v1.mp3";
 }
 
 void
@@ -69,7 +69,7 @@ CharacterChooseLevel::update_self(unsigned now, unsigned)
         dones += m_character_selections[i]->chosen();
     }
 
-    if(dones == 2) {
+    if(dones == 1) {
         if(!m_done) {
             for(int i = 0; i < m_number_of_players; i++) {
                 int selection = m_character_selections[i]->current_selection();
