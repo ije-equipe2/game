@@ -1,6 +1,7 @@
 #include "character.h"
 #include "ije02_game.h"
 #include "main_level.h"
+#include "skill.h"
 
 #include <ijengine/engine.h>
 #include <ijengine/canvas.h>
@@ -17,13 +18,14 @@ using std::max;
 
 const double SPEED = 80.00;
 
-Character::Character(const vector<string> sprite_paths, unsigned id, double x, double y)
-    : m_moving_state(MOVING_RIGHT), m_frame(0), m_start(-1), m_x_speed(0.00), m_y_speed(0.00)
+Character::Character(const vector<string> sprite_paths, unsigned id, double x, double y, int max_life)
+    : m_moving_state(MOVING_RIGHT), m_frame(0), m_start(-1), m_x_speed(0.00), m_y_speed(0.00),
+    m_life(max_life)
 {
     for(int i = 0; i < min((int) sprite_paths.size(), (int) NUMBER_OF_STATES); i++) {
         m_textures.push_back(resources::get_texture(sprite_paths[i]));
     }
-
+    m_state = nullptr;
     change_character_state(IDLE_STATE);
 
     m_id = id;
@@ -53,18 +55,29 @@ Character::~Character()
 void
 Character::update_self(unsigned now, unsigned last)
 {
+    if(m_life <= 0) {
+        change_character_state(DEATH_STATE);
+    }
+
+    if(m_state->current_state() == DEATH_STATE and 
+        (m_frame + 1) % (m_textures[m_state->current_state()]->w() / 32) == 0) {
+        invalidate();
+    }
+    
     if (m_start == -1)
         m_start = now;
 
-    if (now - m_start > m_state->m_refresh_rate)
+    if (now - m_start > m_state->refresh_rate())
     {
-        m_start += m_state->m_refresh_rate;
-        m_frame = (m_frame + 1) % (m_textures[m_state->m_current_sprite]->w() / 32);
+        m_start += m_state->refresh_rate();
+        m_frame = (m_frame + 1) % (m_textures[m_state->current_state()]->w() / 32);
     }
 
     if(m_y_speed == 0.0 && m_x_speed == 0.0) {
         return;
     }
+
+
 
     update_position(now, last);
 
@@ -93,7 +106,7 @@ void
 Character::draw_self(Canvas *canvas, unsigned, unsigned)
 {
     Rectangle rect {(double) m_w * m_frame, (double) m_h * m_moving_state, (double) m_w, (double) m_h};
-    canvas->draw(m_textures[m_state->m_current_sprite].get(), rect, x(), y());
+    canvas->draw(m_textures[m_state->current_state()].get(), rect, x(), y());
 }
 
 bool
@@ -121,7 +134,6 @@ Character::on_event(const GameEvent& event)
 
         if(m_x_speed == 0.0 && m_y_speed == 0.0) {
             change_character_state(IDLE_STATE);
-            m_frame = 0;
         }
 
         return true;
@@ -158,12 +170,36 @@ Character::hit_boxes() const
 void
 Character::on_collision(const Collidable *who, const Rectangle& where, unsigned now, unsigned last) 
 {
-   update_position(now, last, true);
+    const Skill *s = dynamic_cast<const Skill *>(who);
+    const Character *c = dynamic_cast<const Character *>(who);
 
+    if(c) {
+        printf("colidiu com um personagem!\n\n");
+        update_position(now, last, true);
+    }
+    else if(s and s->character_id() != m_id) {
+        printf("colidiu com alguma skill!\n\n");
+        printf("colidiu com : %d\n", s->character_id());
+        if(s->valid()) {
+            printf("Dano causado: %d\n", s->damage());
+
+            printf("Vida antes: %d\n", m_life);
+            m_life -= s->damage();
+            printf("Vida depois: %d\n", m_life);
+        }
+        else if(not s->valid()) {
+            printf("Skill já colidiu!\n");
+        }
+    }
+   
 }
 
 void
 Character::change_character_state(State next_state) 
 {
+    if(m_state != nullptr and m_state->current_state() == DEATH_STATE) {
+        return;
+    }
     m_state = m_character_state_factory.change_character_state(next_state);
+    m_frame = 0;
 }

@@ -2,9 +2,12 @@
 #include "spear.h"
 #include "ije02_game.h"
 
+#define MAX_LIFE 120
+
 Soldier::Soldier(vector<string> sprite_paths, unsigned id, double x, double y)
-    : Character(sprite_paths, id, x, y)
+    : Character(sprite_paths, id, x, y, MAX_LIFE)
 {
+    m_life = MAX_LIFE;
 }
 
 bool
@@ -31,7 +34,7 @@ Soldier::on_event(const GameEvent& event)
             spear_dx = -1.0;
             spear_x_pos = x() - 20;
         }
-        p->add_child(new Spear(p, id(), spear_x_pos, y(), spear_dx, 0.0, 100));
+        p->add_child(new Spear(p, id(), spear_x_pos, y(), spear_dx, 0.0));
         return true;
     }
 

@@ -11,7 +11,7 @@ using namespace ijengine;
 
 class Skill : public GameObject, public Collidable  {
 public:
-    Skill(GameObject *parent, double xp, double yp);
+    Skill(GameObject *parent, double xp, double yp, int damage, int character_id);
     ~Skill();
 
     virtual bool active() const = 0;
@@ -20,7 +20,8 @@ public:
     virtual pair<double, double> direction() const = 0;
 
     virtual void on_collision(const Collidable *who, const Rectangle& where, unsigned now, unsigned last) = 0;
-    int damage() const;
+    unsigned character_id() const { return m_character_id; }
+    int damage() const { return m_damage; }
 
 protected:
     unsigned m_character_id;

@@ -18,6 +18,7 @@ using std::endl;
 MainLevel::MainLevel(const string& next_level, vector < int > players_characters)
     : m_done(false), m_next(next_level), m_start(-1)
 {
+    printf("Entrou no main leven\n");
     m_textures.push_back(resources::get_texture("map/Map002.jpg"));
 
     for (int i = 0; i < MAX_W; ++i)

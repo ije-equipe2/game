@@ -3,6 +3,6 @@
 MovingState::MovingState()
     :CharacterState()
 {
-    m_current_sprite = MOVING_STATE;
+    m_current_state = MOVING_STATE;
     m_refresh_rate = 100;
 }

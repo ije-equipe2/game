@@ -10,6 +10,7 @@
 
 #include "character_state.h"
 #include "character_state_factory.h"
+#include "util.h"
 
 #include <memory>
 #include <vector>
@@ -23,11 +24,12 @@ using std::pair;
 using std::string;
 using std::unordered_map;
 using namespace ijengine;
+using namespace util;
 
 
 class Character : public GameObject, public GameEventsListener, public Collidable {
 public:
-	Character(const vector<string> sprite_paths, unsigned id, double x, double y);
+	Character(const vector<string> sprite_paths, unsigned id, double x, double y, int max_life);
 	~Character();
     
     enum {
@@ -46,8 +48,6 @@ public:
         NUMBER_OF_CHARACTER_EVENTS
     };
 
-    typedef enum {IDLE_STATE, MOVING_STATE, LIGHT_ATTACK_STATE, HEAVY_ATTACK_STATE, SPECIAL_STATE,
-        DEFENSE_STATE, NUMBER_OF_STATES} State;
 
     bool active() const;
     const Rectangle& bounding_box() const;
@@ -78,6 +78,7 @@ protected:
     int m_start;
     int m_w;
     int m_h;
+    int m_life;
     double m_x_speed;
     double m_y_speed;
     double m_speed;

@@ -22,6 +22,10 @@ CharacterStateFactory::change_character_state(int next_state)
             return new MovingState();
             break;
 
+        case DEATH_STATE:
+            return new DeathState();
+            break;
+
         default:
             printf("error on character_state_factory!\n");
             return nullptr;

@@ -74,7 +74,7 @@ CharacterChooseLevel::update_self(unsigned now, unsigned)
             for(int i = 0; i < m_number_of_players; i++) {
                 int selection = m_character_selections[i]->current_selection();
                 if(selection == 0) {
-                    selection = 2;
+                    selection = 1;
                 }
                 character_selection::players_characters.push_back(selection);
             }

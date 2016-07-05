@@ -4,20 +4,25 @@
 #include <memory>
 #include <vector>
 
+#include "util.h"
+
 using std::shared_ptr;
 using std::vector;
 
 using namespace ijengine;
+using namespace util;
 
 class CharacterState {
 public:
     CharacterState();
     ~CharacterState();
 
-    typedef enum {IDLE_STATE, MOVING_STATE, LIGHT_ATTACK_STATE, HEAVY_ATTACK_STATE, SPECIAL_STATE,
-        DEFENSE_STATE, NUMBER_OF_STATES} State;
 
-    State m_current_sprite;
+    State current_state() const { return m_current_state; }
+    unsigned refresh_rate() const { return m_refresh_rate; }
+
+protected:
+    State m_current_state;
     unsigned m_refresh_rate;
 
 };

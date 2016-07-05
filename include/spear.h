@@ -23,7 +23,7 @@ using namespace ijengine;
 class Spear : public Skill {
 public:
     Spear(GameObject *parent, unsigned soldier_id, double xp, double yp,
-        double dx, double dy, int damage);
+        double dx, double dy);
 
     ~Spear();
     bool active() const;

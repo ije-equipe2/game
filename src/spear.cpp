@@ -5,15 +5,16 @@
 #include <ijengine/rectangle.h>
 #include <ijengine/game_object.h>
 
+#define SPEAR_BASE_DAMAGE 40
 
 using namespace std;
 using namespace ijengine;
 
 
 Spear::Spear(GameObject *parent, unsigned soldier_id, double xp, double yp, double dx,
-    double dy, int damage)
-    : Skill(parent, xp, yp), m_character_id(soldier_id), m_dx(dx/hypot(dx, dy)),
-        m_dy(dy/hypot(dx, dy)), m_damage(damage), m_speed(100.0) 
+    double dy)
+    : Skill(parent, xp, yp, SPEAR_BASE_DAMAGE, soldier_id), m_character_id(soldier_id), m_dx(dx/hypot(dx, dy)),
+        m_dy(dy/hypot(dx, dy)), m_speed(100.0) 
 {
     m_frame = 0;
     m_start = 0;

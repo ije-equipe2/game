@@ -1,16 +1,20 @@
 #include "mage.h"
 #include "fireball.h"
 #include "ije02_game.h"
+#include "skill.h"
 
 #include <vector>
 #include <string>
+
+#define MAX_LIFE 100
 
 using std::vector;
 using std::string;
 
 Mage::Mage(vector<string> sprite_paths, unsigned id, double x, double y)
-    : Character(sprite_paths, id, x, y)
+    : Character(sprite_paths, id, x, y, MAX_LIFE)
 {
+    m_life = MAX_LIFE;
 }
 
 bool
@@ -21,6 +25,7 @@ Mage::on_event(const GameEvent& event)
 
     if (p1_heavy_attack_validation || p2_heavy_attack_validation)
     {
+
         auto p = parent();
         printf("p = %p\n", (void *) p);
 
@@ -35,7 +40,7 @@ Mage::on_event(const GameEvent& event)
             fireball_dx = -1.0;
             fireball_x_pos = x() - 20;
         }
-        p->add_child(new Fireball(p, id(), fireball_x_pos, y(), fireball_dx, 0.0, 100));
+        p->add_child(new Fireball(p, id(), fireball_x_pos, y(), fireball_dx, 0.0));
         return true;
     }
 

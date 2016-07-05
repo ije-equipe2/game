@@ -23,7 +23,7 @@ using namespace ijengine;
 class Fireball : public Skill {
 public:
 	Fireball(GameObject *parent, unsigned mage_id, double xp, double yp,
-        double dx, double dy, int damage);
+        double dx, double dy);
 
 
 

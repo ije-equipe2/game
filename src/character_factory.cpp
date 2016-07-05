@@ -99,12 +99,13 @@ CharacterFactory::choose_sprite_path(int character_code, unsigned player_id)
             break;
     }
 
-    sprite_vector.push_back("Spritesheets/"+ directory + "/Spritesheet" + directory + choosen_class + "Idle.png");
-    sprite_vector.push_back("Spritesheets/"+ directory + "/Spritesheet" + directory + choosen_class + "Walk.png");
-    sprite_vector.push_back("Spritesheets/"+ directory + "/Spritesheet" + directory + choosen_class + "Attack.png");
-    //sprite_vector.push_back("Spritesheets/"+ directory + "/Spritesheet" + directory + choosen_class + "Special.png");
-    //sprite_vector.push_back("Spritesheets/"+ directory + "/Spritesheet" + directory + choosen_class + "Ultimate.png");
-    //sprite_vector.push_back("Spritesheets/"+ directory + "/Spritesheet" + directory + choosen_class + "Defense.png");
+    sprite_vector.push_back("Spritesheets/" + directory + "/Spritesheet" + directory + choosen_class + "Idle.png");
+    sprite_vector.push_back("Spritesheets/" + directory + "/Spritesheet" + directory + choosen_class + "Walk.png");
+    sprite_vector.push_back("Spritesheets/" + directory + "/Spritesheet" + directory + choosen_class + "Death.png");
+    sprite_vector.push_back("Spritesheets/" + directory + "/Spritesheet" + directory + choosen_class + "Attack.png");
+    //sprite_vector.push_back("Spritesheets/" + directory + "/Spritesheet" + directory + choosen_class + "Special.png");
+    //sprite_vector.push_back("Spritesheets/" + directory + "/Spritesheet" + directory + choosen_class + "Ultimate.png");
+    //sprite_vector.push_back("Spritesheets/" + directory + "/Spritesheet" + directory + choosen_class + "Defense.png");
 
     return sprite_vector;
 }

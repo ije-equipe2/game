@@ -4,14 +4,16 @@
 #include "character_state.h"
 #include "idle_state.h"
 #include "moving_state.h"
+#include "death_state.h"
+#include "util.h"
+
+using namespace util;
 
 class CharacterStateFactory {
 public:
     CharacterStateFactory();
     ~CharacterStateFactory();
 
-    typedef enum {IDLE_STATE, MOVING_STATE, LIGHT_ATTACK_STATE, HEAVY_ATTACK_STATE, SPECIAL_STATE,
-        DEFENSE_STATE, NUMBER_OF_STATES} State;
 
     CharacterState* change_character_state(int next_state);
 

@@ -3,6 +3,6 @@
 IdleState::IdleState()
     :CharacterState()
 {
-    m_current_sprite = IDLE_STATE;
+    m_current_state = IDLE_STATE;
     m_refresh_rate = 275;
 }
