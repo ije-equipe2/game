@@ -107,6 +107,23 @@ Character::on_event(const GameEvent& event)
 {
     bool p1_heavy_attack_validation = event.id() == game_event::HEAVY_ATTACK_P1 && id() == 0;
     bool p2_heavy_attack_validation = event.id() == game_event::HEAVY_ATTACK_P2 && id() == 1;
+    bool p3_heavy_attack_validation = event.id() == game_event::HEAVY_ATTACK_P3 && id() == 2;
+    bool p4_heavy_attack_validation = event.id() == game_event::HEAVY_ATTACK_P4 && id() == 3;
+
+    bool p1_light_attack_validation = event.id() == game_event::LIGHT_ATTACK_P1 && id() == 0;
+    bool p2_light_attack_validation = event.id() == game_event::LIGHT_ATTACK_P2 && id() == 1;
+    bool p3_light_attack_validation = event.id() == game_event::LIGHT_ATTACK_P3 && id() == 2;
+    bool p4_light_attack_validation = event.id() == game_event::LIGHT_ATTACK_P4 && id() == 3;
+
+    bool p1_block_validation = event.id() == game_event::BLOCK_P1 && id() == 0;
+    bool p2_block_validation = event.id() == game_event::BLOCK_P2 && id() == 1;
+    bool p3_block_validation = event.id() == game_event::BLOCK_P3 && id() == 2;
+    bool p4_block_validation = event.id() == game_event::BLOCK_P4 && id() == 3;
+
+    bool p1_special_validation = event.id() == game_event::SPECIAL_P1 && id() == 0;
+    bool p2_special_validation = event.id() == game_event::SPECIAL_P2 && id() == 1;
+    bool p3_special_validation = event.id() == game_event::SPECIAL_P3 && id() == 2;
+    bool p4_special_validation = event.id() == game_event::SPECIAL_P4 && id() == 3;
 
     if((event.id() == game_event::MOVEMENT_P1 && m_id == 0) ||
        (event.id() == game_event::MOVEMENT_P2 && m_id == 1)) {
@@ -134,13 +151,35 @@ Character::on_event(const GameEvent& event)
 
         return true;
     }
-    else if ((p1_heavy_attack_validation || p2_heavy_attack_validation) &&
+    else if((p1_heavy_attack_validation || p2_heavy_attack_validation || p3_heavy_attack_validation || p4_heavy_attack_validation) &&
         (m_start - m_last_used_heavy_attack > m_heavy_attack_cooldown))
     {
         m_last_used_heavy_attack = m_start;
         heavy_attack();
         return true;
     }
+    else if((p1_light_attack_validation || p2_light_attack_validation || p3_light_attack_validation || p4_light_attack_validation) &&
+        (m_start - m_last_used_light_attack > m_light_attack_cooldown))
+    {
+        m_last_used_light_attack = m_start;
+        light_attack();
+        return true;
+    }
+    else if((p1_block_validation || p2_block_validation || p3_block_validation || p4_block_validation) &&
+        (m_start - m_last_used_block > m_block_cooldown))
+    {
+        m_last_used_block = m_start;
+        block();
+        return true;
+    }
+    else if((p1_special_validation || p2_special_validation || p3_special_validation || p4_special_validation) &&
+        (m_start - m_last_used_special > m_special_cooldown))
+    {
+        m_last_used_special = m_start;
+        special();
+        return true;
+    }
+
     return false;
 }
 

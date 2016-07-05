@@ -12,3 +12,18 @@ Knight::heavy_attack()
 {
 
 }
+
+void
+Knight::light_attack() {
+
+}
+
+void
+Knight::block() {
+
+}
+
+void
+Knight::special() {
+
+}

@@ -34,3 +34,18 @@ Soldier::heavy_attack()
     change_character_state(HEAVY_ATTACK_STATE);
 
 }
+
+void
+Soldier::light_attack() {
+
+}
+
+void
+Soldier::block() {
+
+}
+
+void
+Soldier::special() {
+
+}

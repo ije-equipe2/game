@@ -41,3 +41,18 @@ Mage::heavy_attack()
 
     change_character_state(HEAVY_ATTACK_STATE);
 }
+
+void
+Mage::light_attack() {
+
+}
+
+void
+Mage::block() {
+
+}
+
+void
+Mage::special() {
+
+}

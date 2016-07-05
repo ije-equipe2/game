@@ -12,3 +12,18 @@ Infiltrator::heavy_attack()
 {
     
 }
+
+void
+Infiltrator::light_attack() {
+
+}
+
+void
+Infiltrator::block() {
+
+}
+
+void
+Infiltrator::special() {
+
+}
