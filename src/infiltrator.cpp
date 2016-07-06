@@ -15,7 +15,7 @@ Infiltrator::heavy_attack()
 
 void
 Infiltrator::light_attack() {
-
+    change_character_state(LIGHT_ATTACK_STATE);
 }
 
 void

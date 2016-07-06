@@ -6,6 +6,7 @@
 #include "moving_state.h"
 #include "death_state.h"
 #include "heavy_attack_state.h"
+#include "light_attack_state.h"
 #include "defense_state.h"
 #include "util.h"
 

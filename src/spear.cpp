@@ -119,7 +119,7 @@ Spear::update_time(unsigned now)
         update_sprite_state();
     }
 
-    if((m_current_time - m_start) > 5000) {
+    if((m_current_time - m_start) > 2000) {
         invalidate();
     }
 

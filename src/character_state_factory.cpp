@@ -30,6 +30,10 @@ CharacterStateFactory::change_character_state(int next_state)
             return new HeavyAttackState();
             break;
 
+        case LIGHT_ATTACK_STATE:
+            return new LightAttackState();
+            break;
+            
         case DEFENSE_STATE:
             return new DefenseState();
             break;

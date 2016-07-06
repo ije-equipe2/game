@@ -131,7 +131,6 @@ Character::on_event(const GameEvent& event)
         int value = event.get_property<int>("value");
 
         if(axis == "X") {
-            change_character_state(MOVING_STATE);
             m_x_speed = SPEED * ((double) value / 32768);
             if(value > 0) {
                 m_moving_state = MOVING_RIGHT;
@@ -141,12 +140,16 @@ Character::on_event(const GameEvent& event)
             }
         } 
         else if(axis == "Y") {
-            change_character_state(MOVING_STATE);
             m_y_speed = SPEED * ((double) value / 32768);
         }
 
+        printf("X SPEED: %lf\n", m_x_speed);
+        printf("Y SPEED: %lf\n", m_y_speed);
         if(m_x_speed == 0.0 && m_y_speed == 0.0) {
-            change_character_state(IDLE_STATE);
+            //change_character_state(IDLE_STATE);
+        }
+        else if(m_state->current_state() == IDLE_STATE) {
+            change_character_state(MOVING_STATE);
         }
 
         return true;
@@ -265,9 +268,15 @@ void Character::handle_state()
         invalidate();
     }
 
-    if(m_state->current_state() != DEATH_STATE and
+    if(m_state->current_state() != DEATH_STATE && m_state->current_state() != MOVING_STATE and
         (m_frame + 1) % (m_textures[m_state->current_state()]->w() / 32) == 0) {
         m_freeze = false;
+        change_character_state(IDLE_STATE);
+    }
+
+    if(m_x_speed == 0.0 && m_y_speed == 0.0 &&
+        (m_state->current_state() == MOVING_STATE || 
+        (m_state->current_state() == IDLE_STATE && ((m_frame + 1) % (m_textures[IDLE_STATE]->w() / 32)) == 0))) {
         change_character_state(IDLE_STATE);
     }
 }

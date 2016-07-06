@@ -15,7 +15,7 @@ Knight::heavy_attack()
 
 void
 Knight::light_attack() {
-
+    change_character_state(LIGHT_ATTACK_STATE);
 }
 
 void
