@@ -32,7 +32,6 @@ Soldier::heavy_attack()
     p->add_child(new Spear(p, id(), spear_x_pos, y(), spear_dx, 0.0));
 
     change_character_state(HEAVY_ATTACK_STATE);
-
 }
 
 void
@@ -41,8 +40,8 @@ Soldier::light_attack() {
 }
 
 void
-Soldier::block() {
-
+Soldier::defense() {
+    change_character_state(DEFENSE_STATE);
 }
 
 void

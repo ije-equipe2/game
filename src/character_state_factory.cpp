@@ -30,6 +30,10 @@ CharacterStateFactory::change_character_state(int next_state)
             return new HeavyAttackState();
             break;
 
+        case DEFENSE_STATE:
+            return new DefenseState();
+            break;
+            
         default:
             printf("error on character_state_factory!\n");
             return nullptr;

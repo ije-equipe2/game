@@ -19,8 +19,8 @@ Infiltrator::light_attack() {
 }
 
 void
-Infiltrator::block() {
-
+Infiltrator::defense() {
+    change_character_state(DEFENSE_STATE);
 }
 
 void

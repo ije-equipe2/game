@@ -30,10 +30,10 @@ namespace ijengine
         extern unsigned LIGHT_ATTACK_P2;
         extern unsigned LIGHT_ATTACK_P3;
         extern unsigned LIGHT_ATTACK_P4;
-        extern unsigned BLOCK_P1;
-        extern unsigned BLOCK_P2;
-        extern unsigned BLOCK_P3;
-        extern unsigned BLOCK_P4;
+        extern unsigned DEFENSE_P1;
+        extern unsigned DEFENSE_P2;
+        extern unsigned DEFENSE_P3;
+        extern unsigned DEFENSE_P4;
         extern unsigned SPECIAL_P1;
         extern unsigned SPECIAL_P2;
         extern unsigned SPECIAL_P3;

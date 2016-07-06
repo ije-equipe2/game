@@ -115,10 +115,10 @@ Character::on_event(const GameEvent& event)
     bool p3_light_attack_validation = event.id() == game_event::LIGHT_ATTACK_P3 && id() == 2;
     bool p4_light_attack_validation = event.id() == game_event::LIGHT_ATTACK_P4 && id() == 3;
 
-    bool p1_block_validation = event.id() == game_event::BLOCK_P1 && id() == 0;
-    bool p2_block_validation = event.id() == game_event::BLOCK_P2 && id() == 1;
-    bool p3_block_validation = event.id() == game_event::BLOCK_P3 && id() == 2;
-    bool p4_block_validation = event.id() == game_event::BLOCK_P4 && id() == 3;
+    bool p1_defense_validation = event.id() == game_event::DEFENSE_P1 && id() == 0;
+    bool p2_defense_validation = event.id() == game_event::DEFENSE_P2 && id() == 1;
+    bool p3_defense_validation = event.id() == game_event::DEFENSE_P3 && id() == 2;
+    bool p4_defense_validation = event.id() == game_event::DEFENSE_P4 && id() == 3;
 
     bool p1_special_validation = event.id() == game_event::SPECIAL_P1 && id() == 0;
     bool p2_special_validation = event.id() == game_event::SPECIAL_P2 && id() == 1;
@@ -165,11 +165,11 @@ Character::on_event(const GameEvent& event)
         light_attack();
         return true;
     }
-    else if((p1_block_validation || p2_block_validation || p3_block_validation || p4_block_validation) &&
-        (m_start - m_last_used_block > m_block_cooldown))
+    else if((p1_defense_validation || p2_defense_validation || p3_defense_validation || p4_defense_validation) &&
+        (m_start - m_last_used_defense > m_defense_cooldown))
     {
-        m_last_used_block = m_start;
-        block();
+        m_last_used_defense = m_start;
+        defense();
         return true;
     }
     else if((p1_special_validation || p2_special_validation || p3_special_validation || p4_special_validation) &&
@@ -241,7 +241,7 @@ Character::change_character_state(State next_state)
     if(m_state != nullptr and m_state->current_state() == DEATH_STATE) {
         return;
     }
-    if(not m_freeze){
+    if(not m_freeze) {
         m_state = m_character_state_factory.change_character_state(next_state);
         m_frame = 0;
     }
@@ -265,7 +265,7 @@ void Character::handle_state()
         invalidate();
     }
 
-    if(m_state->current_state() == HEAVY_ATTACK_STATE and
+    if(m_state->current_state() != DEATH_STATE and
         (m_frame + 1) % (m_textures[m_state->current_state()]->w() / 32) == 0) {
         m_freeze = false;
         change_character_state(IDLE_STATE);

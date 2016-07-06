@@ -19,8 +19,8 @@ Knight::light_attack() {
 }
 
 void
-Knight::block() {
-
+Knight::defense() {
+    change_character_state(DEFENSE_STATE);
 }
 
 void

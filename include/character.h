@@ -43,7 +43,7 @@ public:
         STOP_MOVING_UP,
         LIGHT_ATTACK,
         HEAVY_ATTACK,
-        BLOCK,
+        DEFENSE,
         SPECIAL,
         NUMBER_OF_CHARACTER_EVENTS
     };
@@ -67,7 +67,7 @@ protected:
     bool on_event(const GameEvent& event);
     virtual void heavy_attack() = 0;
     virtual void light_attack() = 0;
-    virtual void block() = 0;
+    virtual void defense() = 0;
     virtual void special() = 0;
 
     typedef enum {MOVING_RIGHT, MOVING_LEFT} MovingState;
@@ -86,11 +86,11 @@ protected:
     int m_life;
     int m_heavy_attack_cooldown;
     int m_light_attack_cooldown;
-    int m_block_cooldown;
+    int m_defense_cooldown;
     int m_special_cooldown;
     int m_last_used_heavy_attack;
     int m_last_used_light_attack;
-    int m_last_used_block;
+    int m_last_used_defense;
     int m_last_used_special;
     bool m_freeze;
     double m_x_speed;

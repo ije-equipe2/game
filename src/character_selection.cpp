@@ -119,10 +119,10 @@ CharacterSelection::on_event(const GameEvent &event)
             (event.id() == game_event::LIGHT_ATTACK_P4 && m_player_id == 3)) {
         m_chosen = true;
     }
-    else if((event.id() == game_event::BLOCK_P1 && m_player_id == 0) ||
-            (event.id() == game_event::BLOCK_P2 && m_player_id == 1) ||
-            (event.id() == game_event::BLOCK_P3 && m_player_id == 2) ||
-            (event.id() == game_event::BLOCK_P4 && m_player_id == 3)) {
+    else if((event.id() == game_event::DEFENSE_P1 && m_player_id == 0) ||
+            (event.id() == game_event::DEFENSE_P2 && m_player_id == 1) ||
+            (event.id() == game_event::DEFENSE_P3 && m_player_id == 2) ||
+            (event.id() == game_event::DEFENSE_P4 && m_player_id == 3)) {
         m_chosen = false;
    }
     return false;

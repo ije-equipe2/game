@@ -16,6 +16,7 @@ Mage::Mage(vector<string> sprite_paths, unsigned id, double x, double y)
 {
     m_life = MAX_LIFE;
     m_heavy_attack_cooldown = 5000;
+    m_defense_cooldown = 500;
     m_last_used_heavy_attack = -m_heavy_attack_cooldown;
 }
 
@@ -48,8 +49,8 @@ Mage::light_attack() {
 }
 
 void
-Mage::block() {
-
+Mage::defense() {
+    change_character_state(DEFENSE_STATE);
 }
 
 void

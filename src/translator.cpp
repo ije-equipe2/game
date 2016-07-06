@@ -96,8 +96,8 @@ Translator::translate(GameEvent& to, const JoystickEvent& from)
             id = light_attack_ids[from.which()];
         }
         else if(from.button() == JoystickEvent::CIRCLE || from.button() == JoystickEvent::R2) {
-            vector<unsigned> block_ids {game_event::BLOCK_P1, game_event::BLOCK_P2, game_event::BLOCK_P3, game_event::BLOCK_P4};
-            id = block_ids[from.which()];
+            vector<unsigned> defense_ids {game_event::DEFENSE_P1, game_event::DEFENSE_P2, game_event::DEFENSE_P3, game_event::DEFENSE_P4};
+            id = defense_ids[from.which()];
         }
         else if(from.button() == JoystickEvent::TRIANGLE || from.button() == JoystickEvent::L2) {
             vector<unsigned> special_ids {game_event::SPECIAL_P1, game_event::SPECIAL_P2, game_event::SPECIAL_P3, game_event::SPECIAL_P4};

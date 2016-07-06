@@ -12,7 +12,7 @@ public:
 protected:
     void heavy_attack();
     void light_attack();
-    void block();
+    void defense();
     void special();
 };
 
