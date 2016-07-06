@@ -1,6 +1,7 @@
 #include "main_level.h"
 #include "engine.h"
 #include "character.h"
+#include "base.h"
 #include "ije02_game.h"
 #include "mage.h"
 
@@ -8,6 +9,9 @@
 #include <ijengine/keyboard_event.h>
 #include <cstdlib>
 #include <iostream>
+
+#define X_ADJUSTMENT 38.0
+#define Y_ADJUSTMENT 20.0
 
 using namespace std;
 using namespace ijengine;
@@ -19,7 +23,7 @@ MainLevel::MainLevel(const string& next_level, vector < int > players_characters
     : m_done(false), m_next(next_level), m_start(-1)
 {
     printf("Entrou no main leven\n");
-    m_textures.push_back(resources::get_texture("map/Map002.jpg"));
+    m_texture = resources::get_texture("map/Map003.jpg");
 
     for (int i = 0; i < MAX_W; ++i)
         for (int j = 0; j < MAX_H; ++j)
@@ -38,6 +42,7 @@ MainLevel::MainLevel(const string& next_level, vector < int > players_characters
     for(const int &current_player_character : m_players_characters) {
         set_players_characters_position(player_id, x, y);
         add_child(m_character_factory.make_character(current_player_character, player_id, x, y));
+        add_child(new Base(player_id));
         cout << "OI BRASIL" << endl;
         player_id++;
     }
@@ -79,7 +84,7 @@ MainLevel::draw_self(Canvas *canvas, unsigned, unsigned)
 {
     canvas->clear();
     
-    canvas->draw(m_textures[0].get(), 0, 0);
+    canvas->draw(m_texture.get(), 0, 0);
 }
 
 void
@@ -87,27 +92,27 @@ MainLevel::set_players_characters_position(unsigned player_id, double& x_pos, do
 {
     switch(player_id) {
         case PLAYER_1:
-            x_pos = 0.0;
-            y_pos = 0.0;
+            x_pos = X_ADJUSTMENT;
+            y_pos = Y_ADJUSTMENT;
             break;
 
         case PLAYER_2:
-            x_pos = (double) SCREEN_WIDTH - 32.0;
-            y_pos = 0.0;
+            x_pos = (double) SCREEN_WIDTH - 32.0 - X_ADJUSTMENT;
+            y_pos = Y_ADJUSTMENT;
             break;
 
         case PLAYER_3:
-            x_pos = 0.0;
-            y_pos = (double) SCREEN_HEIGHT - 32.0;
+            x_pos = X_ADJUSTMENT;
+            y_pos = (double) SCREEN_HEIGHT - 32.0 - Y_ADJUSTMENT;
             break;
 
         case PLAYER_4:
-            x_pos = (double) SCREEN_WIDTH - 32.0;
-            y_pos = (double) SCREEN_HEIGHT - 32.0;
+            x_pos = (double) SCREEN_WIDTH - 32.0 - X_ADJUSTMENT;
+            y_pos = (double) SCREEN_HEIGHT - 32.0 - Y_ADJUSTMENT;
             break;
 
         default:
-            printf("Valor errado no set_players_characters_position!\n");
+            printf("Valor errado no set_base_position_position!\n");
             printf("player_id: %d", player_id);
             break;
     }

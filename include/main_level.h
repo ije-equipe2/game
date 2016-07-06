@@ -58,7 +58,7 @@ private:
     int m_start;
 
     vector < int > m_players_characters;
-    vector< shared_ptr<Texture> > m_textures;
+    shared_ptr<Texture> m_texture;
     int m_map[MAX_W][MAX_H];
     CharacterFactory m_character_factory;
 };

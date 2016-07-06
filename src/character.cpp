@@ -2,6 +2,7 @@
 #include "ije02_game.h"
 #include "main_level.h"
 #include "skill.h"
+#include "base.h"
 
 #include <ijengine/engine.h>
 #include <ijengine/canvas.h>
@@ -19,8 +20,7 @@ using std::max;
 const double SPEED = 80.00;
 
 Character::Character(const vector<string> sprite_paths, unsigned id, double x, double y, int max_life)
-    : m_moving_state(MOVING_RIGHT), m_frame(0), m_start(-1), m_x_speed(0.00), m_y_speed(0.00),
-    m_life(max_life)
+    : m_frame(0), m_start(-1), m_x_speed(0.00), m_y_speed(0.00), m_life(max_life), m_id(id)
 {
     for(int i = 0; i < min((int) sprite_paths.size(), (int) NUMBER_OF_STATES); i++) {
         m_textures.push_back(resources::get_texture(sprite_paths[i]));
@@ -28,8 +28,7 @@ Character::Character(const vector<string> sprite_paths, unsigned id, double x, d
     m_state = nullptr;
     change_character_state(IDLE_STATE);
     m_freeze = false;
-
-    m_id = id;
+    
     m_x = x;
     m_y = y;
 
@@ -42,6 +41,13 @@ Character::Character(const vector<string> sprite_paths, unsigned id, double x, d
     m_speed_vector["left"] = make_pair(-SPEED, 0.00);
     m_speed_vector["right"] = make_pair(SPEED, 0.00);
     m_speed_vector["up"] = make_pair(0.00, -SPEED);
+
+    if(m_id %2 == 0) {
+        m_moving_state = MOVING_RIGHT;
+    }
+    else {
+        m_moving_state = MOVING_LEFT;
+    }
     
     event::register_listener(this);
     physics::register_object(this);
@@ -209,8 +215,9 @@ Character::on_collision(const Collidable *who, const Rectangle& where, unsigned 
 {
     const Skill *s = dynamic_cast<const Skill *>(who);
     const Character *c = dynamic_cast<const Character *>(who);
+    const Base *b = dynamic_cast<const Base *>(who);
 
-    if(c) {
+    if(c or b) {
         printf("colidiu com um personagem!\n\n");
         update_position(now, last, true);
     }
