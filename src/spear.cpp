@@ -58,17 +58,6 @@ Spear::update_self(unsigned now, unsigned last)
     }
 }
 
-void
-Spear::on_collision(const Collidable *who, const Rectangle& where, unsigned now, unsigned last) 
-{
-    const Character *c = dynamic_cast<const Character *>(who);
-
-    if (c and c->id() != m_character_id)
-    {
-        invalidate();
-    }
-}
-
 bool
 Spear::active() const
 {

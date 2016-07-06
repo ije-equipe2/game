@@ -28,7 +28,7 @@ Character::Character(const vector<string> sprite_paths, unsigned id, double x, d
     m_state = nullptr;
     change_character_state(IDLE_STATE);
     m_freeze = false;
-    
+
     m_x = x;
     m_y = y;
 
@@ -218,22 +218,10 @@ Character::on_collision(const Collidable *who, const Rectangle& where, unsigned 
     const Base *b = dynamic_cast<const Base *>(who);
 
     if(c or b) {
-        printf("colidiu com um personagem!\n\n");
         update_position(now, last, true);
     }
-    else if(s and s->character_id() != m_id) {
-        printf("colidiu com alguma skill!\n\n");
-        printf("colidiu com : %d\n", s->character_id());
-        if(s->valid()) {
-            printf("Dano causado: %d\n", s->damage());
-
-            printf("Vida antes: %d\n", m_life);
-            m_life -= s->damage();
-            printf("Vida depois: %d\n", m_life);
-        }
-        else if(not s->valid()) {
-            printf("Skill já colidiu!\n");
-        }
+    else if(s and s->character_id() != m_id and s->valid()) {
+        m_life -= s->damage();
     }
    
 }

@@ -19,7 +19,7 @@ public:
     virtual const list<Rectangle>& hit_boxes() const = 0;
     virtual pair<double, double> direction() const = 0;
 
-    virtual void on_collision(const Collidable *who, const Rectangle& where, unsigned now, unsigned last) = 0;
+    void on_collision(const Collidable *who, const Rectangle& where, unsigned now, unsigned last);
     unsigned character_id() const { return m_character_id; }
     int damage() const { return m_damage; }
 

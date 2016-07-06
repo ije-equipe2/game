@@ -1,9 +1,10 @@
 #include "base.h"
 #include "ije02_game.h"
+#include "skill.h"
 
 #include <ijengine/canvas.h>
 
-#define MAX_LIFE 1000
+#define MAX_LIFE 4000
 #define X_ADJUSTMENT 16.0
 #define Y_ADJUSTMENT 20.0
 Base::Base(int player_id)
@@ -34,13 +35,21 @@ Base::~Base()
 void
 Base::update_self(unsigned now, unsigned last)
 {
+    if(m_start == -1) {
+        change_base_status();
+        m_start = now;
+    }
 
+    if(now - m_start > 400) {
+        m_start += 400;
+        m_frame = (m_frame + 1) % (m_texture->w() / 32);
+    }
 }
 
 void
 Base::draw_self(Canvas *canvas, unsigned, unsigned)
 {
-    Rectangle rect {(double) m_w * m_frame, (double) m_h, (double) m_w, (double) m_h};
+    Rectangle rect {(double) m_w * m_frame, (double) m_h * m_base_status, (double) m_w, (double) m_h};
     canvas->draw(m_texture.get(), rect, x(), y());
 }
 
@@ -97,11 +106,50 @@ Base::hit_boxes() const
 void
 Base::on_collision(const Collidable *who, const Rectangle& where, unsigned now, unsigned last)
 {
-    printf("Colidiu com a base do player %d\n", m_player_id);
+    const Skill *s = dynamic_cast<const Skill *>(who);
+
+    if(s and s->character_id() != m_player_id and s->valid()) {
+        m_life -= s->damage();
+        printf("Vida da base: %d\n", m_life);
+    }
+
+    change_base_status();
 }
 
 pair<double, double>
 Base::direction() const
 {
     return pair<double, double>(m_x_speed, m_y_speed);
+}
+
+void
+Base::change_base_status()
+{
+    if(m_life > 3500) {
+        m_base_status = BALLS_8;
+    }
+    else if(3500 >= m_life and m_life > 3000) {
+        m_base_status = BALLS_7;
+    }
+    else if(3000 >= m_life and m_life > 2500) {
+        m_base_status = BALLS_6;
+    }
+    else if(2500 >= m_life and m_life > 2000) {
+        m_base_status = BALLS_5;
+    }
+    else if(2000 >= m_life and m_life > 1500) {
+        m_base_status = BALLS_4;
+    }
+    else if(1500 >= m_life and m_life > 1000) {
+        m_base_status = BALLS_3;
+    }
+    else if(1000 >= m_life and m_life > 500) {
+        m_base_status = BALLS_2;
+    }
+    else if(500 >= m_life and m_life > 1) {
+        m_base_status = BALLS_1;
+    }
+    else {
+        m_base_status = DESTROYED;
+    }
 }

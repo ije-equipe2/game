@@ -31,11 +31,13 @@ public:
     const list<Rectangle>& hit_boxes() const;
     void on_collision(const Collidable *who, const Rectangle& where, unsigned now, unsigned last);
     pair<double, double> direction() const;
+    unsigned base_player_id() const { return m_player_id; }
 
 protected:
     void update_self(unsigned now, unsigned last);
     void draw_self(Canvas *canvas, unsigned now, unsigned last);
     void set_base_position(unsigned player_id, double& x_pos, double& y_pos);
+    void change_base_status();
 
 protected:
     unsigned m_player_id;
@@ -44,6 +46,7 @@ protected:
     int m_start;
     int m_w;
     int m_h;
+    int m_base_status;
     vector <string> m_sprite_paths;
     shared_ptr<Texture> m_texture;
     Rectangle m_bounding_box;

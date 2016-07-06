@@ -40,19 +40,8 @@ Translator::translate(GameEvent& to, const KeyboardEvent& from)
     bool done = true;
     int id = 0;
 
-    vector<unsigned> p1_moves {KeyboardEvent::LEFT, KeyboardEvent::RIGHT, KeyboardEvent::UP, KeyboardEvent::DOWN};
-    vector<unsigned> p2_moves {KeyboardEvent::A, KeyboardEvent::D, KeyboardEvent::W, KeyboardEvent::S};
-
     if(from.key() == KeyboardEvent::ESCAPE) {
         id = game_event::QUIT;
-    }
-    else if(find(p1_moves.begin(), p1_moves.end(), from.key()) != p1_moves.end() && from.repeated() == false) {
-        id = game_event::MOVEMENT_P1;
-        set_movement_properties(to, from, p1_moves);
-    }
-    else if(find(p2_moves.begin(), p2_moves.end(), from.key()) != p2_moves.end() && from.repeated() == false) {
-        id = game_event::MOVEMENT_P2;
-        set_movement_properties(to, from, p2_moves);
     }
     else if(from.key() == KeyboardEvent::RETURN) {
         id = game_event::ENTER_GAME;

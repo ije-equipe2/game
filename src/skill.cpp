@@ -1,5 +1,6 @@
 #include "skill.h"
 #include "character.h"
+#include "base.h"
 
 #include <ijengine/engine.h>
 #include <ijengine/rectangle.h>
@@ -17,4 +18,17 @@ Skill::~Skill()
 {
     printf("desregistrando skill nas fisica\n");
     physics::unregister_object(this);
+}
+
+void
+Skill::on_collision(const Collidable *who, const Rectangle& where, unsigned now, unsigned last)
+{
+    const Character *c = dynamic_cast<const Character *>(who);
+    const Base *b = dynamic_cast<const Base *>(who);
+
+    if (c and c->id() != m_character_id || b and b->base_player_id() != m_character_id)
+    {
+       // update_sprite_state();
+        invalidate();
+    }
 }
