@@ -126,7 +126,9 @@ Character::on_event(const GameEvent& event)
     bool p4_special_validation = event.id() == game_event::SPECIAL_P4 && id() == 3;
 
     if((event.id() == game_event::MOVEMENT_P1 && m_id == 0) ||
-       (event.id() == game_event::MOVEMENT_P2 && m_id == 1)) {
+       (event.id() == game_event::MOVEMENT_P2 && m_id == 1) ||
+       (event.id() == game_event::MOVEMENT_P3 && m_id == 2) ||
+       (event.id() == game_event::MOVEMENT_P4 && m_id == 3)) {
         string axis = event.get_property<string>("axis");
         int value = event.get_property<int>("value");
 
@@ -141,15 +143,6 @@ Character::on_event(const GameEvent& event)
         } 
         else if(axis == "Y") {
             m_y_speed = SPEED * ((double) value / 32768);
-        }
-
-        printf("X SPEED: %lf\n", m_x_speed);
-        printf("Y SPEED: %lf\n", m_y_speed);
-        if(m_x_speed == 0.0 && m_y_speed == 0.0) {
-            //change_character_state(IDLE_STATE);
-        }
-        else if(m_state->current_state() == IDLE_STATE) {
-            change_character_state(MOVING_STATE);
         }
 
         return true;
@@ -170,7 +163,7 @@ Character::on_event(const GameEvent& event)
     }
     else if((p1_defense_validation || p2_defense_validation || p3_defense_validation || p4_defense_validation) &&
         (m_start - m_last_used_defense > m_defense_cooldown))
-    {
+    {   
         m_last_used_defense = m_start;
         defense();
         return true;
@@ -244,6 +237,9 @@ Character::change_character_state(State next_state)
     if(m_state != nullptr and m_state->current_state() == DEATH_STATE) {
         return;
     }
+    if(m_state != nullptr and next_state == m_state->current_state()) {
+        return;
+    }
     if(not m_freeze) {
         m_state = m_character_state_factory.change_character_state(next_state);
         m_frame = 0;
@@ -274,9 +270,13 @@ void Character::handle_state()
         change_character_state(IDLE_STATE);
     }
 
-    if(m_x_speed == 0.0 && m_y_speed == 0.0 &&
-        (m_state->current_state() == MOVING_STATE || 
-        (m_state->current_state() == IDLE_STATE && ((m_frame + 1) % (m_textures[IDLE_STATE]->w() / 32)) == 0))) {
-        change_character_state(IDLE_STATE);
+    if(m_x_speed == 0.0 && m_y_speed == 0.0) {
+        if(m_state->current_state() == MOVING_STATE || 
+          (m_state->current_state() == IDLE_STATE && ((m_frame + 1) % (m_textures[IDLE_STATE]->w() / 32)) == 0)) {
+            change_character_state(IDLE_STATE);
+        }
+    }
+    else if(m_state->current_state() == IDLE_STATE) {
+        change_character_state(MOVING_STATE);
     }
 }

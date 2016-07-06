@@ -105,7 +105,7 @@ Translator::translate(GameEvent& to, const JoystickEvent& from)
         }
     }
     else if(from.state() == JoystickEvent::BUTTON_RELEASED) {
-
+        done = false;
     }
     else if(from.state() == JoystickEvent::AXIS_MOTION && (from.axis() == JoystickEvent::LEFTY || from.axis() == JoystickEvent::LEFTX)) {
         if(from.axis() == JoystickEvent::LEFTX) {

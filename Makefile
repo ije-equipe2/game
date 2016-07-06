@@ -9,7 +9,7 @@ BIN_DIR = bin
 TARGET = $(BIN_DIR)/$(NAME)
 
 CC = g++
-CFLAGS = -pedantic -std=c++11 -w -MMD -g3 -g -fPIC\
+CFLAGS = -pedantic -std=c++11 -MMD -g3 -g -fPIC\
 		 -W -Wall -Wextra -Wshadow -Wcast-align -Wcast-qual -Wctor-dtor-privacy\
 		 -Wdisabled-optimization -Wformat=2 -Wlogical-op -Wmissing-declarations\
 		 -Wmissing-include-dirs -Wnoexcept -Woverloaded-virtual -Wredundant-decls\
