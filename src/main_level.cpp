@@ -22,6 +22,8 @@ using std::endl;
 MainLevel::MainLevel(const string& next_level, vector < int > players_characters)
     : m_done(false), m_next(next_level), m_start(-1)
 {
+    audio::stop_audio();
+    //audio::play_sound_effect("res/sound/music/ingame_v1.ogg");
     printf("Entrou no main leven\n");
     m_texture = resources::get_texture("map/Map003.jpg");
 

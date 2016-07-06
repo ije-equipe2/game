@@ -112,6 +112,12 @@ Translator::translate(GameEvent& to, const JoystickEvent& from)
         else if(from.which() == 1) {
             id = game_event::MOVEMENT_P2;
         }
+        else if(from.which() == 2) {
+            id = game_event::MOVEMENT_P3;
+        }
+        else {
+            id = game_event::MOVEMENT_P4;
+        }
     }
     else {
         done = false;

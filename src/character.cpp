@@ -131,6 +131,7 @@ Character::on_event(const GameEvent& event)
     bool p3_special_validation = event.id() == game_event::SPECIAL_P3 && id() == 2;
     bool p4_special_validation = event.id() == game_event::SPECIAL_P4 && id() == 3;
 
+    printf("EVENT ID: %d\n", (int) event.id());
     if((event.id() == game_event::MOVEMENT_P1 && m_id == 0) ||
        (event.id() == game_event::MOVEMENT_P2 && m_id == 1) ||
        (event.id() == game_event::MOVEMENT_P3 && m_id == 2) ||
