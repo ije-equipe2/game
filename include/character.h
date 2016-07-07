@@ -11,6 +11,7 @@
 #include "character_state.h"
 #include "character_state_factory.h"
 #include "util.h"
+#include "base.h"
 
 #include <memory>
 #include <vector>
@@ -57,6 +58,7 @@ public:
     pair<double, double> direction() const;
 
     unsigned id() const { return m_id; }
+    void set_base(Base *base);
 
 protected:
     void update_self(unsigned now, unsigned last);
@@ -102,6 +104,7 @@ protected:
     double m_x_speed;
     double m_y_speed;
     double m_speed;
+    Base* m_base;
     vector< shared_ptr<Texture> > m_textures;
     unordered_map<string, pair<double, double> > m_speed_vector;
     Rectangle m_bounding_box;

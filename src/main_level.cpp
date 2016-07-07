@@ -41,9 +41,11 @@ MainLevel::MainLevel(const string& next_level, vector < int > players_characters
 
     for(const int &current_player_character : m_players_characters) {
         set_players_characters_position(player_id, x, y);
-        add_child(m_character_factory.make_character(current_player_character, player_id, x, y));
-        add_child(new Base(player_id));
-        cout << "OI BRASIL" << endl;
+        Character *current_character = m_character_factory.make_character(current_player_character, player_id, x, y);
+        Base *current_base = new Base(player_id);
+        current_character->set_base(current_base);
+        add_child(current_character);
+        add_child(current_base);
         player_id++;
     }
 }

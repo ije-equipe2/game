@@ -108,6 +108,7 @@ Base::on_collision(const Collidable *who, const Rectangle& where, unsigned now, 
 
     if(s and s->character_id() != m_player_id and s->valid()) {
         m_life -= s->damage();
+        printf("BASE HP: %d\n", m_life);
         printf("Vida da base: %d\n", m_life);
     }
 

@@ -2,7 +2,6 @@
 #include "ije02_game.h"
 #include "main_level.h"
 #include "skill.h"
-#include "base.h"
 
 #include <ijengine/engine.h>
 #include <ijengine/canvas.h>
@@ -49,6 +48,7 @@ Character::~Character()
 void
 Character::update_self(unsigned now, unsigned last)
 {
+
     handle_state();
 
     if (m_start == -1)
@@ -244,7 +244,7 @@ Character::change_character_state(State next_state, bool respawning )
 
 void Character::handle_state()
 {
-    if(m_current_life <= 0) {
+    if(m_current_life <= 0 || m_base->life() <= 0) {
         change_character_state(DEATH_STATE);
     }
 
@@ -337,6 +337,9 @@ Character::respawn_character()
 void
 Character::kill_character()
 {
+    if(m_base->life() <= 0) {
+        invalidate();
+    }
     m_x = -12.0;
     m_y = -12.0;
     m_bounding_box.set_position(x(), y());
@@ -348,4 +351,9 @@ Character::kill_character()
 
     printf("posição do infeliz: %.2f %.2f\n", m_x, m_y);
     printf("bounding box do corno: %.2f %.2f\n", m_bounding_box.x(), m_bounding_box.y());
+}
+
+void
+Character::set_base(Base *base) {
+    m_base = base;
 }

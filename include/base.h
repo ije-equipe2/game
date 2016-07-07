@@ -32,7 +32,8 @@ public:
     void on_collision(const Collidable *who, const Rectangle& where, unsigned now, unsigned last);
     pair<double, double> direction() const;
     unsigned base_player_id() const { return m_player_id; }
-
+    int life() const {return m_life;}
+    
 protected:
     void update_self(unsigned now, unsigned last);
     void draw_self(Canvas *canvas, unsigned now, unsigned last);
