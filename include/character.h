@@ -61,8 +61,11 @@ public:
 protected:
     void update_self(unsigned now, unsigned last);
     void draw_self(Canvas *canvas, unsigned now, unsigned last);
-    void change_character_state(State next_state);
+    void change_character_state(State next_state, bool respawning = false);
     void handle_state();
+    void set_spawn_position();
+    void respawn_character();
+    void kill_character();
     string choose_sprite_path(unsigned player_id);
     bool on_event(const GameEvent& event);
     virtual void heavy_attack() = 0;
@@ -75,15 +78,16 @@ protected:
 
 
 protected:
-    unsigned m_id;
     MovingState m_moving_state;
     CharacterState* m_state;
     CharacterStateFactory m_character_state_factory;
+    unsigned m_id;
+    int m_max_life;
+    int m_current_life;
     int m_frame;
     int m_start;
     int m_w;
     int m_h;
-    int m_life;
     int m_heavy_attack_cooldown;
     int m_light_attack_cooldown;
     int m_defense_cooldown;
@@ -92,7 +96,9 @@ protected:
     int m_last_used_light_attack;
     int m_last_used_defense;
     int m_last_used_special;
+    int m_respawn_time;
     bool m_freeze;
+    bool m_dead;
     double m_x_speed;
     double m_y_speed;
     double m_speed;

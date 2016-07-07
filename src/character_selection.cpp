@@ -83,10 +83,12 @@ CharacterSelection::draw_self(Canvas *canvas, unsigned, unsigned)
 bool
 CharacterSelection::on_event(const GameEvent &event)
 {
-    if((event.id() == game_event::MOVEMENT_P1 && m_player_id == 0) ||
+
+    if(((event.id() == game_event::MOVEMENT_P1 && m_player_id == 0) ||
        (event.id() == game_event::MOVEMENT_P2 && m_player_id == 1) ||
        (event.id() == game_event::MOVEMENT_P3 && m_player_id == 2) ||
-       (event.id() == game_event::MOVEMENT_P4 && m_player_id == 3)) {
+       (event.id() == game_event::MOVEMENT_P4 && m_player_id == 3)) and 
+       (m_chosen == false)) {
         string axis = event.get_property<string>("axis");
         int value = event.get_property<int>("value");
 

@@ -12,7 +12,7 @@ using namespace std;
 MenuLevel::MenuLevel(const string& next_level)
     :m_done(false), m_next(next_level), m_start(-1)
 {
-    m_textures.push_back(resources::get_texture("inicial.png"));
+    m_textures.push_back(resources::get_texture("Titlecard.png"));
     event::register_listener(this);
 
 }

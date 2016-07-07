@@ -20,14 +20,16 @@ using std::max;
 const double SPEED = 80.00;
 
 Character::Character(const vector<string> sprite_paths, unsigned id, double x, double y, int max_life)
-    : m_frame(0), m_start(-1), m_x_speed(0.00), m_y_speed(0.00), m_life(max_life), m_id(id)
+    :  m_id(id), m_max_life(max_life), m_frame(0), m_start(-1), m_x_speed(0.00), m_y_speed(0.00)
 {
     for(int i = 0; i < min((int) sprite_paths.size(), (int) NUMBER_OF_STATES); i++) {
         m_textures.push_back(resources::get_texture(sprite_paths[i]));
     }
+
     m_state = nullptr;
-    change_character_state(IDLE_STATE);
-    m_freeze = false;
+    m_respawn_time = 10000;
+
+    m_bounding_box = Rectangle(x, y, 24, 24);
 
     m_x = x;
     m_y = y;
@@ -35,22 +37,7 @@ Character::Character(const vector<string> sprite_paths, unsigned id, double x, d
     m_w = 32;
     m_h = 32;
 
-    m_bounding_box = Rectangle(m_x, m_y, 24, 24);
-
-    m_speed_vector["down"] = make_pair(0.00, SPEED);
-    m_speed_vector["left"] = make_pair(-SPEED, 0.00);
-    m_speed_vector["right"] = make_pair(SPEED, 0.00);
-    m_speed_vector["up"] = make_pair(0.00, -SPEED);
-
-    if(m_id %2 == 0) {
-        m_moving_state = MOVING_RIGHT;
-    }
-    else {
-        m_moving_state = MOVING_LEFT;
-    }
-    
-    event::register_listener(this);
-    physics::register_object(this);
+    respawn_character();
 }
 
 Character::~Character()
@@ -67,7 +54,13 @@ Character::update_self(unsigned now, unsigned last)
     if (m_start == -1)
         m_start = now;
 
-    if (now - m_start > m_state->refresh_rate())
+    if((m_dead) and now - m_start > m_respawn_time) {
+        m_start = now;
+        m_dead = false;
+        respawn_character();
+    }
+
+    if (not m_dead and now - m_start > m_state->refresh_rate())
     {
         m_start += m_state->refresh_rate();
         m_frame = (m_frame + 1) % (m_textures[m_state->current_state()]->w() / 32);
@@ -104,8 +97,10 @@ Character::update_position(const unsigned &now, const unsigned &last, bool backw
 void
 Character::draw_self(Canvas *canvas, unsigned, unsigned)
 {
-    Rectangle rect {(double) m_w * m_frame, (double) m_h * m_moving_state, (double) m_w, (double) m_h};
-    canvas->draw(m_textures[m_state->current_state()].get(), rect, x(), y());
+    if(not m_dead) {
+        Rectangle rect {(double) m_w * m_frame, (double) m_h * m_moving_state, (double) m_w, (double) m_h};
+        canvas->draw(m_textures[m_state->current_state()].get(), rect, x(), y());
+    }
 }
 
 bool
@@ -222,15 +217,20 @@ Character::on_collision(const Collidable *who, const Rectangle& where, unsigned 
         update_position(now, last, true);
     }
     else if(s and s->character_id() != m_id and s->valid()) {
-        m_life -= s->damage();
+        m_current_life -= s->damage();
+        printf("Sofreu dano! Vida atual: %d\n", m_current_life);
     }
-   
 }
 
 void
-Character::change_character_state(State next_state) 
+Character::change_character_state(State next_state, bool respawning ) 
 {
-    if(m_state != nullptr and m_state->current_state() == DEATH_STATE) {
+    if(respawning) {
+        printf("respawnando");
+        m_state = m_character_state_factory.change_character_state(next_state);
+        return;
+    }
+    if((m_state != nullptr and m_state->current_state() == DEATH_STATE) and not respawning) {
         return;
     }
     if(m_state != nullptr and next_state == m_state->current_state()) {
@@ -244,7 +244,7 @@ Character::change_character_state(State next_state)
 
 void Character::handle_state()
 {
-    if(m_life <= 0) {
+    if(m_current_life <= 0) {
         change_character_state(DEATH_STATE);
     }
 
@@ -257,7 +257,7 @@ void Character::handle_state()
 
     if(m_state->current_state() == DEATH_STATE and 
         (m_frame + 1) % (m_textures[m_state->current_state()]->w() / 32) == 0) {
-        invalidate();
+        kill_character();
     }
 
     if(m_state->current_state() != DEATH_STATE && m_state->current_state() != MOVING_STATE and
@@ -275,4 +275,77 @@ void Character::handle_state()
     else if(m_state->current_state() == IDLE_STATE) {
         change_character_state(MOVING_STATE);
     }
+}
+
+void
+Character::set_spawn_position()
+{
+    switch(m_id) {
+        case PLAYER_1:
+            m_x = X_ADJUSTMENT;
+            m_y = Y_ADJUSTMENT;
+            break;
+
+        case PLAYER_2:
+            m_x = (double) SCREEN_WIDTH - 32.0 - X_ADJUSTMENT;
+            m_y = Y_ADJUSTMENT;
+            break;
+
+        case PLAYER_3:
+            m_x = X_ADJUSTMENT;
+            m_y = (double) SCREEN_HEIGHT - 32.0 - Y_ADJUSTMENT;
+            break;
+
+        case PLAYER_4:
+            m_x = (double) SCREEN_WIDTH - 32.0 - X_ADJUSTMENT;
+            m_y = (double) SCREEN_HEIGHT - 32.0 - Y_ADJUSTMENT;
+            break;
+
+        default:
+            printf("Valor errado no set_spawn_position!\n");
+            printf("m_id: %d", m_id);
+            break;
+    }
+}
+
+void
+Character::respawn_character()
+{
+    physics::register_object(this);
+    event::register_listener(this);
+
+    change_character_state(IDLE_STATE, true);
+    set_spawn_position();
+    m_bounding_box.set_position(x(), y());
+
+    m_frame = 0;
+    m_current_life = m_max_life;
+
+    m_freeze = false;
+    m_dead = false;
+
+    if(m_id %2 == 0) {
+        m_moving_state = MOVING_RIGHT;
+    }
+    else {
+        m_moving_state = MOVING_LEFT;
+    }
+
+    printf("Vida atual: %d\n", m_current_life);
+}
+
+void
+Character::kill_character()
+{
+    m_x = -12.0;
+    m_y = -12.0;
+    m_bounding_box.set_position(x(), y());
+    m_frame = 0;
+    printf("Personagem morreu!\n");
+    physics::unregister_object(this);
+    event::unregister_listener(this);
+    m_dead = true;
+
+    printf("posição do infeliz: %.2f %.2f\n", m_x, m_y);
+    printf("bounding box do corno: %.2f %.2f\n", m_bounding_box.x(), m_bounding_box.y());
 }

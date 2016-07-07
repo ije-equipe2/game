@@ -5,8 +5,6 @@
 #include <ijengine/canvas.h>
 
 #define MAX_LIFE 4000
-#define X_ADJUSTMENT 16.0
-#define Y_ADJUSTMENT 20.0
 Base::Base(int player_id)
     :m_player_id(player_id), m_life(MAX_LIFE), m_frame(0), m_start(-1)
 {
@@ -58,23 +56,23 @@ Base::set_base_position(unsigned player_id, double& x_pos, double& y_pos)
 {
     switch(player_id) {
         case PLAYER_1:
-            x_pos = X_ADJUSTMENT;
-            y_pos = Y_ADJUSTMENT;
+            x_pos = BASE_X_ADJUSTMENT;
+            y_pos = BASE_Y_ADJUSTMENT;
             break;
 
         case PLAYER_2:
-            x_pos = (double) SCREEN_WIDTH - 32.0 - X_ADJUSTMENT;
-            y_pos = Y_ADJUSTMENT;
+            x_pos = (double) SCREEN_WIDTH - 32.0 - BASE_X_ADJUSTMENT;
+            y_pos = BASE_Y_ADJUSTMENT;
             break;
 
         case PLAYER_3:
-            x_pos = X_ADJUSTMENT;
-            y_pos = (double) SCREEN_HEIGHT - 32.0 - Y_ADJUSTMENT;
+            x_pos = BASE_X_ADJUSTMENT;
+            y_pos = (double) SCREEN_HEIGHT - 32.0 - BASE_Y_ADJUSTMENT;
             break;
 
         case PLAYER_4:
-            x_pos = (double) SCREEN_WIDTH - 32.0 - X_ADJUSTMENT;
-            y_pos = (double) SCREEN_HEIGHT - 32.0 - Y_ADJUSTMENT;
+            x_pos = (double) SCREEN_WIDTH - 32.0 - BASE_X_ADJUSTMENT;
+            y_pos = (double) SCREEN_HEIGHT - 32.0 - BASE_Y_ADJUSTMENT;
             break;
 
         default:

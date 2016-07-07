@@ -25,8 +25,6 @@ Fireball::Fireball(GameObject *parent, unsigned mage_id, double xp, double yp, d
     m_x = xp;
     m_y = yp;
     m_bounding_box = Rectangle(m_x, m_y, 20, 20);
-    m_damage = FIREBALL_BASE_DAMAGE;
-    printf("Fireball damage: %d\n", m_damage);
 
     if(m_dx > 0) {
         m_state = MOVING_LEFT;

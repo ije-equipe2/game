@@ -4,14 +4,12 @@
 #include "base.h"
 #include "ije02_game.h"
 #include "mage.h"
+#include "util.h"
 
 #include <ijengine/canvas.h>
 #include <ijengine/keyboard_event.h>
 #include <cstdlib>
 #include <iostream>
-
-#define X_ADJUSTMENT 38.0
-#define Y_ADJUSTMENT 20.0
 
 using namespace std;
 using namespace ijengine;
@@ -76,9 +74,6 @@ MainLevel::update_self(unsigned now, unsigned)
 {
     if (m_start == -1)
         m_start = now;
-
-    if (now - m_start > 10000000)
-        m_done = true;
 }
 
 void

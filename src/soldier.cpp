@@ -7,7 +7,6 @@
 Soldier::Soldier(vector<string> sprite_paths, unsigned id, double x, double y)
     : Character(sprite_paths, id, x, y, MAX_LIFE)
 {
-    m_life = MAX_LIFE;
     m_special_cooldown = 5000;
     m_heavy_attack_cooldown = 2000;
     m_light_attack_cooldown = 300;
