@@ -18,7 +18,7 @@ Knight::Knight(vector<string> sprite_paths, unsigned id, double x, double y)
 void
 Knight::heavy_attack()
 {
-
+    change_character_state(HEAVY_ATTACK_STATE);
 }
 
 void
@@ -33,5 +33,5 @@ Knight::defense() {
 
 void
 Knight::special() {
-
+    change_character_state(SPECIAL_STATE);
 }

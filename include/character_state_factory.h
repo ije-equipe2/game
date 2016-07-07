@@ -8,6 +8,7 @@
 #include "heavy_attack_state.h"
 #include "light_attack_state.h"
 #include "defense_state.h"
+#include "special_state.h"
 #include "util.h"
 
 using namespace util;

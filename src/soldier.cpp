@@ -51,5 +51,5 @@ Soldier::defense() {
 
 void
 Soldier::special() {
-
+    change_character_state(SPECIAL_STATE);
 }

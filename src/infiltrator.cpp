@@ -18,7 +18,7 @@ Infiltrator::Infiltrator(vector<string> sprite_paths, unsigned id, double x, dou
 void
 Infiltrator::heavy_attack()
 {
-    
+    change_character_state(HEAVY_ATTACK_STATE);
 }
 
 void
@@ -33,5 +33,5 @@ Infiltrator::defense() {
 
 void
 Infiltrator::special() {
-
+    change_character_state(SPECIAL_STATE);
 }

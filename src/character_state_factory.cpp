@@ -37,6 +37,10 @@ CharacterStateFactory::change_character_state(int next_state)
         case DEFENSE_STATE:
             return new DefenseState();
             break;
+
+        case SPECIAL_STATE:
+            return new SpecialState();
+            break;
             
         default:
             printf("error on character_state_factory!\n");

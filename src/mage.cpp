@@ -1,5 +1,6 @@
 #include "mage.h"
 #include "fireball.h"
+#include "frost_nova.h"
 #include "ije02_game.h"
 #include "skill.h"
 
@@ -59,5 +60,10 @@ Mage::defense() {
 
 void
 Mage::special() {
+    auto p = parent();
+    printf("p = %p\n", (void *) p);
 
+    p->add_child(new FrostNova(p, id(), x(), y(), 0.0, 0.0));
+
+    change_character_state(SPECIAL_STATE);
 }
