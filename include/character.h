@@ -57,7 +57,7 @@ public:
     };
 
 
-    bool active() const;
+    virtual bool active() const;
     const Rectangle& bounding_box() const;
     const list<Rectangle>& hit_boxes() const;
 
@@ -91,6 +91,7 @@ protected:
     MovingState m_moving_state;
     CharacterState* m_state;
     CharacterStateFactory m_character_state_factory;
+    bool m_active;
     unsigned m_id;
     int m_max_life;
     int m_current_life;

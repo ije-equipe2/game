@@ -127,3 +127,26 @@ FrostNova::choose_sprite_path(unsigned player_id)
 
     return sprite_path;
 }
+
+void
+FrostNova::on_collision(const Collidable *who, const Rectangle& where, unsigned now, unsigned last)
+{
+    const Character *c = dynamic_cast<const Character *>(who);
+    const Base *b = dynamic_cast<const Base *>(who);
+
+    bool c_bool = c and c->id() != m_character_id;
+    bool b_bool = b and b->base_player_id() != m_character_id;
+
+    if(c_bool) {
+        m_collided |= (1 << c->id());
+    }
+    if(b_bool) {
+        m_collided |= (1 << ((b->base_player_id() + 4)));
+    }
+
+    // if ( (c and c->id() != m_character_id) || (b and b->base_player_id() != m_character_id) )
+    // {
+    //     printf("OI\n");
+    //     invalidate();
+    // }
+}

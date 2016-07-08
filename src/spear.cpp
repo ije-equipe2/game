@@ -5,7 +5,7 @@
 #include <ijengine/rectangle.h>
 #include <ijengine/game_object.h>
 
-#define SPEAR_BASE_DAMAGE 40
+#define SPEAR_BASE_DAMAGE 20
 
 using namespace std;
 using namespace ijengine;

@@ -5,7 +5,7 @@
 #include <ijengine/rectangle.h>
 #include <ijengine/game_object.h>
 
-#define FIREBALL_BASE_DAMAGE 400000
+#define FIREBALL_BASE_DAMAGE 20
 
 
 using namespace std;

@@ -29,6 +29,7 @@ Character::Character(const vector<string> sprite_paths, unsigned id, double x, d
     m_state = nullptr;
     m_respawn_time = 10000;
     m_last_sound_played = -10000;
+    m_active = true;
 
     m_bounding_box = Rectangle(x, y, 24, 24);
 
@@ -78,6 +79,9 @@ Character::update_self(unsigned now, unsigned last)
     }
 
     if(m_y_speed == 0.0 && m_x_speed == 0.0) {
+        if(m_character_code == INFILTRATOR && m_state->current_state() == HEAVY_ATTACK_STATE) {
+            update_position(now, last);
+        }
         return;
     }
 
@@ -105,19 +109,22 @@ Character::update_self(unsigned now, unsigned last)
     update_position(now, last);
 
     m_bounding_box.set_position(x(), y());
-
-
 }
 
 inline void
 Character::update_position(const unsigned &now, const unsigned &last, bool backwards) {
     int multiplier = (backwards) ? -1 : 1;
-    if(not m_freeze) {
-        double new_y = y() + multiplier * m_y_speed * (now - last) / 1000.0;
-        new_y = min(new_y, SCREEN_HEIGHT - 32.00);
-        new_y = max(new_y, 0.0);
+    double summer = 1.0;
+    bool ok = m_character_code == INFILTRATOR && m_state->current_state() == HEAVY_ATTACK_STATE;
+    if(ok) {
+        summer *= 1.75;
+    }
+    if(not m_freeze || ok) {
+        double new_y = y() + multiplier * m_y_speed * summer * (now - last) / 1000.0;
+        new_y = min(new_y, SCREEN_HEIGHT - 32.00 - 16.00);
+        new_y = max(new_y, 10.0);
 
-        double new_x = x() + multiplier * m_x_speed * (now - last) / 1000.0;
+        double new_x = x() + multiplier * m_x_speed * summer * (now - last) / 1000.0;
         new_x = min(new_x, SCREEN_WIDTH - 32.00);
         new_x = max(new_x, 0.0);
 
@@ -222,7 +229,7 @@ Character::direction() const
 bool
 Character::active() const 
 {
-    return true;
+    return m_active;
 }
 
 const Rectangle&
@@ -248,7 +255,7 @@ Character::on_collision(const Collidable *who, const Rectangle& where, unsigned 
     if(c or b) {
         update_position(now, last, true);
     }
-    else if(s and s->character_id() != m_id and s->valid()) {
+    else if(m_state->current_state() != DEFENSE_STATE and s->character_id() != m_id and s->valid() and (((1 << m_id) & s->collided()) == 0)) {
         m_current_life -= s->damage();
         printf("Sofreu dano! Vida atual: %d\n", m_current_life);
     }
@@ -285,11 +292,13 @@ void Character::handle_state()
     }
     else {
         m_freeze = false;
+        m_active = true;
     }
 
     if(m_state->current_state() == DEATH_STATE and 
         (m_frame + 1) % (m_textures[m_state->current_state()]->w() / 32) == 0) {
         kill_character();
+        return;
     }
 
     if(m_state->current_state() != DEATH_STATE && m_state->current_state() != MOVING_STATE and

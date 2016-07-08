@@ -1,4 +1,5 @@
 #include "knight.h"
+#include "light_attack.h"
 #include "ije02_game.h"
 
 #define MAX_LIFE 300
@@ -14,6 +15,7 @@ Knight::Knight(vector<string> sprite_paths, unsigned id, double x, double y, int
     m_last_used_heavy_attack = -m_heavy_attack_cooldown;
     m_last_used_light_attack = -m_light_attack_cooldown;
     m_last_used_defense = -m_defense_cooldown;
+    m_active = true;
 }
 
 void
@@ -26,6 +28,20 @@ Knight::heavy_attack()
 void
 Knight::light_attack() {
     audio::play_sound_effect("res/sound/fx/pesadao_light.ogg", EFFECTS_VOLUME, 0);
+    auto p = parent();
+    printf("p = %p\n", (void *) p);
+
+    double light_attack_x_pos = 0.0;
+    
+    if(m_moving_state == MOVING_RIGHT) {
+        light_attack_x_pos = x() + 15;
+    }
+    else{
+        light_attack_x_pos = x() - 15;
+    }
+
+    p->add_child(new LightAttack(p, id(), light_attack_x_pos, y()));
+
     change_character_state(LIGHT_ATTACK_STATE);
 }
 

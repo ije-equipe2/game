@@ -1,5 +1,5 @@
-#ifndef FROST_NOVA_H
-#define FROST_NOVA_H
+#ifndef LIGHT_ATTACK_H
+#define LIGHT_ATTACK_H
 
 #include "skill.h"
 
@@ -20,19 +20,15 @@ using std::vector;
 using namespace std;
 using namespace ijengine;
 
-class FrostNova : public Skill {
+class LightAttack : public Skill {
 public:
-    FrostNova(GameObject *parent, unsigned mage_id, double xp, double yp,
-        double dx, double dy);
+    LightAttack(GameObject *parent, unsigned mage_id, double xp, double yp);
 
-
-
-    ~FrostNova();
+    ~LightAttack();
     bool active() const;
     const Rectangle& bounding_box() const;
     const list<Rectangle>& hit_boxes() const;
     pair<double, double> direction() const;
-    void on_collision(const Collidable *who, const Rectangle& where, unsigned now, unsigned last);
 
 protected:
     void update_self(unsigned now, unsigned last);
