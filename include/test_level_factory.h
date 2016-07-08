@@ -15,6 +15,10 @@ namespace ijengine
     {
         extern vector<int> players_characters;
     }
+    namespace winner
+    {
+        extern int winner_player;
+    }
 }
 
 class TestLevelFactory : public LevelFactory {

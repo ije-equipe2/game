@@ -11,8 +11,8 @@ int main()
 
     try
     {
-        Ije02Game game("Teste", SCREEN_SCALED_WIDTH, SCREEN_SCALED_HEIGHT, GAME_SCALE);
-        rc = game.run("red");
+        Ije02Game game("Deadly Wish", SCREEN_SCALED_WIDTH, SCREEN_SCALED_HEIGHT, GAME_SCALE);
+        rc = game.run("menu");
     } catch (Exception& ex)
     {
         cout << ex.what() << endl;

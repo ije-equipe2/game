@@ -51,6 +51,10 @@ Character::update_self(unsigned now, unsigned last)
 {
 
     handle_state();
+    
+    if(m_base->life() <= 0) {
+        invalidate();
+    }
 
     if (m_start == -1)
         m_start = now;
@@ -359,9 +363,6 @@ Character::respawn_character()
 void
 Character::kill_character()
 {
-    if(m_base->life() <= 0) {
-        invalidate();
-    }
     m_x = -12.0;
     m_y = -12.0;
     m_bounding_box.set_position(x(), y());
@@ -370,9 +371,6 @@ Character::kill_character()
     physics::unregister_object(this);
     event::unregister_listener(this);
     m_dead = true;
-
-    printf("posição do infeliz: %.2f %.2f\n", m_x, m_y);
-    printf("bounding box do corno: %.2f %.2f\n", m_bounding_box.x(), m_bounding_box.y());
 }
 
 void

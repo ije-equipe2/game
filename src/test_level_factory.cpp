@@ -1,5 +1,6 @@
 #include "main_level.h"
 #include "menu_level.h"
+#include "winner_level.h"
 #include "test_level_factory.h"
 #include "character_choose_level.h"
 #include "ije02_game.h"
@@ -14,18 +15,27 @@ namespace ijengine
     {
         vector<int> players_characters = vector<int>();
     }
+    namespace winner
+    {
+        int winner_player = 0;
+    }
 }
 
 
 Level *
 TestLevelFactory::make_level(const string& level_id)
 {
-    if (level_id == "red")
-        return new MenuLevel("green");
-    else if (level_id == "green")
-        return new CharacterChooseLevel("blue");
-    else if (level_id == "blue") {
-        return new MainLevel("", character_selection::players_characters);
+    if (level_id == "menu"){
+        return new MenuLevel("choose-character");
+    }
+    else if (level_id == "choose-character") {
+        return new CharacterChooseLevel("arena");
+    }
+    else if (level_id == "arena") {
+        return new MainLevel("winner", character_selection::players_characters);
+    }
+    else if (level_id == "winner") {
+        return new WinnerLevel("menu", winner::winner_player);
     }
     else
         return nullptr;
