@@ -17,7 +17,6 @@ using std::vector;
 CharacterChooseLevel::CharacterChooseLevel(const string& next_level)
     : m_done(false), m_next(next_level), m_start(-1)
 {
-    audio::play_sound_effect("res/sound/music/menu.ogg", 128, 10);
     m_textures.push_back(resources::get_texture("character_selection/character_selection_background.png"));
     m_textures.push_back(resources::get_texture("character_selection/CharacterPortraits.png"));
     m_textures.push_back(resources::get_texture("character_selection/Icons.png"));

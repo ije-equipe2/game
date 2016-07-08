@@ -12,6 +12,7 @@ using namespace std;
 MenuLevel::MenuLevel(const string& next_level)
     :m_done(false), m_next(next_level), m_start(-1), m_current_option(0)
 {
+    audio::play_sound_effect("res/sound/music/menu.ogg", 60, 10);
     m_textures.push_back(resources::get_texture("Titlecard.png"));
     m_textures.push_back(resources::get_texture("character_selection/option_selection.png"));
     event::register_listener(this);
