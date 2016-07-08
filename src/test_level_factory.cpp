@@ -2,6 +2,7 @@
 #include "menu_level.h"
 #include "winner_level.h"
 #include "death_match_level.h"
+#include "credits_level.h"
 #include "test_level_factory.h"
 #include "character_choose_level.h"
 #include "ije02_game.h"
@@ -44,6 +45,9 @@ TestLevelFactory::make_level(const string& level_id)
     }
     else if (level_id == "winner") {
         return new WinnerLevel("menu", winner::winner_player);
+    }
+    else if(level_id == "credits") {
+        return new CreditsLevel("menu");
     }
     else
         return nullptr;

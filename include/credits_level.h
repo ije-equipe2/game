@@ -1,5 +1,5 @@
-#ifndef MENU_LEVEL_H
-#define MENU_LEVEL_H
+#ifndef CREDITS_LEVEL_H
+#define CREDITS_LEVEL_H
 
 #include <ijengine/level.h>
 #include <ijengine/texture.h>
@@ -9,26 +9,23 @@
 #include <string>
 #include <memory>
 #include <vector>
+#include <utility>
 
+using std::pair;
 using std::string;
 using std::vector;
 using std::shared_ptr;
-
-using ijengine::Level;
-using ijengine::Canvas;
-using ijengine::Texture;
-using ijengine::Event;
 
 using namespace ijengine;
 
 #define MAX_W 16
 #define MAX_H 12
 
-class MenuLevel : public Level, public GameEventsListener {
+class CreditsLevel : public Level, public GameEventsListener  {
 public:
-    MenuLevel(const string& next = "");
-    ~MenuLevel();
-    
+    CreditsLevel(const string& next = "");
+    ~CreditsLevel();
+
     bool done() const;
     string next() const;
     string audio() const;
@@ -36,21 +33,17 @@ public:
 protected:
     void update_self(unsigned now, unsigned last);
     void draw_self(Canvas *canvas, unsigned now, unsigned last);
-    void update_position();
+    void set_credits_strings();
     bool on_event(const GameEvent& event);
 
 private:
     bool m_done;
     string m_next;
+    vector <string> m_credits_strings;
     int m_start;
-    int m_option_y_position;
-    int m_current_option;
+    int m_winner_player;
 
-    enum { BASE_OPTION, DEATHMATCH_OPTION, CREDITS };
-    enum { BACKGROUND, POINTER };
-
-    vector< shared_ptr<Texture> > m_textures;
-    vector < string > m_options;
+    shared_ptr<Texture> m_texture;
 };
 
 #endif
