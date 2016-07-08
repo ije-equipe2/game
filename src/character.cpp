@@ -18,8 +18,8 @@ using std::max;
 
 const double SPEED = 80.00;
 
-Character::Character(const vector<string> sprite_paths, unsigned id, double x, double y, int max_life)
-    :  m_id(id), m_max_life(max_life), m_frame(0), m_start(-1), m_x_speed(0.00), m_y_speed(0.00)
+Character::Character(const vector<string> sprite_paths, unsigned id, double x, double y, int max_life, int character_code)
+    :  m_id(id), m_max_life(max_life), m_frame(0), m_start(-1), m_x_speed(0.00), m_y_speed(0.00), m_character_code(character_code)
 {
     for(int i = 0; i < min((int) sprite_paths.size(), (int) NUMBER_OF_STATES); i++) {
         m_textures.push_back(resources::get_texture(sprite_paths[i]));
@@ -27,6 +27,7 @@ Character::Character(const vector<string> sprite_paths, unsigned id, double x, d
 
     m_state = nullptr;
     m_respawn_time = 10000;
+    m_last_sound_played = -10000;
 
     m_bounding_box = Rectangle(x, y, 24, 24);
 
@@ -68,6 +69,27 @@ Character::update_self(unsigned now, unsigned last)
 
     if(m_y_speed == 0.0 && m_x_speed == 0.0) {
         return;
+    }
+
+    if(now - m_last_sound_played > 400) {
+        m_last_sound_played = now;
+        switch(m_character_code) {
+            case KNIGHT:
+                audio::play_sound_effect("res/sound/fx/pesadao_run.ogg", 30, 0);
+                break;
+
+            case INFILTRATOR:
+                audio::play_sound_effect("res/sound/fx/infiltrador_run.ogg", 30, 0);
+                break;
+
+            case MAGE:
+                audio::play_sound_effect("res/sound/fx/mago_run.ogg", 30, 0);
+                break;
+
+            case SOLDIER:
+                audio::play_sound_effect("res/sound/fx/soldier_run.ogg", 30, 0);
+                break;
+        }
     }
 
     update_position(now, last);

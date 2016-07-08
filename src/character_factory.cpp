@@ -26,19 +26,19 @@ CharacterFactory::make_character(int character_code, unsigned player_id, double 
 
     switch(character_code) {
         case INFILTRATOR:
-            return new Infiltrator(m_sprites_paths, player_id, x_pos, y_pos);
+            return new Infiltrator(m_sprites_paths, player_id, x_pos, y_pos, character_code);
             break;
 
         case MAGE:
-            return new Mage(m_sprites_paths, player_id, x_pos, y_pos);
+            return new Mage(m_sprites_paths, player_id, x_pos, y_pos, character_code);
             break;
 
         case SOLDIER:
-            return new Soldier(m_sprites_paths, player_id, x_pos, y_pos);
+            return new Soldier(m_sprites_paths, player_id, x_pos, y_pos, character_code);
             break;
 
         case KNIGHT:
-            return new Knight(m_sprites_paths, player_id, x_pos, y_pos);
+            return new Knight(m_sprites_paths, player_id, x_pos, y_pos, character_code);
             break;
 
         default:

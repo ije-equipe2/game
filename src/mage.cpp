@@ -8,12 +8,13 @@
 #include <string>
 
 #define MAX_LIFE 100
+#define EFFECTS_VOLUME 100
 
 using std::vector;
 using std::string;
 
-Mage::Mage(vector<string> sprite_paths, unsigned id, double x, double y)
-    : Character(sprite_paths, id, x, y, MAX_LIFE)
+Mage::Mage(vector<string> sprite_paths, unsigned id, double x, double y, int character_code)
+    : Character(sprite_paths, id, x, y, MAX_LIFE, character_code)
 {
     m_special_cooldown = 5000;
     m_heavy_attack_cooldown = 2000;
@@ -28,6 +29,7 @@ Mage::Mage(vector<string> sprite_paths, unsigned id, double x, double y)
 void
 Mage::heavy_attack()
 {
+    audio::play_sound_effect("res/sound/fx/mago_heavy.ogg", EFFECTS_VOLUME, 0);
     auto p = parent();
     printf("p = %p\n", (void *) p);
 
@@ -50,16 +52,19 @@ Mage::heavy_attack()
 
 void
 Mage::light_attack() {
+    audio::play_sound_effect("res/sound/fx/mago_light.ogg", EFFECTS_VOLUME, 0);
     change_character_state(LIGHT_ATTACK_STATE);
 }
 
 void
 Mage::defense() {
+    audio::play_sound_effect("res/sound/fx/mago_block.ogg", EFFECTS_VOLUME, 0);
     change_character_state(DEFENSE_STATE);
 }
 
 void
 Mage::special() {
+    audio::play_sound_effect("res/sound/fx/mago_ultimate.ogg", EFFECTS_VOLUME, 0);
     auto p = parent();
     printf("p = %p\n", (void *) p);
 

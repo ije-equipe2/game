@@ -7,7 +7,7 @@ using namespace ijengine;
 
 class Infiltrator : public Character {
 public:
-    Infiltrator(vector<string> sprite_paths, unsigned id, double x, double y);
+    Infiltrator(vector<string> sprite_paths, unsigned id, double x, double y, int character_code);
 
 protected:
     void heavy_attack();

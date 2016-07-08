@@ -30,9 +30,16 @@ using namespace util;
 
 class Character : public GameObject, public GameEventsListener, public Collidable {
 public:
-	Character(const vector<string> sprite_paths, unsigned id, double x, double y, int max_life);
+	Character(const vector<string> sprite_paths, unsigned id, double x, double y, int max_life, int character_code);
 	~Character();
     
+    enum {
+        KNIGHT,
+        SOLDIER,
+        MAGE,
+        INFILTRATOR
+    };
+
     enum {
         START_MOVING_DOWN,
         START_MOVING_LEFT,
@@ -99,6 +106,8 @@ protected:
     int m_last_used_defense;
     int m_last_used_special;
     int m_respawn_time;
+    int m_character_code;
+    int m_last_sound_played;
     bool m_freeze;
     bool m_dead;
     double m_x_speed;

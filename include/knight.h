@@ -7,7 +7,7 @@ using namespace ijengine;
 
 class Knight : public Character {
 public:
-    Knight(vector<string> sprite_paths, unsigned id, double x, double y);
+    Knight(vector<string> sprite_paths, unsigned id, double x, double y, int character_code);
 
 protected:
     void heavy_attack();
