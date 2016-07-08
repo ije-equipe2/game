@@ -65,6 +65,7 @@ public:
     pair<double, double> direction() const;
 
     unsigned id() const { return m_id; }
+    int number_of_lives() const { return m_number_of_lives; }
     void set_base(Base *base);
 
 protected:
@@ -93,6 +94,7 @@ protected:
     unsigned m_id;
     int m_max_life;
     int m_current_life;
+    int m_number_of_lives;
     int m_frame;
     int m_start;
     int m_w;

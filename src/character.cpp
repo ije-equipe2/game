@@ -2,6 +2,7 @@
 #include "ije02_game.h"
 #include "main_level.h"
 #include "skill.h"
+#include "test_level_factory.h"
 
 #include <ijengine/engine.h>
 #include <ijengine/canvas.h>
@@ -37,6 +38,10 @@ Character::Character(const vector<string> sprite_paths, unsigned id, double x, d
     m_w = 32;
     m_h = 32;
 
+    if(game_mode::choosen_mode == "deathmatch-mode") {
+        m_number_of_lives = 5;
+    }
+
     respawn_character();
 }
 
@@ -52,7 +57,8 @@ Character::update_self(unsigned now, unsigned last)
 
     handle_state();
     
-    if(m_base->life() <= 0) {
+    if(((game_mode::choosen_mode == "base-mode") and m_base->life() <= 0) ||
+        (game_mode::choosen_mode == "deathmatch-mode") and m_number_of_lives <= 0) {
         invalidate();
     }
 
@@ -270,7 +276,7 @@ Character::change_character_state(State next_state, bool respawning )
 
 void Character::handle_state()
 {
-    if(m_current_life <= 0 || m_base->life() <= 0) {
+    if((m_current_life <= 0) || (m_base->life() <= 0 and game_mode::choosen_mode == "base-mode")) {
         change_character_state(DEATH_STATE);
     }
 
@@ -371,6 +377,10 @@ Character::kill_character()
     physics::unregister_object(this);
     event::unregister_listener(this);
     m_dead = true;
+    if(game_mode::choosen_mode == "deathmatch-mode") {
+        m_number_of_lives--;
+        m_base->set_base_status(8 - m_number_of_lives);
+    }
 }
 
 void

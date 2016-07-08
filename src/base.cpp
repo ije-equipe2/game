@@ -1,12 +1,13 @@
 #include "base.h"
 #include "ije02_game.h"
 #include "skill.h"
+#include "test_level_factory.h"
 
 #include <ijengine/canvas.h>
 
 #define MAX_LIFE 4000
 Base::Base(int player_id)
-    :m_player_id(player_id), m_life(MAX_LIFE), m_frame(0), m_start(-1)
+    :m_player_id(player_id), m_frame(0), m_start(-1)
 {
     m_sprite_paths.push_back("Spritesheets/Green/SpritesheetGreenBase.png");
     m_sprite_paths.push_back("Spritesheets/Blue/SpritesheetBlueBase.png");
@@ -17,25 +18,32 @@ Base::Base(int player_id)
 
     m_w = 32;
     m_h = 32;
+    m_life = MAX_LIFE;
 
     set_base_position(player_id, m_x, m_y);
 
-    m_bounding_box = Rectangle(m_x, m_y, 20, 12);
-
-    physics::register_object(this);
+    if(game_mode::choosen_mode == "base-mode"){
+        
+        m_bounding_box = Rectangle(m_x, m_y, 20, 12);
+        physics::register_object(this);
+    }
 }
 
 Base::~Base()
 {
-    physics::unregister_object(this);
+    if(game_mode::choosen_mode == "base-mode"){
+        physics::unregister_object(this);
+    }
 }
 
 void
 Base::update_self(unsigned now, unsigned last)
 {
     if(m_start == -1) {
-        change_base_status();
         m_start = now;
+    }
+    if(game_mode::choosen_mode == "base-mode") {
+        change_base_status();
     }
 
     if(now - m_start > 400) {
@@ -104,15 +112,17 @@ Base::hit_boxes() const
 void
 Base::on_collision(const Collidable *who, const Rectangle& where, unsigned now, unsigned last)
 {
-    const Skill *s = dynamic_cast<const Skill *>(who);
+    if(game_mode::choosen_mode == "base-mode"){
+        const Skill *s = dynamic_cast<const Skill *>(who);
 
-    if(s and s->character_id() != m_player_id and s->valid()) {
-        m_life -= s->damage();
-        printf("BASE HP: %d\n", m_life);
-        printf("Vida da base: %d\n", m_life);
+        if(s and s->character_id() != m_player_id and s->valid()) {
+            m_life -= s->damage();
+            printf("BASE HP: %d\n", m_life);
+            printf("Vida da base: %d\n", m_life);
+        }
+
+        change_base_status();
     }
-
-    change_base_status();
 }
 
 pair<double, double>
@@ -151,4 +161,10 @@ Base::change_base_status()
     else {
         m_base_status = DESTROYED;
     }
+}
+
+void
+Base::set_base_status(int base_status)
+{
+    m_base_status = base_status;
 }

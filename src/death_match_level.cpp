@@ -1,4 +1,4 @@
-#include "main_level.h"
+#include "death_match_level.h"
 #include "engine.h"
 #include "character.h"
 #include "ije02_game.h"
@@ -13,15 +13,12 @@
 using namespace std;
 using namespace ijengine;
 
-using std::cout;
-using std::endl;
-
-MainLevel::MainLevel(const string& next_level, vector < int > players_characters)
+DeathMatchLevel::DeathMatchLevel(const string& next_level, vector < int > players_characters)
     : m_done(false), m_next(next_level), m_start(-1), m_has_winner(false)
 {
     audio::stop_audio_channel(0);
     audio::play_sound_effect("res/sound/music/ingame.ogg", 30, 50);
-    printf("Entrou no main leven\n");
+    printf("Entrou na Death Match level!\n");
     m_texture = resources::get_texture("map/Map003.jpg");
 
     for (int i = 0; i < MAX_W; ++i)
@@ -43,43 +40,28 @@ MainLevel::MainLevel(const string& next_level, vector < int > players_characters
         Character *current_character = m_character_factory.make_character(current_player_character, player_id, x, y);
         Base *current_base = new Base(player_id);
         current_character->set_base(current_base);
-        m_bases.push_back(current_base);
+        m_characters.push_back(current_character);
+        current_base->set_base_status(8 - current_character->number_of_lives());
         add_child(current_character);
         add_child(current_base);
         player_id++;
     }
 }
 
-MainLevel::~MainLevel() {
-    
-}
-
-bool
-MainLevel::done() const
+DeathMatchLevel::~DeathMatchLevel()
 {
-    return m_done;
-}
 
-string
-MainLevel::next() const
-{
-    return m_next;
-}
-
-string
-MainLevel::audio() const {
-    return ".";
 }
 
 void
-MainLevel::update_self(unsigned now, unsigned)
+DeathMatchLevel::update_self(unsigned now, unsigned)
 {
     if (m_start == -1)
         m_start = now;
 
     if(not m_has_winner and now - m_start > 200) {
         m_start = now;
-        verify_bases();
+        verify_characters();
     }
 
     if(m_has_winner and now - m_start > 3200) {
@@ -88,15 +70,40 @@ MainLevel::update_self(unsigned now, unsigned)
 }
 
 void
-MainLevel::draw_self(Canvas *canvas, unsigned, unsigned)
+DeathMatchLevel::draw_self(Canvas *canvas, unsigned, unsigned)
 {
     canvas->clear();
     
     canvas->draw(m_texture.get(), 0, 0);
 }
 
+void 
+DeathMatchLevel::verify_characters()
+{
+    int count = 0;
+    int valid_index = 0;
+
+    for(int i = 0; i < 4; i++) {
+        if(m_characters[i]->valid()) {
+            count++;
+            valid_index = i;
+        }
+    }
+
+    if(count == 1) {
+        m_has_winner = true;
+        audio::stop_audio_channel(0);
+        audio::play_sound_effect("res/sound/music/winning.ogg", 30, 1);
+        printf("Index valido: %d\n", valid_index);
+        winner::winner_player = valid_index;
+
+    }
+
+    //printf("Contando.....\n %d \n", count);
+}
+
 void
-MainLevel::set_players_characters_position(unsigned player_id, double& x_pos, double& y_pos)
+DeathMatchLevel::set_players_characters_position(unsigned player_id, double& x_pos, double& y_pos)
 {
     switch(player_id) {
         case PLAYER_1:
@@ -126,32 +133,20 @@ MainLevel::set_players_characters_position(unsigned player_id, double& x_pos, do
     }
 }
 
-void 
-MainLevel::verify_bases()
+
+
+bool
+DeathMatchLevel::done() const
 {
-    int count = 0;
-    int winner_player_id = 0;
+    return m_done;
+}
 
-    for(int i = 0; i < 4; i++) {
-        if(m_bases[i]->life() <= 0) {
-            count++;
-        }
-        else {
-            winner_player_id = m_bases[i]->base_player_id();
-        }
-    }
-
-    if(count == 3) {
-        m_has_winner = true;
-        audio::stop_audio_channel(0);
-        audio::play_sound_effect("res/sound/music/winning.ogg", 30, 1);
-        winner::winner_player = winner_player_id;
-
-    }
-
-    if(count > 3) {
-        printf("Something is wrong.... \nMore than 3 bases destroyed!\n");
-    }
-
-    //printf("Contando.....\n %d \n", count);
+string
+DeathMatchLevel::next() const
+{
+    return m_next;
+}
+string
+DeathMatchLevel::audio() const {
+    return ".";
 }

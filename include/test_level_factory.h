@@ -19,6 +19,10 @@ namespace ijengine
     {
         extern int winner_player;
     }
+    namespace game_mode
+    {
+        extern string choosen_mode;
+    }
 }
 
 class TestLevelFactory : public LevelFactory {

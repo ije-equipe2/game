@@ -33,12 +33,14 @@ public:
     pair<double, double> direction() const;
     unsigned base_player_id() const { return m_player_id; }
     int life() const {return m_life;}
+    void set_base_status(int base_status);
     
 protected:
     void update_self(unsigned now, unsigned last);
     void draw_self(Canvas *canvas, unsigned now, unsigned last);
     void set_base_position(unsigned player_id, double& x_pos, double& y_pos);
     void change_base_status();
+    
 
 protected:
     unsigned m_player_id;

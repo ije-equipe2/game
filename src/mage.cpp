@@ -8,7 +8,6 @@
 #include <string>
 
 #define MAX_LIFE 100
-#define EFFECTS_VOLUME 100
 
 using std::vector;
 using std::string;

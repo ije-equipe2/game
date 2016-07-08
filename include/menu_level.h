@@ -36,14 +36,21 @@ public:
 protected:
     void update_self(unsigned now, unsigned last);
     void draw_self(Canvas *canvas, unsigned now, unsigned last);
+    void update_position();
     bool on_event(const GameEvent& event);
 
 private:
     bool m_done;
     string m_next;
     int m_start;
+    int m_option_y_position;
+    int m_current_option;
+
+    enum { BASE_OPTION, DEATHMATCH_OPTION };
+    enum { BACKGROUND, POINTER };
 
     vector< shared_ptr<Texture> > m_textures;
+    vector < string > m_options;
 };
 
 #endif

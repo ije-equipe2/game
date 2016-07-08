@@ -65,8 +65,9 @@ WinnerLevel::set_congratulations_string()
             break;
 
         default:
-        printf("Error on set_congratulations_string!\n");
-            m_congratulations = "Houve um erro no jogo! :D";
+            printf("Error on set_congratulations_string!\n");
+            printf("Valor de winner player: %d\n", m_winner_player);
+            m_congratulations = "Houve um erro\n no jogo! :D";
             break;
     }
 }

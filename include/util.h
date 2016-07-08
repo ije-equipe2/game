@@ -5,6 +5,7 @@
 #define Y_ADJUSTMENT 20.0
 #define BASE_X_ADJUSTMENT 16.0
 #define BASE_Y_ADJUSTMENT 20.0
+#define EFFECTS_VOLUME 100
 
 namespace util
 {

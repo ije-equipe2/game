@@ -2,7 +2,6 @@
 #include "ije02_game.h"
 
 #define MAX_LIFE 300
-#define EFFECTS_VOLUME 100
 
 Knight::Knight(vector<string> sprite_paths, unsigned id, double x, double y, int character_code)
     : Character(sprite_paths, id, x, y, MAX_LIFE, character_code)
