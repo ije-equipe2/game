@@ -1,6 +1,18 @@
 # Deadly Wish
 
-## Install and Run
+## Automatic Installation
+
+* change the permission of install script and run script
+
+    ```sh
+    chmod 777 install.sh run.sh
+    ```
+
+* Run the script ```./install.sh``` then run ```./run.sh```
+
+* Enjoy
+
+## Manual Installation
 
 ```sh
 git clone https://github.com/fgagamedev/Deadly-Wish.git
@@ -17,3 +29,5 @@ cd ..
 make
 ./bin/ije02_game
 ```
+
+
