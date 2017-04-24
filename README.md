@@ -3,6 +3,8 @@
 ## Install and Run
 
 ```sh
+git clone https://github.com/fgagamedev/Deadly-Wish.git
+
 sudo apt-get install libsdl2-dev libsdl2-ttf-dev libsdl2-image-dev libsdl2-mixer-dev 
 
 cd Deadly-Wish/ijengine
