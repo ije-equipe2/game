@@ -7,3 +7,5 @@ obj
 test/test
 *.so*
 bin*
+!ijengine/ijengine.tar.gz
+ijengine
