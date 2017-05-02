@@ -1,0 +1,14 @@
+version: '2'
+services:
+  deadly-wish:
+    build: .
+    environment:
+      DISPLAY:
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /dev/shm:/dev/shm
+      - /dev/dri:/dev/dri
+      - /dev/snd:/dev/snd
+      - /dev/video0:/dev/video0
+      - /dev/input:/dev/input
+      - /etc/localtime:/etc/localtime:ro
