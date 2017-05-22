@@ -1,1 +1,1 @@
-./bin/ije02_game
+./Deadly_Wish

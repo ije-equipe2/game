@@ -26,8 +26,11 @@ sudo make install
 mkdir ../libs/ && cp kernel/sdl2/kernel.so.0.1.0 ../libs/ 
 
 cd ..
+mkdir build && cd build
+cmake ..
 make
-./bin/ije02_game
+cd ..
+./Deadly_Wish
 ```
 
 
