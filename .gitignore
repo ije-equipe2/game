@@ -8,3 +8,10 @@ test/test
 bin*
 Deadly_Wish
 build
+CMakeCache.txt
+CMakeFiles/*
+cmake_install.cmake
+ijengine/CMakeFiles/
+ijengine/cmake_install.cmake
+ijengine/kernel/sdl2/CMakeFiles/
+ijengine/kernel/sdl2/cmake_install.cmake
