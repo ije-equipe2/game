@@ -27,13 +27,13 @@ namespace ijengine
     
     Engine::Engine()
     {
-        auto files = os::list_files("libs");
+        auto files = os::list_files("/usr/libs");
         string path("");
         
         for (auto file : files)
             if (file.find("kernel") != string::npos) 
             {
-                path = "libs/" + file;
+                path = "/usr/libs/" + file;
                 break;
             }
             

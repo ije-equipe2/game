@@ -6,9 +6,10 @@ project(Deadly_Wish)
 set (PROJECT_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/include")
 set (PROJECT_SRC_DIR     "${PROJECT_SOURCE_DIR}/src")
 set (PROJECT_ASSETS_DIR  "${PROJECT_SOURCE_DIR}/res")
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "/usr/bin/libs")
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "/usr/bin/libs")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "/usr/libs")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "/usr/libs")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "/usr/bin")
+set(CMAKE_ASSETS_OUTPUT_DIRECTORY "/usr/share/deadly_wish")
 
 # Gets the list of files inside the src directory
 file(GLOB_RECURSE SOURCES "${PROJECT_SRC_DIR}/*.cpp")
@@ -68,9 +69,9 @@ target_link_libraries(deadly_wish
 #### Custom Commands ####
 
 add_custom_target(build-time-make-directory ALL
-    COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/libs)
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
 
 # Copy assets folder to build
 add_custom_command(TARGET deadly_wish POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
-                   ${PROJECT_ASSETS_DIR} ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/res)
+                   ${PROJECT_ASSETS_DIR} ${CMAKE_ASSETS_OUTPUT_DIRECTORY})

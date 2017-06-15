@@ -5,11 +5,11 @@ Level *
 TestLevelFactory::make_level(const string& level_id)
 {
     if (level_id == "red")
-        return new TestLevel(255, 0, 0, "green", "res/beat.wav");
+        return new TestLevel(255, 0, 0, "green", "/usr/share/deadly_wish/beat.wav");
     else if (level_id == "green")
-        return new TestLevel(0, 255, 0, "blue", "res/sweep.mp3");
+        return new TestLevel(0, 255, 0, "blue", "/usr/share/deadly_wish/sweep.mp3");
     else if (level_id == "blue")
-        return new TestLevel(0, 0, 255, "", "res/laser.mp3");
+        return new TestLevel(0, 0, 255, "", "/usr/share/deadly_wish/laser.mp3");
     else
         return nullptr;
 }
