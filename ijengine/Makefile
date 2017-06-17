@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish"
+CMAKE_SOURCE_DIR = "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish"
+CMAKE_BINARY_DIR = "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -73,14 +73,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(CMAKE_COMMAND) -E cmake_progress_start "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish/CMakeFiles" "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish/ijengine/CMakeFiles/progress.marks"
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f CMakeFiles/Makefile2 ijengine/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish/CMakeFiles" 0
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(CMAKE_COMMAND) -E cmake_progress_start "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0/CMakeFiles" "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0/ijengine/CMakeFiles/progress.marks"
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f CMakeFiles/Makefile2 ijengine/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f CMakeFiles/Makefile2 ijengine/clean
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f CMakeFiles/Makefile2 ijengine/clean
 .PHONY : clean
 
 # The main clean target
@@ -89,22 +89,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f CMakeFiles/Makefile2 ijengine/preinstall
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f CMakeFiles/Makefile2 ijengine/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f CMakeFiles/Makefile2 ijengine/preinstall
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f CMakeFiles/Makefile2 ijengine/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 ijengine/CMakeFiles/ijengine.dir/rule:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f CMakeFiles/Makefile2 ijengine/CMakeFiles/ijengine.dir/rule
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f CMakeFiles/Makefile2 ijengine/CMakeFiles/ijengine.dir/rule
 .PHONY : ijengine/CMakeFiles/ijengine.dir/rule
 
 # Convenience name for target.
@@ -113,7 +113,7 @@ ijengine: ijengine/CMakeFiles/ijengine.dir/rule
 
 # fast build rule for target.
 ijengine/fast:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/build
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/build
 .PHONY : ijengine/fast
 
 src/color.o: src/color.cpp.o
@@ -121,7 +121,7 @@ src/color.o: src/color.cpp.o
 
 # target to build an object file
 src/color.cpp.o:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/color.cpp.o
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/color.cpp.o
 .PHONY : src/color.cpp.o
 
 src/color.i: src/color.cpp.i
@@ -129,7 +129,7 @@ src/color.i: src/color.cpp.i
 
 # target to preprocess a source file
 src/color.cpp.i:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/color.cpp.i
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/color.cpp.i
 .PHONY : src/color.cpp.i
 
 src/color.s: src/color.cpp.s
@@ -137,7 +137,7 @@ src/color.s: src/color.cpp.s
 
 # target to generate assembly for a file
 src/color.cpp.s:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/color.cpp.s
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/color.cpp.s
 .PHONY : src/color.cpp.s
 
 src/engine.o: src/engine.cpp.o
@@ -145,7 +145,7 @@ src/engine.o: src/engine.cpp.o
 
 # target to build an object file
 src/engine.cpp.o:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/engine.cpp.o
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/engine.cpp.o
 .PHONY : src/engine.cpp.o
 
 src/engine.i: src/engine.cpp.i
@@ -153,7 +153,7 @@ src/engine.i: src/engine.cpp.i
 
 # target to preprocess a source file
 src/engine.cpp.i:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/engine.cpp.i
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/engine.cpp.i
 .PHONY : src/engine.cpp.i
 
 src/engine.s: src/engine.cpp.s
@@ -161,7 +161,7 @@ src/engine.s: src/engine.cpp.s
 
 # target to generate assembly for a file
 src/engine.cpp.s:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/engine.cpp.s
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/engine.cpp.s
 .PHONY : src/engine.cpp.s
 
 src/game.o: src/game.cpp.o
@@ -169,7 +169,7 @@ src/game.o: src/game.cpp.o
 
 # target to build an object file
 src/game.cpp.o:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/game.cpp.o
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/game.cpp.o
 .PHONY : src/game.cpp.o
 
 src/game.i: src/game.cpp.i
@@ -177,7 +177,7 @@ src/game.i: src/game.cpp.i
 
 # target to preprocess a source file
 src/game.cpp.i:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/game.cpp.i
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/game.cpp.i
 .PHONY : src/game.cpp.i
 
 src/game.s: src/game.cpp.s
@@ -185,7 +185,7 @@ src/game.s: src/game.cpp.s
 
 # target to generate assembly for a file
 src/game.cpp.s:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/game.cpp.s
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/game.cpp.s
 .PHONY : src/game.cpp.s
 
 src/game_event.o: src/game_event.cpp.o
@@ -193,7 +193,7 @@ src/game_event.o: src/game_event.cpp.o
 
 # target to build an object file
 src/game_event.cpp.o:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/game_event.cpp.o
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/game_event.cpp.o
 .PHONY : src/game_event.cpp.o
 
 src/game_event.i: src/game_event.cpp.i
@@ -201,7 +201,7 @@ src/game_event.i: src/game_event.cpp.i
 
 # target to preprocess a source file
 src/game_event.cpp.i:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/game_event.cpp.i
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/game_event.cpp.i
 .PHONY : src/game_event.cpp.i
 
 src/game_event.s: src/game_event.cpp.s
@@ -209,7 +209,7 @@ src/game_event.s: src/game_event.cpp.s
 
 # target to generate assembly for a file
 src/game_event.cpp.s:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/game_event.cpp.s
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/game_event.cpp.s
 .PHONY : src/game_event.cpp.s
 
 src/game_object.o: src/game_object.cpp.o
@@ -217,7 +217,7 @@ src/game_object.o: src/game_object.cpp.o
 
 # target to build an object file
 src/game_object.cpp.o:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/game_object.cpp.o
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/game_object.cpp.o
 .PHONY : src/game_object.cpp.o
 
 src/game_object.i: src/game_object.cpp.i
@@ -225,7 +225,7 @@ src/game_object.i: src/game_object.cpp.i
 
 # target to preprocess a source file
 src/game_object.cpp.i:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/game_object.cpp.i
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/game_object.cpp.i
 .PHONY : src/game_object.cpp.i
 
 src/game_object.s: src/game_object.cpp.s
@@ -233,7 +233,7 @@ src/game_object.s: src/game_object.cpp.s
 
 # target to generate assembly for a file
 src/game_object.cpp.s:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/game_object.cpp.s
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/game_object.cpp.s
 .PHONY : src/game_object.cpp.s
 
 src/lib.o: src/lib.cpp.o
@@ -241,7 +241,7 @@ src/lib.o: src/lib.cpp.o
 
 # target to build an object file
 src/lib.cpp.o:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/lib.cpp.o
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/lib.cpp.o
 .PHONY : src/lib.cpp.o
 
 src/lib.i: src/lib.cpp.i
@@ -249,7 +249,7 @@ src/lib.i: src/lib.cpp.i
 
 # target to preprocess a source file
 src/lib.cpp.i:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/lib.cpp.i
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/lib.cpp.i
 .PHONY : src/lib.cpp.i
 
 src/lib.s: src/lib.cpp.s
@@ -257,7 +257,7 @@ src/lib.s: src/lib.cpp.s
 
 # target to generate assembly for a file
 src/lib.cpp.s:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/lib.cpp.s
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/lib.cpp.s
 .PHONY : src/lib.cpp.s
 
 src/line.o: src/line.cpp.o
@@ -265,7 +265,7 @@ src/line.o: src/line.cpp.o
 
 # target to build an object file
 src/line.cpp.o:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/line.cpp.o
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/line.cpp.o
 .PHONY : src/line.cpp.o
 
 src/line.i: src/line.cpp.i
@@ -273,7 +273,7 @@ src/line.i: src/line.cpp.i
 
 # target to preprocess a source file
 src/line.cpp.i:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/line.cpp.i
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/line.cpp.i
 .PHONY : src/line.cpp.i
 
 src/line.s: src/line.cpp.s
@@ -281,7 +281,7 @@ src/line.s: src/line.cpp.s
 
 # target to generate assembly for a file
 src/line.cpp.s:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/line.cpp.s
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/line.cpp.s
 .PHONY : src/line.cpp.s
 
 src/linux.o: src/linux.cpp.o
@@ -289,7 +289,7 @@ src/linux.o: src/linux.cpp.o
 
 # target to build an object file
 src/linux.cpp.o:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/linux.cpp.o
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/linux.cpp.o
 .PHONY : src/linux.cpp.o
 
 src/linux.i: src/linux.cpp.i
@@ -297,7 +297,7 @@ src/linux.i: src/linux.cpp.i
 
 # target to preprocess a source file
 src/linux.cpp.i:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/linux.cpp.i
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/linux.cpp.i
 .PHONY : src/linux.cpp.i
 
 src/linux.s: src/linux.cpp.s
@@ -305,7 +305,7 @@ src/linux.s: src/linux.cpp.s
 
 # target to generate assembly for a file
 src/linux.cpp.s:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/linux.cpp.s
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/linux.cpp.s
 .PHONY : src/linux.cpp.s
 
 src/point.o: src/point.cpp.o
@@ -313,7 +313,7 @@ src/point.o: src/point.cpp.o
 
 # target to build an object file
 src/point.cpp.o:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/point.cpp.o
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/point.cpp.o
 .PHONY : src/point.cpp.o
 
 src/point.i: src/point.cpp.i
@@ -321,7 +321,7 @@ src/point.i: src/point.cpp.i
 
 # target to preprocess a source file
 src/point.cpp.i:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/point.cpp.i
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/point.cpp.i
 .PHONY : src/point.cpp.i
 
 src/point.s: src/point.cpp.s
@@ -329,7 +329,7 @@ src/point.s: src/point.cpp.s
 
 # target to generate assembly for a file
 src/point.cpp.s:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/point.cpp.s
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/point.cpp.s
 .PHONY : src/point.cpp.s
 
 src/rectangle.o: src/rectangle.cpp.o
@@ -337,7 +337,7 @@ src/rectangle.o: src/rectangle.cpp.o
 
 # target to build an object file
 src/rectangle.cpp.o:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/rectangle.cpp.o
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/rectangle.cpp.o
 .PHONY : src/rectangle.cpp.o
 
 src/rectangle.i: src/rectangle.cpp.i
@@ -345,7 +345,7 @@ src/rectangle.i: src/rectangle.cpp.i
 
 # target to preprocess a source file
 src/rectangle.cpp.i:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/rectangle.cpp.i
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/rectangle.cpp.i
 .PHONY : src/rectangle.cpp.i
 
 src/rectangle.s: src/rectangle.cpp.s
@@ -353,7 +353,7 @@ src/rectangle.s: src/rectangle.cpp.s
 
 # target to generate assembly for a file
 src/rectangle.cpp.s:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/rectangle.cpp.s
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/rectangle.cpp.s
 .PHONY : src/rectangle.cpp.s
 
 src/sdl2animation.o: src/sdl2animation.cpp.o
@@ -361,7 +361,7 @@ src/sdl2animation.o: src/sdl2animation.cpp.o
 
 # target to build an object file
 src/sdl2animation.cpp.o:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/sdl2animation.cpp.o
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/sdl2animation.cpp.o
 .PHONY : src/sdl2animation.cpp.o
 
 src/sdl2animation.i: src/sdl2animation.cpp.i
@@ -369,7 +369,7 @@ src/sdl2animation.i: src/sdl2animation.cpp.i
 
 # target to preprocess a source file
 src/sdl2animation.cpp.i:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/sdl2animation.cpp.i
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/sdl2animation.cpp.i
 .PHONY : src/sdl2animation.cpp.i
 
 src/sdl2animation.s: src/sdl2animation.cpp.s
@@ -377,7 +377,7 @@ src/sdl2animation.s: src/sdl2animation.cpp.s
 
 # target to generate assembly for a file
 src/sdl2animation.cpp.s:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/sdl2animation.cpp.s
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/sdl2animation.cpp.s
 .PHONY : src/sdl2animation.cpp.s
 
 src/time.o: src/time.cpp.o
@@ -385,7 +385,7 @@ src/time.o: src/time.cpp.o
 
 # target to build an object file
 src/time.cpp.o:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/time.cpp.o
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/time.cpp.o
 .PHONY : src/time.cpp.o
 
 src/time.i: src/time.cpp.i
@@ -393,7 +393,7 @@ src/time.i: src/time.cpp.i
 
 # target to preprocess a source file
 src/time.cpp.i:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/time.cpp.i
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/time.cpp.i
 .PHONY : src/time.cpp.i
 
 src/time.s: src/time.cpp.s
@@ -401,7 +401,7 @@ src/time.s: src/time.cpp.s
 
 # target to generate assembly for a file
 src/time.cpp.s:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/time.cpp.s
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/CMakeFiles/ijengine.dir/build.make ijengine/CMakeFiles/ijengine.dir/src/time.cpp.s
 .PHONY : src/time.cpp.s
 
 # Help Target
@@ -460,6 +460,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

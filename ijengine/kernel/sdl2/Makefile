@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish"
+CMAKE_SOURCE_DIR = "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish"
+CMAKE_BINARY_DIR = "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -73,14 +73,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(CMAKE_COMMAND) -E cmake_progress_start "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish/CMakeFiles" "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish/ijengine/kernel/sdl2/CMakeFiles/progress.marks"
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f CMakeFiles/Makefile2 ijengine/kernel/sdl2/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish/CMakeFiles" 0
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(CMAKE_COMMAND) -E cmake_progress_start "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0/CMakeFiles" "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0/ijengine/kernel/sdl2/CMakeFiles/progress.marks"
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f CMakeFiles/Makefile2 ijengine/kernel/sdl2/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f CMakeFiles/Makefile2 ijengine/kernel/sdl2/clean
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f CMakeFiles/Makefile2 ijengine/kernel/sdl2/clean
 .PHONY : clean
 
 # The main clean target
@@ -89,22 +89,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f CMakeFiles/Makefile2 ijengine/kernel/sdl2/preinstall
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f CMakeFiles/Makefile2 ijengine/kernel/sdl2/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f CMakeFiles/Makefile2 ijengine/kernel/sdl2/preinstall
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f CMakeFiles/Makefile2 ijengine/kernel/sdl2/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 ijengine/kernel/sdl2/CMakeFiles/kernel.dir/rule:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f CMakeFiles/Makefile2 ijengine/kernel/sdl2/CMakeFiles/kernel.dir/rule
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f CMakeFiles/Makefile2 ijengine/kernel/sdl2/CMakeFiles/kernel.dir/rule
 .PHONY : ijengine/kernel/sdl2/CMakeFiles/kernel.dir/rule
 
 # Convenience name for target.
@@ -113,7 +113,7 @@ kernel: ijengine/kernel/sdl2/CMakeFiles/kernel.dir/rule
 
 # fast build rule for target.
 kernel/fast:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/kernel/sdl2/CMakeFiles/kernel.dir/build.make ijengine/kernel/sdl2/CMakeFiles/kernel.dir/build
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/kernel/sdl2/CMakeFiles/kernel.dir/build.make ijengine/kernel/sdl2/CMakeFiles/kernel.dir/build
 .PHONY : kernel/fast
 
 main.o: main.cpp.o
@@ -121,7 +121,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/kernel/sdl2/CMakeFiles/kernel.dir/build.make ijengine/kernel/sdl2/CMakeFiles/kernel.dir/main.cpp.o
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/kernel/sdl2/CMakeFiles/kernel.dir/build.make ijengine/kernel/sdl2/CMakeFiles/kernel.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -129,7 +129,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/kernel/sdl2/CMakeFiles/kernel.dir/build.make ijengine/kernel/sdl2/CMakeFiles/kernel.dir/main.cpp.i
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/kernel/sdl2/CMakeFiles/kernel.dir/build.make ijengine/kernel/sdl2/CMakeFiles/kernel.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -137,7 +137,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/kernel/sdl2/CMakeFiles/kernel.dir/build.make ijengine/kernel/sdl2/CMakeFiles/kernel.dir/main.cpp.s
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/kernel/sdl2/CMakeFiles/kernel.dir/build.make ijengine/kernel/sdl2/CMakeFiles/kernel.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 sdl2canvas.o: sdl2canvas.cpp.o
@@ -145,7 +145,7 @@ sdl2canvas.o: sdl2canvas.cpp.o
 
 # target to build an object file
 sdl2canvas.cpp.o:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/kernel/sdl2/CMakeFiles/kernel.dir/build.make ijengine/kernel/sdl2/CMakeFiles/kernel.dir/sdl2canvas.cpp.o
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/kernel/sdl2/CMakeFiles/kernel.dir/build.make ijengine/kernel/sdl2/CMakeFiles/kernel.dir/sdl2canvas.cpp.o
 .PHONY : sdl2canvas.cpp.o
 
 sdl2canvas.i: sdl2canvas.cpp.i
@@ -153,7 +153,7 @@ sdl2canvas.i: sdl2canvas.cpp.i
 
 # target to preprocess a source file
 sdl2canvas.cpp.i:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/kernel/sdl2/CMakeFiles/kernel.dir/build.make ijengine/kernel/sdl2/CMakeFiles/kernel.dir/sdl2canvas.cpp.i
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/kernel/sdl2/CMakeFiles/kernel.dir/build.make ijengine/kernel/sdl2/CMakeFiles/kernel.dir/sdl2canvas.cpp.i
 .PHONY : sdl2canvas.cpp.i
 
 sdl2canvas.s: sdl2canvas.cpp.s
@@ -161,7 +161,7 @@ sdl2canvas.s: sdl2canvas.cpp.s
 
 # target to generate assembly for a file
 sdl2canvas.cpp.s:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/kernel/sdl2/CMakeFiles/kernel.dir/build.make ijengine/kernel/sdl2/CMakeFiles/kernel.dir/sdl2canvas.cpp.s
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/kernel/sdl2/CMakeFiles/kernel.dir/build.make ijengine/kernel/sdl2/CMakeFiles/kernel.dir/sdl2canvas.cpp.s
 .PHONY : sdl2canvas.cpp.s
 
 sdl2kernel.o: sdl2kernel.cpp.o
@@ -169,7 +169,7 @@ sdl2kernel.o: sdl2kernel.cpp.o
 
 # target to build an object file
 sdl2kernel.cpp.o:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/kernel/sdl2/CMakeFiles/kernel.dir/build.make ijengine/kernel/sdl2/CMakeFiles/kernel.dir/sdl2kernel.cpp.o
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/kernel/sdl2/CMakeFiles/kernel.dir/build.make ijengine/kernel/sdl2/CMakeFiles/kernel.dir/sdl2kernel.cpp.o
 .PHONY : sdl2kernel.cpp.o
 
 sdl2kernel.i: sdl2kernel.cpp.i
@@ -177,7 +177,7 @@ sdl2kernel.i: sdl2kernel.cpp.i
 
 # target to preprocess a source file
 sdl2kernel.cpp.i:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/kernel/sdl2/CMakeFiles/kernel.dir/build.make ijengine/kernel/sdl2/CMakeFiles/kernel.dir/sdl2kernel.cpp.i
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/kernel/sdl2/CMakeFiles/kernel.dir/build.make ijengine/kernel/sdl2/CMakeFiles/kernel.dir/sdl2kernel.cpp.i
 .PHONY : sdl2kernel.cpp.i
 
 sdl2kernel.s: sdl2kernel.cpp.s
@@ -185,7 +185,7 @@ sdl2kernel.s: sdl2kernel.cpp.s
 
 # target to generate assembly for a file
 sdl2kernel.cpp.s:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/kernel/sdl2/CMakeFiles/kernel.dir/build.make ijengine/kernel/sdl2/CMakeFiles/kernel.dir/sdl2kernel.cpp.s
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/kernel/sdl2/CMakeFiles/kernel.dir/build.make ijengine/kernel/sdl2/CMakeFiles/kernel.dir/sdl2kernel.cpp.s
 .PHONY : sdl2kernel.cpp.s
 
 sdl2texture.o: sdl2texture.cpp.o
@@ -193,7 +193,7 @@ sdl2texture.o: sdl2texture.cpp.o
 
 # target to build an object file
 sdl2texture.cpp.o:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/kernel/sdl2/CMakeFiles/kernel.dir/build.make ijengine/kernel/sdl2/CMakeFiles/kernel.dir/sdl2texture.cpp.o
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/kernel/sdl2/CMakeFiles/kernel.dir/build.make ijengine/kernel/sdl2/CMakeFiles/kernel.dir/sdl2texture.cpp.o
 .PHONY : sdl2texture.cpp.o
 
 sdl2texture.i: sdl2texture.cpp.i
@@ -201,7 +201,7 @@ sdl2texture.i: sdl2texture.cpp.i
 
 # target to preprocess a source file
 sdl2texture.cpp.i:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/kernel/sdl2/CMakeFiles/kernel.dir/build.make ijengine/kernel/sdl2/CMakeFiles/kernel.dir/sdl2texture.cpp.i
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/kernel/sdl2/CMakeFiles/kernel.dir/build.make ijengine/kernel/sdl2/CMakeFiles/kernel.dir/sdl2texture.cpp.i
 .PHONY : sdl2texture.cpp.i
 
 sdl2texture.s: sdl2texture.cpp.s
@@ -209,7 +209,7 @@ sdl2texture.s: sdl2texture.cpp.s
 
 # target to generate assembly for a file
 sdl2texture.cpp.s:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/kernel/sdl2/CMakeFiles/kernel.dir/build.make ijengine/kernel/sdl2/CMakeFiles/kernel.dir/sdl2texture.cpp.s
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/kernel/sdl2/CMakeFiles/kernel.dir/build.make ijengine/kernel/sdl2/CMakeFiles/kernel.dir/sdl2texture.cpp.s
 .PHONY : sdl2texture.cpp.s
 
 sdl2time.o: sdl2time.cpp.o
@@ -217,7 +217,7 @@ sdl2time.o: sdl2time.cpp.o
 
 # target to build an object file
 sdl2time.cpp.o:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/kernel/sdl2/CMakeFiles/kernel.dir/build.make ijengine/kernel/sdl2/CMakeFiles/kernel.dir/sdl2time.cpp.o
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/kernel/sdl2/CMakeFiles/kernel.dir/build.make ijengine/kernel/sdl2/CMakeFiles/kernel.dir/sdl2time.cpp.o
 .PHONY : sdl2time.cpp.o
 
 sdl2time.i: sdl2time.cpp.i
@@ -225,7 +225,7 @@ sdl2time.i: sdl2time.cpp.i
 
 # target to preprocess a source file
 sdl2time.cpp.i:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/kernel/sdl2/CMakeFiles/kernel.dir/build.make ijengine/kernel/sdl2/CMakeFiles/kernel.dir/sdl2time.cpp.i
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/kernel/sdl2/CMakeFiles/kernel.dir/build.make ijengine/kernel/sdl2/CMakeFiles/kernel.dir/sdl2time.cpp.i
 .PHONY : sdl2time.cpp.i
 
 sdl2time.s: sdl2time.cpp.s
@@ -233,7 +233,7 @@ sdl2time.s: sdl2time.cpp.s
 
 # target to generate assembly for a file
 sdl2time.cpp.s:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/kernel/sdl2/CMakeFiles/kernel.dir/build.make ijengine/kernel/sdl2/CMakeFiles/kernel.dir/sdl2time.cpp.s
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/kernel/sdl2/CMakeFiles/kernel.dir/build.make ijengine/kernel/sdl2/CMakeFiles/kernel.dir/sdl2time.cpp.s
 .PHONY : sdl2time.cpp.s
 
 sdl2window.o: sdl2window.cpp.o
@@ -241,7 +241,7 @@ sdl2window.o: sdl2window.cpp.o
 
 # target to build an object file
 sdl2window.cpp.o:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/kernel/sdl2/CMakeFiles/kernel.dir/build.make ijengine/kernel/sdl2/CMakeFiles/kernel.dir/sdl2window.cpp.o
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/kernel/sdl2/CMakeFiles/kernel.dir/build.make ijengine/kernel/sdl2/CMakeFiles/kernel.dir/sdl2window.cpp.o
 .PHONY : sdl2window.cpp.o
 
 sdl2window.i: sdl2window.cpp.i
@@ -249,7 +249,7 @@ sdl2window.i: sdl2window.cpp.i
 
 # target to preprocess a source file
 sdl2window.cpp.i:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/kernel/sdl2/CMakeFiles/kernel.dir/build.make ijengine/kernel/sdl2/CMakeFiles/kernel.dir/sdl2window.cpp.i
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/kernel/sdl2/CMakeFiles/kernel.dir/build.make ijengine/kernel/sdl2/CMakeFiles/kernel.dir/sdl2window.cpp.i
 .PHONY : sdl2window.cpp.i
 
 sdl2window.s: sdl2window.cpp.s
@@ -257,7 +257,7 @@ sdl2window.s: sdl2window.cpp.s
 
 # target to generate assembly for a file
 sdl2window.cpp.s:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(MAKE) -f ijengine/kernel/sdl2/CMakeFiles/kernel.dir/build.make ijengine/kernel/sdl2/CMakeFiles/kernel.dir/sdl2window.cpp.s
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(MAKE) -f ijengine/kernel/sdl2/CMakeFiles/kernel.dir/build.make ijengine/kernel/sdl2/CMakeFiles/kernel.dir/sdl2window.cpp.s
 .PHONY : sdl2window.cpp.s
 
 # Help Target
@@ -298,6 +298,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd "/home/nere/Documentos/8 Semestre/GCS/Deadly-Wish" && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd "/home/nere/Documentos/8 Semestre/GCS/deadlywish-1.0" && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 
