@@ -15,3 +15,5 @@ ijengine/CMakeFiles/
 ijengine/cmake_install.cmake
 ijengine/kernel/sdl2/CMakeFiles/
 ijengine/kernel/sdl2/cmake_install.cmake
+*.deb
+ijengine/lib/libijengine.a

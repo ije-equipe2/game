@@ -6,10 +6,11 @@ project(Deadly_Wish)
 set (PROJECT_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/include")
 set (PROJECT_SRC_DIR     "${PROJECT_SOURCE_DIR}/src")
 set (PROJECT_ASSETS_DIR  "${PROJECT_SOURCE_DIR}/res")
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "/usr/libs")
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "/usr/libs")
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "/usr/bin")
-set(CMAKE_ASSETS_OUTPUT_DIRECTORY "/usr/share/deadly_wish")
+set (INSTALL_DIR "/usr/local")
+set (CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${INSTALL_DIR}/lib")
+set (CMAKE_LIBRARY_OUTPUT_DIRECTORY "${INSTALL_DIR}/lib")
+set (CMAKE_RUNTIME_OUTPUT_DIRECTORY "${INSTALL_DIR}/bin")
+set (CMAKE_ASSETS_OUTPUT_DIRECTORY "${INSTALL_DIR}/share/deadlywish")
 
 # Gets the list of files inside the src directory
 file(GLOB_RECURSE SOURCES "${PROJECT_SRC_DIR}/*.cpp")
@@ -57,9 +58,9 @@ include_directories(${SDL2_INCLUDE_DIR})
 
 #### Executable ####
 
-add_executable(deadly_wish ${SOURCES})
+add_executable(deadlywish ${SOURCES})
 
-target_link_libraries(deadly_wish
+target_link_libraries(deadlywish
 				  	  ijengine
                       SDL2 SDL2_image SDL2_ttf SDL2_mixer dl
 					  kernel)
@@ -68,10 +69,7 @@ target_link_libraries(deadly_wish
 
 #### Custom Commands ####
 
-add_custom_target(build-time-make-directory ALL
-    COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
-
 # Copy assets folder to build
-add_custom_command(TARGET deadly_wish POST_BUILD
+add_custom_command(TARGET deadlywish POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
                    ${PROJECT_ASSETS_DIR} ${CMAKE_ASSETS_OUTPUT_DIRECTORY})

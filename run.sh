@@ -1,1 +1,2 @@
-./Deadly_Wish
+#!/bin/bash
+deadlywish
