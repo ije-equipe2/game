@@ -13,13 +13,13 @@ RUN apt-get install -y \
     libsdl2-ttf-dev \
     libsdl2-image-dev \
     libsdl2-mixer-dev \
-    build-essential
-RUN cd ijengine && tar -vzxf ijengine.tar.gz && make && make install
-RUN mkdir libs && cp ijengine/kernel/sdl2/kernel.so.0.1.0 libs/
-RUN make
+    build-essential \
+    make \
+    cmake
+RUN mkdir build && cd build && cmake .. && make
 
 ENV DISPLAY=$DISPLAY
 ENV XAUTHORITY=$XAUTHORITY
 
 # Run the game
-CMD ["./bin/ije02_game"]
+CMD ["deadlywish"]

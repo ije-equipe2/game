@@ -12,4 +12,4 @@ services:
       - /dev/snd:/dev/snd
       - /dev/input:/dev/input
     container_name: deadly-wish
-    command: ./bin/ije02_game
+    command: deadlywish
