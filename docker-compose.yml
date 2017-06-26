@@ -1,0 +1,15 @@
+version: '2'
+services:
+  deadly-wish:
+    build: .
+    environment:
+      - DISPLAY=${DISPLAY:-localhost:0}
+      - XAUTHORITY=${XAUTHORITY}
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    devices:
+      - /dev/dri:/dev/dri
+      - /dev/snd:/dev/snd
+      - /dev/input:/dev/input
+    container_name: deadly-wish
+    command: ./bin/ije02_game
