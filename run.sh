@@ -1,1 +1,2 @@
-./bin/ije02_game
+#!/bin/bash
+deadlywish

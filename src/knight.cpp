@@ -21,13 +21,13 @@ Knight::Knight(vector<string> sprite_paths, unsigned id, double x, double y, int
 void
 Knight::heavy_attack()
 {
-    audio::play_sound_effect("res/sound/fx/pesadao_heavy.ogg", EFFECTS_VOLUME, 0);
+    audio::play_sound_effect("/usr/local/share/deadlywish/sound/fx/pesadao_heavy.ogg", EFFECTS_VOLUME, 0);
     change_character_state(HEAVY_ATTACK_STATE);
 }
 
 void
 Knight::light_attack() {
-    audio::play_sound_effect("res/sound/fx/pesadao_light.ogg", EFFECTS_VOLUME, 0);
+    audio::play_sound_effect("/usr/local/share/deadlywish/sound/fx/pesadao_light.ogg", EFFECTS_VOLUME, 0);
     auto p = parent();
     printf("p = %p\n", (void *) p);
 
@@ -47,7 +47,7 @@ Knight::light_attack() {
 
 void
 Knight::defense() {
-    audio::play_sound_effect("res/sound/fx/pesadao_block.ogg", EFFECTS_VOLUME, 0);
+    audio::play_sound_effect("/usr/local/share/deadlywish/sound/fx/pesadao_block.ogg", EFFECTS_VOLUME, 0);
     change_character_state(DEFENSE_STATE);
 }
 

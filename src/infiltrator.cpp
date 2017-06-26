@@ -21,7 +21,7 @@ Infiltrator::Infiltrator(vector<string> sprite_paths, unsigned id, double x, dou
 void
 Infiltrator::heavy_attack()
 {
-    audio::play_sound_effect("res/sound/fx/infiltrador_heavy.ogg", EFFECTS_VOLUME, 0);
+    audio::play_sound_effect("/usr/local/share/deadlywish/sound/fx/infiltrador_heavy.ogg", EFFECTS_VOLUME, 0);
     m_active = false;
     Character::m_active = false;
     change_character_state(HEAVY_ATTACK_STATE);
@@ -29,7 +29,7 @@ Infiltrator::heavy_attack()
 
 void
 Infiltrator::light_attack() {
-    audio::play_sound_effect("res/sound/fx/infiltrador_light.ogg", EFFECTS_VOLUME, 0);
+    audio::play_sound_effect("/usr/local/share/deadlywish/sound/fx/infiltrador_light.ogg", EFFECTS_VOLUME, 0);
     auto p = parent();
     printf("p = %p\n", (void *) p);
 
@@ -49,13 +49,13 @@ Infiltrator::light_attack() {
 
 void
 Infiltrator::defense() {
-    audio::play_sound_effect("res/sound/fx/infiltrador_block.ogg", EFFECTS_VOLUME, 0);
+    audio::play_sound_effect("/usr/local/share/deadlywish/sound/fx/infiltrador_block.ogg", EFFECTS_VOLUME, 0);
     change_character_state(DEFENSE_STATE);
 }
 
 void
 Infiltrator::special() {
-    audio::play_sound_effect("res/sound/fx/infiltrador_ultimate.ogg", EFFECTS_VOLUME, 0);
+    audio::play_sound_effect("/usr/local/share/deadlywish/sound/fx/infiltrador_ultimate.ogg", EFFECTS_VOLUME, 0);
     change_character_state(SPECIAL_STATE);
 }
 

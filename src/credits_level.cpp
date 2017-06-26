@@ -17,7 +17,7 @@ CreditsLevel::CreditsLevel(const string& next_level)
 {
     printf("Construtor dos créditos!\n");
     audio::stop_audio_channel(0);
-    audio::play_sound_effect("res/sound/music/credits.ogg", 30, 10);
+    audio::play_sound_effect("/usr/local/share/deadlywish/sound/music/credits.ogg", 30, 10);
     set_credits_strings();
     event::register_listener(this);
 }

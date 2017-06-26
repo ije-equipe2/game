@@ -52,9 +52,9 @@ Ije02Game::Ije02Game(const string& title, int w, int h, double scale)
     event::register_translator(&m_translator);
 
     level::register_factory(&m_level_factory);
-    resources::set_textures_dir("res/images");
-    resources::set_fonts_dir("res/fonts");
-    audio::set_audio_dir("res/sound");
+    resources::set_textures_dir("/usr/local/share/deadlywish/images");
+    resources::set_fonts_dir("/usr/local/share/deadlywish/fonts");
+    audio::set_audio_dir("/usr/local/share/deadlywish/sound");
 
     physics::set_collision_mode(physics::Mode::ALL_TO_ALL, nullptr);
 }

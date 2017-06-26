@@ -89,19 +89,19 @@ Character::update_self(unsigned now, unsigned last)
         m_last_sound_played = now;
         switch(m_character_code) {
             case KNIGHT:
-                audio::play_sound_effect("res/sound/fx/pesadao_run.ogg", 30, 0);
+                audio::play_sound_effect("/usr/local/share/deadlywish/sound/fx/pesadao_run.ogg", 30, 0);
                 break;
 
             case INFILTRATOR:
-                audio::play_sound_effect("res/sound/fx/infiltrador_run.ogg", 30, 0);
+                audio::play_sound_effect("/usr/local/share/deadlywish/sound/fx/infiltrador_run.ogg", 30, 0);
                 break;
 
             case MAGE:
-                audio::play_sound_effect("res/sound/fx/mago_run.ogg", 30, 0);
+                audio::play_sound_effect("/usr/local/share/deadlywish/sound/fx/mago_run.ogg", 30, 0);
                 break;
 
             case SOLDIER:
-                audio::play_sound_effect("res/sound/fx/soldier_run.ogg", 30, 0);
+                audio::play_sound_effect("/usr/local/share/deadlywish/sound/fx/soldier_run.ogg", 30, 0);
                 break;
         }
     }

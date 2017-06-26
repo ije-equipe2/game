@@ -22,7 +22,7 @@ Soldier::Soldier(vector<string> sprite_paths, unsigned id, double x, double y, i
 void
 Soldier::heavy_attack()
 {
-    audio::play_sound_effect("res/sound/fx/soldier_heavy.ogg", EFFECTS_VOLUME, 0);
+    audio::play_sound_effect("/usr/local/share/deadlywish/sound/fx/soldier_heavy.ogg", EFFECTS_VOLUME, 0);
     auto p = parent();
     printf("p = %p\n", (void *) p);
 
@@ -44,7 +44,7 @@ Soldier::heavy_attack()
 
 void
 Soldier::light_attack() {
-    audio::play_sound_effect("res/sound/fx/soldier_light.ogg", EFFECTS_VOLUME, 0);
+    audio::play_sound_effect("/usr/local/share/deadlywish/sound/fx/soldier_light.ogg", EFFECTS_VOLUME, 0);
     auto p = parent();
     printf("p = %p\n", (void *) p);
 
@@ -64,12 +64,12 @@ Soldier::light_attack() {
 
 void
 Soldier::defense() {
-    audio::play_sound_effect("res/sound/fx/soldier_block.ogg", EFFECTS_VOLUME, 0);
+    audio::play_sound_effect("/usr/local/share/deadlywish/sound/fx/soldier_block.ogg", EFFECTS_VOLUME, 0);
     change_character_state(DEFENSE_STATE);
 }
 
 void
 Soldier::special() {
-    audio::play_sound_effect("res/sound/fx/soldier_ultimate.ogg", EFFECTS_VOLUME, 0);
+    audio::play_sound_effect("/usr/local/share/deadlywish/sound/fx/soldier_ultimate.ogg", EFFECTS_VOLUME, 0);
     change_character_state(SPECIAL_STATE);
 }

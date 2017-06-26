@@ -13,7 +13,7 @@ MenuLevel::MenuLevel(const string& next_level)
     :m_done(false), m_next(next_level), m_start(-1), m_current_option(0)
 {
     audio::stop_audio_channel(0);
-    audio::play_sound_effect("res/sound/music/menu.ogg", 60, 10);
+    audio::play_sound_effect("/usr/local/share/deadlywish/sound/music/menu.ogg", 60, 10);
     m_textures.push_back(resources::get_texture("Titlecard.png"));
     m_textures.push_back(resources::get_texture("character_selection/option_selection.png"));
     event::register_listener(this);
@@ -94,21 +94,21 @@ MenuLevel::on_event(const GameEvent& event) {
         if(axis == "X") {
             if(value > 0) {
                 m_current_option = (m_current_option + 1) % 3;
-                audio::play_sound_effect("res/sound/fx/soldier_heavy.ogg", EFFECTS_VOLUME, 0);
+                audio::play_sound_effect("/usr/local/share/deadlywish/sound/fx/soldier_heavy.ogg", EFFECTS_VOLUME, 0);
             }
             else if(value < 0) {
                 m_current_option = (m_current_option - 1) % 3;
-                audio::play_sound_effect("res/sound/fx/soldier_heavy.ogg", EFFECTS_VOLUME, 0);
+                audio::play_sound_effect("/usr/local/share/deadlywish/sound/fx/soldier_heavy.ogg", EFFECTS_VOLUME, 0);
             }
         }
         else if(axis == "Y") {
             if(value > 0) {
                 m_current_option = (m_current_option + 1) % 3;
-                audio::play_sound_effect("res/sound/fx/soldier_heavy.ogg", EFFECTS_VOLUME, 0);
+                audio::play_sound_effect("/usr/local/share/deadlywish/sound/fx/soldier_heavy.ogg", EFFECTS_VOLUME, 0);
             }
             else if(value < 0) {
                 m_current_option = (m_current_option - 1) % 3;
-                audio::play_sound_effect("res/sound/fx/soldier_heavy.ogg", EFFECTS_VOLUME, 0);
+                audio::play_sound_effect("/usr/local/share/deadlywish/sound/fx/soldier_heavy.ogg", EFFECTS_VOLUME, 0);
             }
         }
         

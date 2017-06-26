@@ -20,7 +20,7 @@ MainLevel::MainLevel(const string& next_level, vector < int > players_characters
     : m_done(false), m_next(next_level), m_start(-1), m_has_winner(false)
 {
     audio::stop_audio_channel(0);
-    audio::play_sound_effect("res/sound/music/ingame.ogg", 30, 50);
+    audio::play_sound_effect("/usr/local/share/deadlywish/sound/music/ingame.ogg", 30, 50);
     printf("Entrou no main leven\n");
     m_texture = resources::get_texture("map/Map003.jpg");
 
@@ -144,7 +144,7 @@ MainLevel::verify_bases()
     if(count == 3) {
         m_has_winner = true;
         audio::stop_audio_channel(0);
-        audio::play_sound_effect("res/sound/music/winning.ogg", 30, 1);
+        audio::play_sound_effect("/usr/local/share/deadlywish/sound/music/winning.ogg", 30, 1);
         winner::winner_player = winner_player_id;
 
     }

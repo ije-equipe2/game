@@ -17,7 +17,7 @@ DeathMatchLevel::DeathMatchLevel(const string& next_level, vector < int > player
     : m_done(false), m_next(next_level), m_start(-1), m_has_winner(false)
 {
     audio::stop_audio_channel(0);
-    audio::play_sound_effect("res/sound/music/ingame.ogg", 30, 50);
+    audio::play_sound_effect("/usr/local/share/deadlywish/sound/music/ingame.ogg", 30, 50);
     printf("Entrou na Death Match level!\n");
     m_texture = resources::get_texture("map/Map003.jpg");
 
@@ -93,7 +93,7 @@ DeathMatchLevel::verify_characters()
     if(count == 1) {
         m_has_winner = true;
         audio::stop_audio_channel(0);
-        audio::play_sound_effect("res/sound/music/winning.ogg", 30, 1);
+        audio::play_sound_effect("/usr/local/share/deadlywish/sound/music/winning.ogg", 30, 1);
         printf("Index valido: %d\n", valid_index);
         winner::winner_player = valid_index;
 
